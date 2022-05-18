@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client",
+    "e2e"
+  ],
+  "scripts": {
+    "build:client": "yarn workspace personal-tracker-client build",
+    "dev": "yarn workspace personal-tracker-server dev",
+    "dev:debug": "yarn workspace personal-tracker-server dev:debug",
+    "heroku-postbuild": "yarn workspace personal-tracker-client build",
+    "start": "yarn workspace personal-tracker-server start",
+    "dev:cypress": "yarn workspace personal-tracker-server dev:e2e",
+    "e2e:open": "yarn workspace personal-tracker-e2e e2e:open",
+    "e2e:run": "yarn workspace personal-tracker-e2e e2e:run"
+  },
+  "engines": {
+    "node": "^14.19"
+  }
+}
