@@ -1,21 +1,32 @@
-const { jsonSchema } = require('./Model')
+
 const Model = require('./Model')
 
 class Log extends Model {
     static get tableName(){
         return 'logs'
     }
+    static get jsonSchema() {
+        return {
+          type: "object",
+          required: ['habitId'],
+          properties: {
+            notes: { type: "string" },
+            level: {type : ['string','integer']},
+            habitId:{type: ['string', 'integer']}
+          },
+        };
+      }
     
    static get relationMappings(){
        const {Habit} = require('./index.js')
 
        return{
         habits:{
-        relation: Model.HasManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: Habit,
         join:{
-            from:'logs.id',
-            to:'habit.logId'
+            from:'logs.habitId',
+            to:'habit.id'
         }
        }
    } 

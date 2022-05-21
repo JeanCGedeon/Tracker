@@ -29,7 +29,7 @@ class User extends uniqueFunc(Model) {
       required: ["email"],
 
       properties: {
-        email: { type: "string", format: "email" },
+        email: { type: "string", pattern: "^\\S+@\\S+\\.\\S+$"},
         cryptedPassword: { type: "string" },
       },
     };
@@ -38,12 +38,12 @@ class User extends uniqueFunc(Model) {
   static get relationMappings() {
     const { Habit } = require("./index.js");
     return {
-      habit: {
-        relation: Model.BelongsToOneRelation,
+      habits: {
+        relation: Model.HasManyRelation,
         modelClass: Habit,
         join: {
-          from: "users.habitId",
-          to: "habits.id",
+          from: "users.id",
+          to: "habits.userId",
         },
       },
     };

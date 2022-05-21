@@ -11,7 +11,7 @@ exports.up = async (knex) => {
         table.string('title').notNullable()
         table.text('description').notNullable()
         table.boolean('good').notNullable()
-        table.bigInteger('logId').notNullable().index().unsigned().references('logs.id')
+        table.bigInteger('userId').notNullable().index().unsigned().references('users.id')
         table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now())
         table.timestamp('updatedAt').notNullable().defaultTo(knex.fn.now())
     })
