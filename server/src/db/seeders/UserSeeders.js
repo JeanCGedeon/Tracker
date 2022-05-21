@@ -1,3 +1,4 @@
+
 import { User } from "../../models/index.js";
 
 class UserSeeder{

@@ -2,39 +2,39 @@ const Model = require("./Model");
 
 class Habit extends Model {
   static get tableName() {
-    return "habits";
+    return "habits"
   }
 
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "description", "good"],
+      required: ["title", "description", "good",'userId'],
       properties: {
         title: { type: "string", minLength: 1 },
         description: { type: "string" },
         good: { type: ["boolean", "string"] },
-        logId: { type: ["integer", "string"] },
+        userId: { type: ["string", "integer"] },
       },
     };
   }
   static get relationMappings() {
-    const { User } = require("./index.js");
+    const { User, Log } = require("./index.js");
 
     return {
-      users: {
-        relation: Model.HasManyRelation,
+      user: {
+        relation: Model.BelongsToOneRelation,
         modelClass: User,
         join: {
-          from: "habits.id",
-          to: "users.habitId",
+          from: "habits.userId",
+          to: "users.id",
         },
       },
-      log:{
-        relation: Model.BelongsToOneRelation,
-        modelClass: Habit,
+      logs:{
+        relation: Model.HasManyRelation,
+        modelClass: Log,
         join:{
-            from:'habits.logId',
-            to:'logs.id'
+            from:'habits.id',
+            to:'logs.habitId'
         }
       }
     };

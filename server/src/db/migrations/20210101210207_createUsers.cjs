@@ -18,7 +18,6 @@ exports.up = async (knex) => {
       table.string("email").notNullable().unique();
       table.string("cryptedPassword").notNullable();
       table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
-      table.bigInteger('habitId').notNullable().index().unsigned().references('habits.id')
       table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
     });
   }

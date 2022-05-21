@@ -1,23 +1,29 @@
 import { Log } from "../../models/index.js";
 
 class LogSeeder{
-    static async async(){
+    static async seed(){
         const logsData = [{
-            id:1
+            notes:'upgraded my workout',
+            level:'7',
+            habitId:1
         },
         {
-            id:2
+            notes:'tested for injuries',
+            level:4,
+            habitId:2
         },
         {
-            id:3
+          notes:'Lagged my third attempt',
+          level:9,
+          habitId:1
         }
               ]
-    }
-}
-for(const singleLogsData of logsData) {
-    const currentLog = await Log.query().findOne(singleLogsData)
-    if(!currentLog){
-        await Log.query().insert(singleLogsData)
+              for(const singleLogData of logsData) {
+                  const currentLog = await Log.query().findOne(singleLogData)
+                  if(!currentLog){
+                      await Log.query().insert(singleLogData)
+                  }
+              }
     }
 }
 

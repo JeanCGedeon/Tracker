@@ -6,31 +6,31 @@ class HabitSeeder{
         title:'Sleep',
         description:'I have a bad habit of not getting enough sleep and this heavily effects me doing my work during the day',
         good:false,
-        logId:1
+        userId:1
      },
      {
         title:'Working out',
         description: 'I have been steadily working out almost every day',
         good:true,
-        logId:2
+        userId:1
      },
      {
         title:'Working out',
         description:'I have gotten back in shape and reduced my stress levels',
         good:true,
-        logId:2
+        userId:2
      },
      {
         title:'Working out',
         description:'I am putting to much time and focus into it and not other things which has caused me to slow down on my school-work',
         good:false,
-        logId:2
+        userId:2
     },
     {
         title:'test',
         description:'Yada',
         good:true,
-        logId:3
+        userId:1
     }
     ]
     for (const singleHabitsData of habitsData) {
