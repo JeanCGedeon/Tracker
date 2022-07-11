@@ -8,7 +8,7 @@ class Log extends Model {
     static get jsonSchema() {
         return {
           type: "object",
-          required: ['habitId'],
+          required: ['notes','level','habitId'],
           properties: {
             notes: { type: "string" },
             level: {type : ['string','integer']},

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
-
+import '../../assets/scss/main.scss'
+import getCurrentUserId from "../../services/getCurrentUserId";
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
     <li key="sign-in">
@@ -19,15 +20,30 @@ const TopBar = ({ user }) => {
       <SignOutButton />
     </li>,
   ];
-
+  const [currentUserId, setCurrentUserId] = useState(0)
+  const fetchCurrentUserId = async () =>{
+    try{
+      const userId = await getCurrentUserId()
+      setCurrentUserId(userId)
+    } catch(err) {
+      setCurrentUserId(null)
+    }
+  }
+  
+  useEffect(()=>{
+    fetchCurrentUserId()
+  },[])
+  
   return (
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
           <li className="menu-text">App</li>
           <li>
-            <Link to="/">Home</Link>
-          </li>
+            <Link to="/">Home</Link></li>
+           <li><Link to={`/habits/${currentUserId}`}>Create Habit</Link></li>
+           <li><Link to={`/habits/${currentUserId}&myGood`}>Good Habits</Link></li>
+           <li><Link to={`/habits/${currentUserId}&myBad`}> Bad Habits</Link></li>
         </ul>
       </div>
       <div className="top-bar-right">

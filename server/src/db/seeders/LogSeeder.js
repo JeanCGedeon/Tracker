@@ -6,16 +6,19 @@ class LogSeeder{
             notes:'upgraded my workout',
             level:'7',
             habitId:1
+    
         },
         {
             notes:'tested for injuries',
             level:4,
-            habitId:2
+            habitId:1
+        
         },
         {
           notes:'Lagged my third attempt',
           level:9,
-          habitId:1
+          habitId:2
+      
         }
               ]
               for(const singleLogData of logsData) {
