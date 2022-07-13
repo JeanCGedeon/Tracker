@@ -8,12 +8,11 @@ class Habit extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title", "description"],
+      required: ["title", "description", "good",'userId'],
       properties: {
         title: { type: "string", minLength: 1 },
         description: { type: "string" },
         good: { type: ["boolean", "string"] },
-        bad: { type: ["boolean", "string"] },
         userId: { type: ["string", "integer"] },
       },
     };

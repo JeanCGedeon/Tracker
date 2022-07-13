@@ -28,15 +28,6 @@ sessionRouter.get("/current", async (req, res) => {
   }
 });
 
-sessionRouter.get("/myData", async (req, res) => {
-  if (req.user) {
-    res.status(200).json(req.user.id);
-  } else {
-    res.status(401).json(undefined);
-  }
-});
-
-
 sessionRouter.delete("/", (req, res) => {
   req.logout();
   res.status(200).json({ message: "User signed out" });
