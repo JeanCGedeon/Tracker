@@ -14,6 +14,7 @@ class Habit extends Model {
         description: { type: "string" },
         good: { type: ["boolean", "string"] },
         bad: { type: ["boolean", "string"] },
+        date: { type: ["string", "integer"]},
         userId: { type: ["string", "integer"] },
       },
     };

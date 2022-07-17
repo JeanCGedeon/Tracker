@@ -1,36 +1,36 @@
-
-const Model = require('./Model')
+const Model = require("./Model");
 
 class Log extends Model {
-    static get tableName(){
-        return 'logs'
-    }
-    static get jsonSchema() {
-        return {
-          type: "object",
-          required: ['notes','level','habitId'],
-          properties: {
-            notes: { type: "string" },
-            level: {type : ['string','integer']},
-            habitId:{type: ['string', 'integer']}
-          },
-        };
-      }
-    
-   static get relationMappings(){
-       const {Habit} = require('./index.js')
+  static get tableName() {
+    return "logs";
+  }
+  static get jsonSchema() {
+    return {
+      type: "object",
+      required: ["notes", "level"],
+      properties: {
+        notes: { type: "string" },
+        level: { type: ["string", "integer"] },
+        date: { type: ["string", "integer"] },
+        habitId: { type: ["string", "integer"] },
+      },
+    };
+  }
 
-       return{
-        habits:{
+  static get relationMappings() {
+    const { Habit } = require("./index.js");
+
+    return {
+      habits: {
         relation: Model.BelongsToOneRelation,
         modelClass: Habit,
-        join:{
-            from:'logs.habitId',
-            to:'habit.id'
-        }
-       }
-   } 
-}
+        join: {
+          from: "logs.habitId",
+          to: "habit.id",
+        },
+      },
+    };
+  }
 }
 
-module.exports = Log
+module.exports = Log;
