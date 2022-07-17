@@ -10,6 +10,7 @@ exports.up = async (knex) => {
         table.bigIncrements('id')
         table.text('notes')
         table.integer('level')
+        table.date('date')
         table.bigInteger("habitId").index().unsigned().references("habits.id")
         table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
         table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now())

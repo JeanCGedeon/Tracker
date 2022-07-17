@@ -2,19 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
+import moment from "moment"
 const HabitsForm = (props) => {
   const [tables, setTables] = useState({ habits: [] });
   const [newHabit, setNewHabit] = useState({
     title: "",
     description: "",
     good: false,
-    bad:false
+    bad:false,
+    date:""
   });
   const [errors, setErrors] = useState([]);
   const [shouldRedirect, setShouldRedirect] = useState(false);
   if (shouldRedirect) {
     return <Redirect to="/habits/:id" />;
   }
+
 
   const getTables = async () => {
     try {
@@ -43,13 +46,17 @@ const HabitsForm = (props) => {
         <p>{tableObject.title}</p>
         <p>{tableObject.description}</p>
         <p>{tableObject.good}</p>
+        <p>{moment(tableObject.date).format("MM/DD/YYYY")}
+        </p>
+       
       </h1>
     );
   });
+
   const postHabit = async (newHabitsData) => {
     try {
       const userId = props.match.params.id;
-      const response = await fetch(`/api/v1/habits/${userId}/tables`, {
+      const response = await fetch(`/api/v1/habits/${userId}/tables/post`, {
         method: "POST",
         headers: new Headers({ "Content-Type": "application/json" }),
         body: JSON.stringify(newHabitsData),
@@ -79,6 +86,7 @@ const HabitsForm = (props) => {
     });
   };
 
+
   const handleRadioSelect = (event) => {
     setNewHabit({...newHabit,
       [event.currentTarget.name]: !newHabit[event.currentTarget.name]})
@@ -96,6 +104,7 @@ const HabitsForm = (props) => {
       description: "",
       good: false,
       bad: false,
+      date: ""
     });
   };
 
@@ -143,13 +152,16 @@ const HabitsForm = (props) => {
           value={newHabit.bad}/>
         </label>
 
-        {/* <label htmlFor="good">
-        userId
+        <label htmlFor="date">
+        date:
         <input
+          type="date"
+          id="date"
+          name="date"
           onChange={handleInputChange}
-          value={newHabit.userId}
+          value={newHabit.date}
         />
-      </label>  */}
+      </label> 
 
         <input className="button" type="submit" value="Submit" />
       </form>
@@ -159,13 +171,6 @@ const HabitsForm = (props) => {
       </div>
     </div>
   );
-  // return(
-  //   <div>
-  //     <h1>Test</h1>
-  //     {tables.title}
-  //    {tablesListItem}
-  //   </div>
-  // )
 };
 
 export default HabitsForm;

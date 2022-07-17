@@ -20,6 +20,7 @@ class LogSeeder{
           habitId:2
       
         }
+        
               ]
               for(const singleLogData of logsData) {
                   const currentLog = await Log.query().findOne(singleLogData)

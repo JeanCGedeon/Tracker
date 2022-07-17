@@ -45,121 +45,22 @@ const GoodHabitsList = (props) => {
   const habitListItems = habits.habits.map((habitObject) => {
     return (
       <h2 key={habitObject.id}>
-        <Link to={`/habits/${habitObject.id}/logs`}>{habitObject.title}</Link>
+        <Link to={`/logs/${habitObject.id}&logPost`}>{habitObject.title}</Link>
         <p>{habitObject.description}</p>
         <p>{habitObject.good}</p>
         <p>{habitObject.userId}</p>
       </h2>
     );
   });
-
-  const postHabit = async (newHabitsData) => {
-    try {
-      const response = await fetch(`/api/v1/habits`, {
-        method: "POST",
-        headers: ({ "Content-Type": "application/json" }),
-        body: JSON.stringify(newHabitsData),
-      });
-      if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json();
-          const newErrors = translateServerErrors(body.errors.data);
-          return setErrors(newErrors);
-        }
-        throw new Error(`${response.status} (${response.statusText})`);
-      } else {
-        const body = await response.json();
-        setErrors([]);
-        setShouldRedirect(true);
-      }
-    } catch (error) {}
-  };
-  
-  const handleInputChange = (event) => {
-    setNewHabit({
-      ...newHabit,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
-  };
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    postHabit(newHabit);
-    clearForm();
-  };
-  
-  const clearForm = () => {
-    setNewHabit({
-      title: "",
-      description: "",
-      good: false,
-      userId: 0,
-    });
-  };
   
   return (
-    <div className="show-page-container list">
-      <h2>Ignore </h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          title:
-          <input
-            type="text"
-            id="title"
-            name="title"
-            onChange={handleInputChange}
-            value={newHabit.title}
-          />
-        </label>
-  
-        <label htmlFor="description">
-          description:
-          <input
-            type="text"
-            id="description"
-            name="description"
-            onChange={handleInputChange}
-            value={newHabit.description}
-          />
-        </label>
-  
-        <label htmlFor="good">
-          Good:
-          <input
-            type="radio"
-            id="good"
-            name="good"
-            onChange={handleInputChange}
-            value={newHabit.good}
-          />
-        </label>
-  
-         {/* <label htmlFor="good">
-          userId
-          <input
-            onChange={handleInputChange}
-            value={newHabit.userId}
-          />
-        </label>  */}
-  
-        <input className="button" type="submit" value="Submit" />
-      </form>
       <div className="habitsList">
         <h1>Habits
         </h1>
           {habitListItems}
       
       </div>
-    </div>
   );
-  // return(
-  //     <div className="habitsList">
-  //       <h1>Habits
-  //       </h1>
-  //     {habitListItems}
-      
-  //     </div>
-  // );
 };
 
 export default GoodHabitsList;
