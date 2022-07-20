@@ -54,8 +54,8 @@ const BadHabitsList = (props) => {
     );
   });
   return (
-    <div className="habitsList">
-      <h1>Habits</h1>
+    <div className="badHabitsList">
+      <h1>Bad Habits</h1>
       {habitListItems}
     </div>
   );

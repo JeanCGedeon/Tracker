@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+body{
+box-sizing: border-box;
+background-color: gray;
+}
+
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
@@ -19,4 +24,32 @@
 
 .button{
   display: inline-block;
+}
+
+p.habit-title{
+ font-weight: 700;
+ font-size: 1.6rem;
+ margin-top: 1em;
+ padding: 1em;
+}
+
+p.habit-description{
+  max-width: 52ch;
+  line-height: 1.5;
+  padding: 1em;
+}
+.item{
+    text-align: center;
+  float: left;
+  width: 30%;
+  margin-right: .7em;
+  max-height: 320em;
+  background-color: white;
+  flex-direction: row;
+  margin-bottom: 2em;
+  align-items: center;
+  border-radius: 0.5em;
+  -webkit-box: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
+  -moz-box: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
+  box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
 }
