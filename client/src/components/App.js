@@ -10,7 +10,7 @@ import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import GoodHabitsList from "./GoodHabitsList";
 import HabitsForm from "./HabitsForm";
-import LogData from "./LogData";
+import UsersData from "./UsersData";
 import BadHabitsList from "./BadHabitsList";
 import LogForm from "./LogForm";
 
@@ -25,6 +25,16 @@ const App = (props) => {
     }
   }
 
+  const [currentUserId, setCurrentUserId] = useState(undefined);
+  const fetchCurrentUserId = async () => {
+    try {
+      const userId = await getCurrentUserId()
+      setCurrentUserId(userId)
+    } catch(err) {
+      setCurrentUser(null)
+    }
+  }
+
   useEffect(() => {
     fetchCurrentUser()
   }, [])
@@ -33,12 +43,14 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/">
-          <h2>Hello from react</h2>
-        </Route>
-        <Route exact path={`/habits/:id&myGood`} component={GoodHabitsList}/>
+        <Route exact path="/" component={UsersData}/>
+    
+        <Route exact path={`/habits/:id&myGood`} component={GoodHabitsList}user={currentUser}/>
         <Route exact path={`/habits/:id&myBad`} component={BadHabitsList}/>
         <Route exact path={`/habits/:id&post`} component={HabitsForm}/>
+        <Route exact path={`/habits/:id`} component={HabitsForm}>
+          <HabitsForm user={[currentUser,currentUserId]}/>
+        </Route>
         {/* <Route exact path={`/habits/:id&myLogs`} component={LogData}/> */}
         <Route exact path={`/logs/:id&logPost`} component={LogForm}/>
         <Route exact path="/users/new" component={RegistrationForm} />

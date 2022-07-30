@@ -11,6 +11,7 @@
 body{
 box-sizing: border-box;
 background-color: gray;
+// background-color: rgb(46, 46, 45);
 }
 
 :root {
@@ -52,4 +53,36 @@ p.habit-description{
   -webkit-box: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
   -moz-box: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
   box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
+}
+
+p.log-title{
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-top: 1em;
+  padding: 1em;
+ }
+
+ p.log-description{
+  max-width: 52ch;
+  line-height: 1.5;
+  padding: 1em;
+}
+
+.log-item{
+  text-align: center;
+  display:list-item;
+float: left;
+width: 25%;
+height: 40%;
+margin-right: .7em;
+max-height: 320em;
+background-color: rgb(92, 61, 61);
+color: wheat;
+flex-direction: row;
+margin-bottom: 2em;
+align-items: center;
+border-radius: 0.5em;
+-webkit-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
+-moz-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
+// box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
 }
