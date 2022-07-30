@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import HabitsTile from "./HabitsTile";
 import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
 import moment from "moment";
@@ -38,25 +41,182 @@ const HabitsForm = (props) => {
   useEffect(() => {
     getTables();
   }, []);
+  const patchHabit = async (habitBody) => {
+    try {
+      const id = props.match.params.id;
+      const response = await fetch(`/api/v1/habits/${id}/tables`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(habitBody),
+      });
+      if (!response.ok) {
+        if (response.status === 422) {
+          const body = await response.json();
+          const updatedHabitsWithErrors = tables.habits.map((habit) => {
+            // if (habit.id === habitId) {
+            // }
+            habit.errors = body;
+            return habit;
+          });
+          setTables({ ...tables, habits: updatedHabitsWithErrors });
+          return false;
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          const error = new Error(errorMessage);
+          throw error;
+        }
+      } else {
+        const body = await response.json();
+        const updatedHabits = tables.habits.map((habit) => {
+          // if (habit.id === habitId) {
+          habit.title = body.habit.title;
+          habit.description = body.habit.description;
+          habit.good = body.habit.good;
+          habit.bad = body.habit.bad;
+          habit.date = body.habit.date;
+          // }
+          return habit;
+        });
+        setErrors({});
+        setTables({ ...tables, habits: updatedHabits });
+        return true;
+      }
+    } catch (error) {
+      console.error(`Error in fetch ${error.message}`);
+      return false;
+    }
+  };
 
-  const tablesListItem = tables.habits.map((tableObject) => {
+
+
+  
+  let tablesListItem = tables.habits.map((tableObject) => {
     return (
       <h3 key={tableObject.id}>
+        {/* <div className="testt"> */}
+          {/* <HabitsTile
+            key={tableObject.id}
+            id={tableObject.id}
+            // creatorId={tables.habits.userId}
+            // creator={tables.habits.user}
+            // curUserId={curUserId}
+            // patchHabit={patchHabit}
+            // toggleEdit={toggleEdit}
+            // userLoggedIn={userLoggedIn}
+            title={tableObject.title}
+            errors={errors}
+            description={tableObject.description}
+            good={tableObject.good}
+            bad={tableObject.bad}
+            date={tableObject.date} */}
+          {/* /> */}
+        {/* </div> */}
         <div className="item">
-         
-            <p className="habit-title">{tableObject.title}</p>
-  
+        <Link to={`/logs/${tableObject.id}&logPost`}><p className="habit-title">{tableObject.title}</p></Link>
+
           <div className="test">
             <p className="habit-description">{tableObject.description}</p>
           </div>
           <p>{tableObject.good}</p>
           <div className="testing">
-            <p className="habit-description">{moment(tableObject.date).format("MM/DD/YYYY")}</p>
+            <p className="habit-description">{moment(tableObject.date).format("MM/DD/yyyy")}</p>
+          </div>
+          <div className="Bottom-habit">
+            <div className="edit-habit">
+              
+              
+               
+               
+
+              <input
+                className="button"
+                type="button"
+                value="Edit habit"
+                onClick={() => {
+                  toggleEdit(tableObject.id);
+                }}
+              />
+            </div>
+
+            <div className="delete-habit">
+              <input
+                className="button"
+                type="button"
+                value="Delete habit"
+                onClick={() => {
+                  deleteHabit(tableObject.id);
+                }}
+              />
+            </div>
           </div>
         </div>
       </h3>
     );
   });
+
+  
+  // let divChange = document.getElementsByClassName("testt")
+  // let doubleTest ;
+
+  // if(isBeingEdited){
+
+  // }
+  
+  
+  const deleteHabit = async (habitId) => {
+    try {
+      const id = props.match.params.id;
+      const response = await fetch(`/api/v1/habits/${id}/tables/${habitId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!response.ok) {
+        if (response.status === 401) {
+          const body = await response.json();
+          return setErrors;
+        } else {
+          throw new Error(`${response.status} (${response.statusText})`);
+        }
+      } else {
+        const body = await response.json();
+        const filteredHabits = tables.habits.filter((habit) => {
+          return habit.id !== habitId;
+        });
+        setErrors({});
+        setTables({ ...tables, habits: filteredHabits });
+      }
+    } catch (error) {
+      console.error(`Error in fetch ${error.message}`);
+    }
+  };
+
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
+  // const button =
+
+  //     <div className="habit-edit">
+  //       <input
+  //         className="button"
+  //         type="button"
+  //         value="Edit Habit"
+  //         onClick={() => {
+  //           toggleEdit(id);
+  //         }}
+  //       />
+  //     </div>
+
+  // let creatorId = tables.habits.userId;
+  // let curUserId = false;
+  // let userLoggedIn = false;
+  // if (props.user) {
+  //   curUserId = props.user.id;
+  //   userLoggedIn = true;
+  // }
+  const toggleEdit = () => {
+    setIsBeingEdited(!isBeingEdited);
+  };
+  // const habitsTile = tables.habits.map((habitsObject) => {
+
+              
 
   const postHabit = async (newHabitsData) => {
     try {
@@ -94,6 +254,9 @@ const HabitsForm = (props) => {
   const handleRadioSelect = (event) => {
     setNewHabit({ ...newHabit, [event.currentTarget.name]: !newHabit[event.currentTarget.name] });
   };
+  const handleBadRadioSelect = (event) => {
+    setNewHabit({ ...newHabit, [event.currentTarget.name]: newHabit[event.currentTarget.name] });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -110,9 +273,11 @@ const HabitsForm = (props) => {
       date: "",
     });
   };
-
+console.log(props.userId)
+  
   return (
     <div className="show-page-container list">
+      
       <h2> Add Habits </h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">
@@ -145,16 +310,18 @@ const HabitsForm = (props) => {
             name="good"
             onClick={handleRadioSelect}
             value={newHabit.good}
+          
           />
           Bad:
+      
           <input
             type="radio"
-            id="good"
-            name="bad"
-            onClick={handleRadioSelect}
+            id="bad"
+            name="good"
+            onClick={handleBadRadioSelect}
             value={newHabit.bad}
           />
-        </label>
+    </label>
 
         <label htmlFor="date">
           date:
@@ -171,10 +338,12 @@ const HabitsForm = (props) => {
       </form>
       <div className="habits-list">
         <h1>Habits</h1>
+
         {tablesListItem}
       </div>
     </div>
   );
+    
+  
 };
-
 export default HabitsForm;

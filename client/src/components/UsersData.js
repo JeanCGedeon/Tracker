@@ -1,48 +1,48 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
 
-const LogData = (props) => {
-  const [logs, setLogs] = useState({ logs: [] });
-  const [newLog, setNewLog] = useState({ notes: "", level:1 });
+const UsersData = (props) => {
+  const [user, setUsers] = useState([]);
+  
   const [errors, setErrors] = useState([]);
 
-  const getLogs = async () => {
+  const getUsers = async () => {
     try {
-      const habitId = props.match.params.id;
-      const response = await fetch(`/api/v1/habits/${habitId}/tables/myLogs`);
+  
+      const response = await fetch(`/api/v1/habits`);
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;
         const error = new Error(errorMessage);
         throw error;
       }
       const parsedResponse = await response.json();
-      setLogs(parsedResponse.myLogs);
+      setUsers(parsedResponse.users);
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
 
   useEffect(() => {
-    getLogs();
+    getUsers();
   }, []);
 
-  const logListItems = logs.logs.map((tableObject) => {
+  const usersList = user.map((user) => {
     return (
-      <h1 key={tableObject.id}>
-        <p>{tableObject.notes}</p>
-        <p>{tableObject.level}</p>
-        <p>{tableObject.habitId}</p>
+      <h1 key={user.id}>
+      <Link to={`/habits/${user.id}&post`}>  <p>{user.email}</p></Link>
+     
       </h1>
     );
   })
     return(
   <div className="logList">
-  <h1>Logs</h1>
-  {logListItems}
-
+  <h1>Users</h1>
+     
+     {usersList}
 </div>
    ) 
     };
 
 
-  export default LogData
+  export default UsersData

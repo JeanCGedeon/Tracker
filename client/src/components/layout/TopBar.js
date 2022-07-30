@@ -44,6 +44,10 @@ const TopBar = ({ user }) => {
            <li><Link to={`/habits/${currentUserId}&post`}>Create Habit</Link></li>
            <li><Link to={`/habits/${currentUserId}&myGood`}>Good Habits</Link></li>
            <li><Link to={`/habits/${currentUserId}&myBad`}> Bad Habits</Link></li>
+           <li><Link to={`/habits/${1}&post`}>Test Create Habit</Link></li>
+           <li><Link to={`/habits/${1}&myGood`}>Test Good Habits</Link></li>
+           <li><Link to={`/habits/${1}&myBad`}> Test Bad Habits</Link></li>
+           
            {/* <li><Link to={`/habits/${currentUserId}&myLogs`}> myLogs</Link></li> */}
         </ul>
       </div>
