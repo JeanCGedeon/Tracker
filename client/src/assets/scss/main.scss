@@ -25,6 +25,17 @@ background-color: gray;
 
 .button{
   display: inline-block;
+  background-color: gray;
+//   position: relative;
+// right: 70px;
+}
+.button-form{
+ position:relative;
+ width: 6%;
+ height: 40px;
+  background-color: rgba(4, 126, 214, 0.646);
+  color: rgb(255, 255, 255);
+  size: 100px;
 }
 
 p.habit-title{
@@ -70,14 +81,19 @@ p.log-title{
 
 .log-item{
   text-align: center;
-  display:list-item;
+  box-sizing: border-box;
+position: relative;
 float: left;
 width: 25%;
-height: 40%;
+
+zoom: 1;
 margin-right: .7em;
 max-height: 320em;
-background-color: rgb(92, 61, 61);
-color: wheat;
+// background-color: rgba(46, 44, 44, 0.599);
+// color: rgba(209, 208, 206, 0.753);
+// color: rgb(124, 81, 0);
+background-color: black;
+color: white;
 flex-direction: row;
 margin-bottom: 2em;
 align-items: center;
@@ -85,4 +101,15 @@ border-radius: 0.5em;
 -webkit-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
 -moz-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
 // box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
+}
+
+#delete:hover{
+background-color: red;
+}
+
+#log-date-parent{
+ font-size: 20px;
+ position: relative;
+// left: 110px;
+top: 30px;
 }

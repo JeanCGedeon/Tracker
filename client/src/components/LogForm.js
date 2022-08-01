@@ -30,7 +30,7 @@ const LogForm = (props) => {
   
   
   
-  const patchLog = async (logBody, habitId) => {
+  const patchLog = async (logBody, logId) => {
     try {
       const userId = props.match.params.id;
       const response = await fetch(`/api/v1/logs/${userId}/tables/${logId}`, {
@@ -47,7 +47,7 @@ const LogForm = (props) => {
             }
             return log;
           });
-          setHabits({ ...logs, logs: updatedLogsWithErrors });
+          setLogs({ ...logs, logs: updatedLogsWithErrors });
           return false;
         } else {
           const errorMessage = `${response.status} (${response.statusText})`;
@@ -58,9 +58,9 @@ const LogForm = (props) => {
         const body = await response.json();
         const updatedLogs = logs.logs.map((log) => {
           if (log.id === logId) {
-            log.description = body.habit.description;
-            log.level = body.log.level;
-            // log.date = body.log.date;
+            log.notes = body.log.notes;
+            // log.level = body.log.level;
+            log.date = body.log.date;
            
             if (log.errors) {
               delete log.errors;
@@ -69,7 +69,7 @@ const LogForm = (props) => {
           return log;
         });
         setErrors({});
-        setHabits({ ...logs, logs: updatedLogs });
+        setLogs({ ...logs, logs: updatedLogs });
         return true;
       }
     } catch (error) {
@@ -112,17 +112,15 @@ const LogForm = (props) => {
     return (
       <h1 key={tableObject.id}>
         <div className="log-item">
-
-          <div className="test">
           <p className="log-title">{tableObject.notes}</p>
-          <hr/>
-          </div>
           {/* <div className="testing">
         <p className="log-description"> {tableObject.level}</p>
-          </div> */}
-        <p>{tableObject.habitId}</p>
-        <div className="log-triple-test">
-        <p className="log-description">{moment(tableObject.date).format("MM/DD/YYYY")}</p>
+      </div> */}
+{/*           
+        <p>{tableObject.habitId}</p> */}
+        <div id="log-date-parent" className="jar" >
+        <p className="log-description">{moment(tableObject.date).format("MM/DD/yyyy")}</p>
+    
         </div>
         <div className="log-tiles">
           <LogHabitsTile
@@ -137,8 +135,6 @@ const LogForm = (props) => {
       </h1>
     );
   });
-
-
 
 
 
@@ -193,11 +189,12 @@ const LogForm = (props) => {
 
   return (
       <div className="show-page-container list">
+        <div className="log-form">
         <h2> Add Logs </h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="log-form-test">
           <label htmlFor="notes">
             Notes:
-            <input
+            <textarea
               type="text"
               id="notes"
               name="notes"
@@ -230,8 +227,9 @@ const LogForm = (props) => {
         />
       </label> 
 
-          <input className="button" type="submit" value="Submit" />
+          <input className="button-form" type="submit" value="Submit" />
         </form>
+        </div>
     <div className="logList">
       <h1>Logs</h1>
       {logListItems}

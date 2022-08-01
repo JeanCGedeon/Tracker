@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import HabitsTile from "./HabitsTile";
+import HabitsTileTest from "./HabitsTileTest";
 import ErrorList from "./layout/ErrorList";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
 import moment from "moment";
@@ -41,10 +41,10 @@ const HabitsForm = (props) => {
   useEffect(() => {
     getTables();
   }, []);
-  const patchHabit = async (habitBody) => {
+  const patchHabit = async (habitBody, habitId) => {
     try {
       const id = props.match.params.id;
-      const response = await fetch(`/api/v1/habits/${id}/tables`, {
+      const response = await fetch(`/api/v1/habits/${id}/tables/${habitId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(habitBody),
@@ -53,8 +53,8 @@ const HabitsForm = (props) => {
         if (response.status === 422) {
           const body = await response.json();
           const updatedHabitsWithErrors = tables.habits.map((habit) => {
-            // if (habit.id === habitId) {
-            // }
+            if (habit.id === habitId) {
+            }
             habit.errors = body;
             return habit;
           });
@@ -68,13 +68,13 @@ const HabitsForm = (props) => {
       } else {
         const body = await response.json();
         const updatedHabits = tables.habits.map((habit) => {
-          // if (habit.id === habitId) {
+          if (habit.id === habitId) {
           habit.title = body.habit.title;
           habit.description = body.habit.description;
           habit.good = body.habit.good;
           habit.bad = body.habit.bad;
           habit.date = body.habit.date;
-          // }
+          }
           return habit;
         });
         setErrors({});
@@ -93,24 +93,6 @@ const HabitsForm = (props) => {
   let tablesListItem = tables.habits.map((tableObject) => {
     return (
       <h3 key={tableObject.id}>
-        {/* <div className="testt"> */}
-          {/* <HabitsTile
-            key={tableObject.id}
-            id={tableObject.id}
-            // creatorId={tables.habits.userId}
-            // creator={tables.habits.user}
-            // curUserId={curUserId}
-            // patchHabit={patchHabit}
-            // toggleEdit={toggleEdit}
-            // userLoggedIn={userLoggedIn}
-            title={tableObject.title}
-            errors={errors}
-            description={tableObject.description}
-            good={tableObject.good}
-            bad={tableObject.bad}
-            date={tableObject.date} */}
-          {/* /> */}
-        {/* </div> */}
         <div className="item">
         <Link to={`/logs/${tableObject.id}&logPost`}><p className="habit-title">{tableObject.title}</p></Link>
 
@@ -122,31 +104,18 @@ const HabitsForm = (props) => {
             <p className="habit-description">{moment(tableObject.date).format("MM/DD/yyyy")}</p>
           </div>
           <div className="Bottom-habit">
-            <div className="edit-habit">
-              
-              
-               
-               
+          <div className="something">
+            <HabitsTileTest
+              key={tableObject.id}
+              id={tableObject.id}
+              // creatorId={habitObject.userId}
+              creator={tableObject.user}
+              deleteHabit={deleteHabit}
+              // curUserId={curUserId}
+              patchHabit={patchHabit}
 
-              <input
-                className="button"
-                type="button"
-                value="Edit habit"
-                onClick={() => {
-                  toggleEdit(tableObject.id);
-                }}
-              />
-            </div>
-
-            <div className="delete-habit">
-              <input
-                className="button"
-                type="button"
-                value="Delete habit"
-                onClick={() => {
-                  deleteHabit(tableObject.id);
-                }}
-              />
+              // userLoggedIn={userLoggedIn}
+            />
             </div>
           </div>
         </div>
@@ -190,31 +159,31 @@ const HabitsForm = (props) => {
     }
   };
 
-  const [isBeingEdited, setIsBeingEdited] = useState(false);
-  // const button =
+  // const [isBeingEdited, setIsBeingEdited] = useState(false);
+  // // const button =
 
-  //     <div className="habit-edit">
-  //       <input
-  //         className="button"
-  //         type="button"
-  //         value="Edit Habit"
-  //         onClick={() => {
-  //           toggleEdit(id);
-  //         }}
-  //       />
-  //     </div>
+  // //     <div className="habit-edit">
+  // //       <input
+  // //         className="button"
+  // //         type="button"
+  // //         value="Edit Habit"
+  // //         onClick={() => {
+  // //           toggleEdit(id);
+  // //         }}
+  // //       />
+  // //     </div>
 
-  // let creatorId = tables.habits.userId;
-  // let curUserId = false;
-  // let userLoggedIn = false;
-  // if (props.user) {
-  //   curUserId = props.user.id;
-  //   userLoggedIn = true;
-  // }
-  const toggleEdit = () => {
-    setIsBeingEdited(!isBeingEdited);
-  };
-  // const habitsTile = tables.habits.map((habitsObject) => {
+  // // let creatorId = tables.habits.userId;
+  // // let curUserId = false;
+  // // let userLoggedIn = false;
+  // // if (props.user) {
+  // //   curUserId = props.user.id;
+  // //   userLoggedIn = true;
+  // // }
+  // const toggleEdit = () => {
+  //   setIsBeingEdited(!isBeingEdited);
+  // };
+  // // const habitsTile = tables.habits.map((habitsObject) => {
 
               
 
@@ -293,7 +262,7 @@ console.log(props.userId)
 
         <label htmlFor="description">
           description:
-          <input
+          <textarea
             type="text"
             id="description"
             name="description"
@@ -334,7 +303,7 @@ console.log(props.userId)
           />
         </label>
 
-        <input className="button" type="submit" value="Submit" />
+        <input className="button-form" type="submit" value="Submit" />
       </form>
       <div className="habits-list">
         <h1>Habits</h1>

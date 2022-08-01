@@ -16,17 +16,18 @@ const logHabitsTile = ({
   const [isBeingEdited, setIsBeingEdited] = useState(false);
 
   const buttons =
-    <div>
+    <div className="jar">
       <input
-        className="button"
+        className="button" id="edit"
         type="button"
         value="Edit Log"
         onClick={() => {
           toggleLogEdit();
         }}
       />
+    
       <input
-        className="button"
+        className="button" id="delete"
         type="button"
         value="Delete Log"
         onClick={() => {
@@ -45,14 +46,14 @@ const logHabitsTile = ({
         id={id}
        notes={notes}
         date={date}
-        toggleEdit={toggleEdit}
+        toggleLogEdit={toggleLogEdit}
         errors={errors}
       />
     )
   }
 
   return (
-    <div className="ree">
+    <div className="ree" id="ree">
       {buttons}
     </div>
   );

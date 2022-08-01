@@ -7,10 +7,10 @@ class Log extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["notes", "level"],
+      required: ["notes"],
       properties: {
         notes: { type: "string" },
-        level: { type: ["string", "integer"] },
+        // level: { type: ["string", "integer"] },
         date: { type: ["string", "integer"] },
         habitId: { type: ["string", "integer"] },
       },

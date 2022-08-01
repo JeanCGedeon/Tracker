@@ -31,6 +31,7 @@ const HabitsTileTest = ({
       <input
         className="button"
         type="button"
+        id="delete"
         value="Delete Habit"
         onClick={() => {
          deleteHabit(id);

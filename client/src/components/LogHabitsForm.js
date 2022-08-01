@@ -21,23 +21,23 @@ const LogHabitsForm = (props) =>{
 
           const handleSubmit = async (event) => {
             event.preventDefault();
-            if (await props.patchHabit(editLog,props.id)) {
-                props.toggleEdit(props.id)
+            if (await props.patchLog(editLog,props.id)) {
+                props.toggleLogEdit(props.id)
             }
 
         };
         const errorList = props.errors ?( <ErrorList errors={props.errors} />) : null;
           return(
             <div>
-                <p>Update Your Habit</p>
+                <p>Update Your Log</p>
                 {errorList}
             <form
                 onSubmit={async (event) => {
                   await handleSubmit(event);
                 }}>
-                <label htmlFor="title-san">
+                <label htmlFor="notes-san">
                   notes:
-                  <input type="text"className="title-san" name="title" onChange={handleInputChange} value={editLog.notes}  />
+                  <input type="text"className="notes-san" name="notes" onChange={handleInputChange} value={editLog.notes}  />
                 </label>
                 
                 <label>
@@ -51,7 +51,7 @@ const LogHabitsForm = (props) =>{
                     value={editLog.date}
                   />
                 </label>
-                <input className="button"  type="submit" value="Update Habit" />
+                <input className="button"  type="submit" value="Update Log" />
               </form>
             </div>
               )

@@ -21,10 +21,10 @@ tablesLogsRouter.get("/myLogs", async(req,res) =>{
 tablesLogsRouter.post('/logPost', async(req,res) => {
     const {body} = req
     const formInput = cleanUserInput(body)
-    const {notes, level, date} = formInput
+    const {notes, date} = formInput
     const {habitId} = req.params
     try{
-      const newLog = await Log.query().insert({ notes, level,habitId, date})
+      const newLog = await Log.query().insert({ notes, habitId, date})
       return res.status(200).json({test: newLog})
     }catch(error){
       if(error instanceof ValidationError){
@@ -43,17 +43,18 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
         try{
             const habitDelete = await Habit.query().findById(habitId)
             habitDelete.logs = await habitDelete.$relatedQuery('logs')
-            
+            if(req.user === req.user.id ){
                 await habitDelete.$relatedQuery('logs').deleteById(id)
               return  res.status(200).json({message: 'This habit has been deleted'})
+            }
         }catch(error){
            return res.status(500).json(error)
         }
     })
 
     tablesLogsRouter.patch("/:id", async(req,res) =>{
-        const {level,date} = req.body
-        const {description} = cleanUserInput(req.body)
+        const {date} = req.body
+        const {notes} = cleanUserInput(req.body)
         const {habitId} = req.params
          const id = req.params.id
         try{
@@ -63,10 +64,10 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
           const habitToEdit = await Habit.query().findById(habitId)
           habitToEdit.logs = await habitToEdit.$relatedQuery('logs')
          
-            const updatedHabit = await habitToEdit.$relatedQuery('habits').patchAndFetchById(id,{
-            description,level,date
+            const updatedLogs = await habitToEdit.$relatedQuery('logs').patchAndFetchById(id,{
+           notes,date
             })
-           return res.status(200).json({habit: updatedHabit})
+           return res.status(200).json({log: updatedLogs})
           
         }catch(error){
           if(error instanceof ValidationError){
