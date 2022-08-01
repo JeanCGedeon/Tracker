@@ -238,7 +238,8 @@ const GoodHabitsList = (props) => {
   return (
     <div className="goodHabitsList">
       <h1>Good Habits</h1>
-
+        <h3 className="good-bad-list-intro">Here is a list of your good habits edit and delete them as you wish.
+         click on the title of your habit to keep track of the logs you have for that habit !</h3>
       <div>{habitListItems}</div>
     </div>
   );

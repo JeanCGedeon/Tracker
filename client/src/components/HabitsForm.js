@@ -246,8 +246,10 @@ console.log(props.userId)
   
   return (
     <div className="show-page-container list">
-      
-      <h2> Add Habits </h2>
+      <h2 className="intro-first-form">Here on the tracker site you are advised too stay on track for any habits you wish to keep track of wether they are good or bad.
+      Under this paragraph you will see a form that you can type in and it will log into your own personal data to help you maintain a list of your own habits.
+      click on the title of your habit to keep track of the logs you have for that habit ! Give it a try !</h2>
+      <h2 className="add-habits"> Add Habits </h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">
           title:
