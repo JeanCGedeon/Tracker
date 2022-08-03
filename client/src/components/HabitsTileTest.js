@@ -15,7 +15,7 @@ const HabitsTileTest = ({
   errors,
   userLoggedIn,
   creator,
-},props) => {
+}) => {
   const [isBeingEdited, setIsBeingEdited] = useState(false);
 
   const buttons =
@@ -34,7 +34,7 @@ const HabitsTileTest = ({
         id="delete"
         value="Delete Habit"
         onClick={() => {
-         deleteHabit(id);
+       deleteHabit(id);
         }}
       />
     </div>

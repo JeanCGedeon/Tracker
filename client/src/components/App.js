@@ -44,8 +44,7 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/" component={UsersData}/>
-    
-        <Route exact path={`/habits/:id&myGood`} component={GoodHabitsList}user={currentUser}/>
+        <Route exact path={`/habits/:id&myGood`} component={GoodHabitsList}/>
         <Route exact path={`/habits/:id&myBad`} component={BadHabitsList}/>
         <Route exact path={`/habits/:id&post`} component={HabitsForm}/>
         <Route exact path={`/habits/:id`} component={HabitsForm}>
