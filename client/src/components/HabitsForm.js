@@ -38,6 +38,33 @@ const HabitsForm = (props) => {
     }
   };
 
+  const deleteHabit = async (habitId) => {
+    try {
+      const id = props.match.params.id;
+      const response = await fetch(`/api/v1/habits/${id}/tables/${habitId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!response.ok) {
+        if (response.status === 401) {
+          const body = await response.json();
+          return setErrors;
+        } else {
+          throw new Error(`${response.status} (${response.statusText})`);
+        }
+      } else {
+        const body = await response.json();
+        const filteredHabits = tables.habits.filter((habit) => {
+          return habit.id !== habitId;
+        });
+        setErrors({});
+        setTables({ ...tables, habits: filteredHabits });
+      }
+    } catch (error) {
+      console.error(`Error in fetch ${error.message}`);
+    }
+  };
+
   useEffect(() => {
     getTables();
   }, []);
@@ -104,7 +131,7 @@ const HabitsForm = (props) => {
             <p className="habit-description">{moment(tableObject.date).format("MM/DD/yyyy")}</p>
           </div>
           <div className="Bottom-habit">
-          <div className="something">
+          <div className="something-else">
             <HabitsTileTest
               key={tableObject.id}
               id={tableObject.id}
@@ -132,32 +159,32 @@ const HabitsForm = (props) => {
   // }
   
   
-  const deleteHabit = async (habitId) => {
-    try {
-      const id = props.match.params.id;
-      const response = await fetch(`/api/v1/habits/${id}/tables/${habitId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (!response.ok) {
-        if (response.status === 401) {
-          const body = await response.json();
-          return setErrors;
-        } else {
-          throw new Error(`${response.status} (${response.statusText})`);
-        }
-      } else {
-        const body = await response.json();
-        const filteredHabits = tables.habits.filter((habit) => {
-          return habit.id !== habitId;
-        });
-        setErrors({});
-        setTables({ ...tables, habits: filteredHabits });
-      }
-    } catch (error) {
-      console.error(`Error in fetch ${error.message}`);
-    }
-  };
+  // const deleteHabit = async (habitId) => {
+  //   try {
+  //     const id = props.match.params.id;
+  //     const response = await fetch(`/api/v1/habits/${id}/tables/${habitId}`, {
+  //       method: "DELETE",
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+  //     if (!response.ok) {
+  //       if (response.status === 401) {
+  //         const body = await response.json();
+  //         return setErrors;
+  //       } else {
+  //         throw new Error(`${response.status} (${response.statusText})`);
+  //       }
+  //     } else {
+  //       const body = await response.json();
+  //       const filteredHabits = tables.habits.filter((habit) => {
+  //         return habit.id !== habitId;
+  //       });
+  //       setErrors({});
+  //       setTables({ ...tables, habits: filteredHabits });
+  //     }
+  //   } catch (error) {
+  //     console.error(`Error in fetch ${error.message}`);
+  //   }
+  // };
 
   // const [isBeingEdited, setIsBeingEdited] = useState(false);
   // // const button =
