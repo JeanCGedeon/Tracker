@@ -9,10 +9,10 @@ habitsRouter.use('/:userId/tables', tablesHabitsRouter)
 
 habitsRouter.get("/", async (req, res) => {
   try {
-      if(req.user){
+    
     const users = await User.query()
     return res.status(200).json({users });
-  }
+  
 } catch (error) {
     return res.status(500).json(error);
   }
