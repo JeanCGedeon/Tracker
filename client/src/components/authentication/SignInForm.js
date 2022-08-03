@@ -3,7 +3,7 @@ import config from "../../config";
 import FormError from "../layout/FormError";
 
 const SignInForm = () => {
-  const [userPayload, setUserPayload] = useState({ email: "",userName:"", password: "" });
+  const [userPayload, setUserPayload] = useState({ email: "", password: "" });
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -76,13 +76,13 @@ const SignInForm = () => {
             <FormError error={errors.email} />
           </label>
         </div>
-        <div>
+        {/* <div>
           <label>
            userName
             <input type="text" name="userName" value={userPayload.userName} onChange={onInputChange} />
             <FormError error={errors.userName} />
           </label>
-        </div>
+        </div> */}
         <div>
           <label>
             Password
