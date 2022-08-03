@@ -6,11 +6,13 @@ class UserSeeder{
       const usersData = [
         {
           email: 'jean@hotmail.com',
+          userName:"First",
           cryptedPassword: 'test',
          
         },
         {
           email: 'gedeon@gmail.com',
+          userName:"Second",
           cryptedPassword: 'second',
         }
       ];

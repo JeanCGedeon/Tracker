@@ -6,6 +6,7 @@ const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
     email: "",
     password: "",
+    userName:"",
     passwordConfirmation: "",
   });
 
@@ -94,6 +95,12 @@ const RegistrationForm = () => {
             Email
             <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
             <FormError error={errors.email} />
+          </label>
+        </div>
+        <div>
+          <label>
+            userName
+            <input type="text" name="userName" value={userPayload.userName} onChange={onInputChange} />
           </label>
         </div>
         <div>

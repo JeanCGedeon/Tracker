@@ -11,7 +11,7 @@ sessionRouter.post("/", (req, res, next) => {
     }
 
     if (user) {
-      return req.login(user, () => {
+      return req.login(user,() => {
         return res.status(201).json(user);
       });
     }
