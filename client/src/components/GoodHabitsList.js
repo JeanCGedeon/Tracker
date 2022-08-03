@@ -117,8 +117,8 @@ const GoodHabitsList = (props) => {
     } catch (error) {
       console.error(`Error in fetch ${error.message}`);
     }
+  
   };
-
   const habitListItems = habits.habits.map((habitObject) => {
     return (
       <h2 key={habitObject.id}>
@@ -136,6 +136,7 @@ const GoodHabitsList = (props) => {
           </div>
           <div className="something">
             <HabitsTileTest
+            
               key={habitObject.id}
               id={habitObject.id}
               // creatorId={habitObject.userId}

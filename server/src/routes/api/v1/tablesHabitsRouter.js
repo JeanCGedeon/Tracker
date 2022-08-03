@@ -55,6 +55,9 @@ tablesHabitsRouter.get("/", async (req, res) => {
     const { userId } = req.params
     {
     try {
+      if(req.user){
+        
+      }
       const newHabit = await Habit.query().insert({ title, description, good,bad,date, userId})
       return res.status(200).json({ table: newHabit });
     } catch (error) {

@@ -30,7 +30,7 @@ const UsersData = (props) => {
   const usersList = user.map((user) => {
     return (
       <h1 key={user.id}>
-      <Link to={`/habits/${user.id}&post`}>  <p>{user.email}</p></Link>
+      <Link to={`/habits/${user.id}&post`}>  <p>{user.userName}</p></Link>
      
       </h1>
     );
