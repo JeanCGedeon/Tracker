@@ -20,7 +20,7 @@ background-image: url(https://images.alphacoders.com/108/1084039.jpg);
 // background-image: url(https://media.istockphoto.com/photos/shot-of-coffee-beans-and-a-cup-of-black-coffee-on-a-wooden-table-picture-id1349239413?b=1&k=20&m=1349239413&s=170667a&w=0&h=UiS50ATqbYcXoCunTrAWei3iB5gGgch-T1F1L988VQw=);
 // background-color: rgb(46, 46, 45);
 }
-.center{
+.center,#center{
   text-align: center;
   color: white;
 }
@@ -31,7 +31,24 @@ position: relative;
 margin-left: 33.5em;
 width: 25%;
 }
-label{
+
+.input-two{
+  text-align: center;
+  box-sizing: border-box;
+position: relative;
+width: 30%;
+}
+.top-bar,.top-bar ul{
+  background-color: rgb(40, 33, 31)
+ 
+}
+#log-submit{
+  box-sizing: border-box;
+  position: relative;
+  margin-left:11em;
+}
+
+#label-center{
   text-align: center;
 }
 .title{

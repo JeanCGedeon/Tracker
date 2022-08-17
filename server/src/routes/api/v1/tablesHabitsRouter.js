@@ -55,12 +55,13 @@ tablesHabitsRouter.get("/", async (req, res) => {
     const { userId } = req.params
     {
     try {
-      if(req.user){
+      const habitDelete = await User.query().findById(userId)
+      if(req.user && habitDelete.id === req.user.id){
         
-      }
       const newHabit = await Habit.query().insert({ title, description, good,bad,date, userId})
       return res.status(200).json({ table: newHabit });
-    } catch (error) {
+    } }
+    catch (error) {
       if(error instanceof ValidationError) {
         return res.status(422).json({ errors: error });
       } else {

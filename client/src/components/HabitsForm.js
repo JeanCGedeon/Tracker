@@ -276,7 +276,7 @@ console.log(props.userId)
       <h2 className="intro-first-form"></h2>
       <h2 className="center"> Create Habit(s) </h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name" className="title">
+        <label htmlFor="name" className="title" id="label-center">
           title
           <input
           className="input"
@@ -288,7 +288,7 @@ console.log(props.userId)
           />
         </label>
 
-        <label htmlFor="description" className="title">
+        <label htmlFor="description" className="title" id="label-center">
           description
           <textarea
           className="input"
@@ -300,7 +300,7 @@ console.log(props.userId)
           />
         </label>
 
-        <label htmlFor="good" className="title">
+        <label htmlFor="good" className="title" id="label-center">
           Good
           <input
             type="radio"
@@ -323,7 +323,7 @@ console.log(props.userId)
           />
     </label>
 
-        <label htmlFor="date" className="title">
+        <label htmlFor="date" className="title" id="label-center">
           date:
           <input
           className="input"

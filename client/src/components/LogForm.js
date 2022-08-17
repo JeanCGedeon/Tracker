@@ -192,12 +192,13 @@ const LogForm = (props) => {
         <div className="log-form">
         <h2 className="center"> Add Logs </h2>
         <form onSubmit={handleSubmit} className="log-form-test">
-          <label htmlFor="notes">
-            Notes:
+          <label htmlFor="notes" className="title">
+            Notes
             <textarea
               type="text"
               id="notes"
               name="notes"
+              className="input-two"
               onChange={handleInputChange}
               value={newLog.notes}
             />
@@ -216,22 +217,23 @@ const LogForm = (props) => {
             />
           </label> */}
 
-          <label htmlFor="date">
-        date:
+          <label htmlFor="date" className="title">
+        Date
         <input
           type="date"
           id="date"
           name="date"
+          className="input-two"
           onChange={handleInputChange}
           value={newLog.date}
         />
       </label> 
 
-          <input className="button-form" type="submit" value="Submit" />
+          <input className="button-form" type="submit" value="Submit" id="log-submit" />
         </form>
         </div>
     <div className="logList">
-      <h1>Logs</h1>
+      <h1 className="title" id="center">Logs</h1>
       {logListItems}
     </div>
     </div>
