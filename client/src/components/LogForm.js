@@ -190,7 +190,7 @@ const LogForm = (props) => {
   return (
       <div className="show-page-container list">
         <div className="log-form">
-        <h2> Add Logs </h2>
+        <h2 className="center"> Add Logs </h2>
         <form onSubmit={handleSubmit} className="log-form-test">
           <label htmlFor="notes">
             Notes:

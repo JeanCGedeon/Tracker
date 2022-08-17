@@ -273,14 +273,13 @@ console.log(props.userId)
   
   return (
     <div className="show-page-container list">
-      <h2 className="intro-first-form">Here on the tracker site you are advised too stay on track for any habits you wish to keep track of wether they are good or bad.
-      Under this paragraph you will see a form that you can type in and it will log into your own personal data to help you maintain a list of your own habits.
-      click on the title of your habit to keep track of the logs you have for that habit ! Give it a try !</h2>
-      <h2 className="add-habits"> Add Habits </h2>
+      <h2 className="intro-first-form"></h2>
+      <h2 className="center"> Create Habit(s) </h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          title:
+        <label htmlFor="name" className="title">
+          title
           <input
+          className="input"
             type="text"
             id="title"
             name="title"
@@ -289,9 +288,10 @@ console.log(props.userId)
           />
         </label>
 
-        <label htmlFor="description">
-          description:
+        <label htmlFor="description" className="title">
+          description
           <textarea
+          className="input"
             type="text"
             id="description"
             name="description"
@@ -300,30 +300,33 @@ console.log(props.userId)
           />
         </label>
 
-        <label htmlFor="good">
-          Good:
+        <label htmlFor="good" className="title">
+          Good
           <input
             type="radio"
             id="good"
             name="good"
+            // className="input"
             onClick={handleRadioSelect}
             value={newHabit.good}
           
           />
-          Bad:
+          Bad
       
           <input
             type="radio"
             id="bad"
             name="good"
+            // className="input"
             onClick={handleBadRadioSelect}
             value={newHabit.bad}
           />
     </label>
 
-        <label htmlFor="date">
+        <label htmlFor="date" className="title">
           date:
           <input
+          className="input"
             type="date"
             id="date"
             name="date"
@@ -332,10 +335,10 @@ console.log(props.userId)
           />
         </label>
 
-        <input className="button-form" type="submit" value="Submit" />
+        <input className="button-form" type="submit" value="Submit" id="input"/>
       </form>
       <div className="habits-list">
-        <h1>Habits</h1>
+        <h1 className="center"></h1>
 
         {tablesListItem}
       </div>

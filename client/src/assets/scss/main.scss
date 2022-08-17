@@ -11,9 +11,32 @@
 body{
 box-sizing: border-box;
 background-color: gray;
+// background-image: url(https://img.freepik.com/free-photo/coffee-cup-blank-spiral-notepad-white-background_23-2147898235.jpg?w=2000);
+background-size: cover;
+background-image: url(https://images.alphacoders.com/108/1084039.jpg);
+// background-image: url(https://wallpaper.dog/large/5545504.jpg);
+// background-image: url(https://media.timeout.com/images/105513032/750/422/image.jpg);
+// background-image: url(https://static.vecteezy.com/system/resources/previews/005/090/356/large_2x/background-of-dark-roasted-coffee-bean-and-with-dark-chocolate-on-white-concrete-background-with-copy-space-photo.jpg);
+// background-image: url(https://media.istockphoto.com/photos/shot-of-coffee-beans-and-a-cup-of-black-coffee-on-a-wooden-table-picture-id1349239413?b=1&k=20&m=1349239413&s=170667a&w=0&h=UiS50ATqbYcXoCunTrAWei3iB5gGgch-T1F1L988VQw=);
 // background-color: rgb(46, 46, 45);
 }
-
+.center{
+  text-align: center;
+  color: white;
+}
+.input,#input{
+  text-align: center;
+  box-sizing: border-box;
+position: relative;
+margin-left: 33.5em;
+width: 25%;
+}
+label{
+  text-align: center;
+}
+.title{
+  color:white
+}
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
