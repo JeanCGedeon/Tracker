@@ -275,7 +275,7 @@ console.log(props.userId)
     <div className="show-page-container list">
       <h2 className="intro-first-form"></h2>
       <h2 className="center"> Create Habit(s) </h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="breathe">
         <label htmlFor="name" className="title" id="label-center">
           title
           <input

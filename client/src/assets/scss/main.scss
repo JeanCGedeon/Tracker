@@ -39,16 +39,19 @@ position: relative;
 width: 30%;
 }
 .top-bar,.top-bar ul{
-  background-color: rgb(40, 33, 31)
- 
+  // background-color: rgb(40, 33, 31)
+  background-color: rgba(67, 37, 10, 0.912);
 }
-#log-submit{
-  box-sizing: border-box;
-  position: relative;
-  margin-left:11em;
+// #log-submit{
+//   box-sizing: border-box;
+//   position: relative;
+//   // margin-left:8em;
+// }
+.title-logs{
+color: white;
+text-align: center;
 }
-
-#label-center{
+label{
   text-align: center;
 }
 .title{
@@ -119,12 +122,17 @@ p.log-title{
   padding: 1em;
 }
 
+.breathe{
+  margin-bottom: 80px;
+}
+
 .log-item{
   text-align: center;
-  box-sizing: border-box;
-position: relative;
+//   box-sizing: border-box;
+// position: relative;
 float: left;
-width: 25%;
+width: 30%;
+// top:40px;
 
 zoom: 1;
 margin-right: .7em;
@@ -132,8 +140,9 @@ max-height: 320em;
 // background-color: rgba(46, 44, 44, 0.599);
 // color: rgba(209, 208, 206, 0.753);
 // color: rgb(124, 81, 0);
-background-color: black;
-color: white;
+// background-color: rgb(44, 37, 37);
+background-color: rgba(104, 57, 15, 0.864);
+color: rgb(255, 255, 255);
 flex-direction: row;
 margin-bottom: 2em;
 align-items: center;
@@ -142,16 +151,15 @@ border-radius: 0.5em;
 -moz-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
 // box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
 }
-
-#delete:hover{
-background-color: red;
+.log-form-test{
+  text-align: center;
 }
 
 #log-date-parent{
- font-size: 20px;
- position: relative;
-// left: 110px;
-top: 30px;
+  font-size: 20px;
+  position: relative;
+  // left: 110px;
+  top: 30px;
 }
 .add-habits{
   height: 50px;
@@ -162,4 +170,7 @@ top: 30px;
   height: 50px;
   margin-top: 50px;
   margin-bottom: 85px;
+}
+#delete:hover{
+background-color: red;
 }
