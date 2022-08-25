@@ -1,5 +1,5 @@
 import express from "express";
-import { Habit, User,Log } from "../../../models/index.js";
+import { Habit, User,Log, Comment} from "../../../models/index.js";
 import tablesHabitsRouter from './tablesHabitsRouter.js'
 import cleanUserInput from "../../../services/cleanUserInput.js";
 import { ValidationError } from "objection";
@@ -38,17 +38,29 @@ habitsRouter.get("/:id", async (req, res) => {
   }
 });
 
-// habitsRouter.get("/:id", async (req, res) => {
-//     const userId = req.params.id
-//      try {
-//        const habit = await Habit.query().findById(userId)
-//        habit.user = await habit.$relatedQuery('user')
-//        return res.status(200).json({ habit });
-//      } catch (error) {
-//        return res.status(500).json(error);
-//      }
-//    });
+habitsRouter.get("/comments/:id", async (req, res) => {
+    const userId = req.params.id
+     try {
+       const habit = await Habit.query().findById(userId)
+       habit.comments = await habit.$relatedQuery('comments')
+       const users = await Habit.query().findById(userId)
+        users.usersComments = await users.$relatedQuery("usersComments")
+        return res.status(200).json({ test: [habit,users] });
+     } catch (error) {
+       return res.status(500).json(error);
+     }
+   });
    
+// habitsRouter.get("/habitComment", async (req,res)=>{
+//   const id = req.params.id
+//   try{
+//     const comment = await Comment.query()
+//     return res.status(200).json({comment})
+//   }catch(error){
+//     return res.status(500).json(error)
+//   }
+// })
+
 // habitsRouter.delete("/:id", async(req,res)=>{
 //     try{
 //         const {id} = req.params

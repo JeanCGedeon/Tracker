@@ -13,6 +13,7 @@ import HabitsForm from "./HabitsForm";
 import UsersData from "./UsersData";
 import BadHabitsList from "./BadHabitsList";
 import LogForm from "./LogForm";
+import CommentHabitForm from "./CommentHabitForm";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);

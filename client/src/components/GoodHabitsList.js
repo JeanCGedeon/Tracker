@@ -11,6 +11,7 @@ import translateServerErrors from "../../../server/src/services/translateServerE
 import HabitsTestForm from "./HabitsTestForm";
 const GoodHabitsList = (props) => {
   const [habits, setHabits] = useState({ habits: [] });
+  
   const [newHabit, setNewHabit] = useState({
     title: "",
     description: "",

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import HabitsTestForm from "./HabitsTestForm";
+import CommentHabitForm from "./CommentHabitForm";
 import moment from "moment"
 const HabitsTileTest = ({
   id,
@@ -9,6 +10,7 @@ const HabitsTileTest = ({
   bad,
   date,
   deleteHabit,
+  userId,
   creatorId,
   curUserId,
   patchHabit,
@@ -17,7 +19,7 @@ const HabitsTileTest = ({
   creator,
 }) => {
   const [isBeingEdited, setIsBeingEdited] = useState(false);
-
+  const [isBeingCommented,setIsBeingCommented] = useState(false)
   const buttons =
     <div>
       <input
@@ -57,10 +59,49 @@ const HabitsTileTest = ({
       />
     )
   }
-  console.log(patchHabit)
+  
+  const toggleBack = () =>{
+    setIsBeingCommented(!isBeingCommented)
+  }
+  
+  // if(isBeingCommented){
+  // return(
+  //   <div>
+  //   <a href="#day">View Comments</a>
+  //   <div id="day" className="comments-back">
+  //     <div className="comments-box">
+  //      <a href="" className="closebtn">
+  //       ×
+  //     </a>
+  //   <CommentHabitForm
+  //   key={tableObject.id}
+  //   id={tableObject.id}
+  //   userId={userId}
+  //   />
+  //   </div>
 
+  // </div>
+  // </div>
+  //   )
+  // }
   return (
     <div className="ree">
+      <div className="comment-card">
+      <a href="#day">View Comments</a>
+    <div id="day" className="comments-back">
+      <div className="comments-box">
+       <a href="" className="closebtn">
+        ×
+      </a>
+    <CommentHabitForm
+   id={id}
+
+    userId={userId}
+    />
+    </div>
+
+  </div>
+      </div>
       {buttons}
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
 import moment from "moment"
 import LogHabitsTile from "./LogHabitTile";
+import HabitsForm from "./HabitsForm";
 
 const LogForm = (props) => {
   const [logs, setLogs] = useState({ logs: [] });
@@ -186,7 +187,7 @@ const LogForm = (props) => {
       date:""
     });
   };
-
+console.log(logs.logs)
   return (
       <div className="show-page-container list">
         <div className="log-form">

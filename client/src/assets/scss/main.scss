@@ -8,12 +8,16 @@
   box-sizing: border-box;
 }
 
+
 body{
+  
 box-sizing: border-box;
 background-color: gray;
 // background-image: url(https://img.freepik.com/free-photo/coffee-cup-blank-spiral-notepad-white-background_23-2147898235.jpg?w=2000);
 background-size: cover;
-background-image: url(https://images.alphacoders.com/108/1084039.jpg);
+// background-image: url(https://images.alphacoders.com/108/1084039.jpg);
+background-image: url(https://wallpaperaccess.com/full/1642346.jpg);
+//?  background-image: url(https://img.freepik.com/premium-vector/abstract-dark-3d-hexagon-pattern-background_6735-1543.jpg?w=2000);
 // background-image: url(https://wallpaper.dog/large/5545504.jpg);
 // background-image: url(https://media.timeout.com/images/105513032/750/422/image.jpg);
 // background-image: url(https://static.vecteezy.com/system/resources/previews/005/090/356/large_2x/background-of-dark-roasted-coffee-bean-and-with-dark-chocolate-on-white-concrete-background-with-copy-space-photo.jpg);
@@ -40,7 +44,8 @@ width: 30%;
 }
 .top-bar,.top-bar ul{
   // background-color: rgb(40, 33, 31)
-  background-color: rgba(67, 37, 10, 0.912);
+  // background-color: rgba(67, 37, 10, 0.912);
+    background-color: transparent;
 }
 // #log-submit{
 //   box-sizing: border-box;
@@ -66,11 +71,17 @@ label{
   display: inline-block;
 }
 
-.button{
+.button,.button-comment{
   display: inline-block;
   background-color: gray;
 //   position: relative;
 // right: 70px;
+}
+.button-comment{
+  color: white;
+  font-size: 20px;
+  margin-top: -30px;
+  margin-bottom: 30px;
 }
 .button-form{
  position:relative;
@@ -92,6 +103,9 @@ p.habit-description{
   max-width: 52ch;
   line-height: 1.5;
   padding: 1em;
+}
+p.comment-hi{
+  color: white;
 }
 .item{
     text-align: center;
@@ -123,7 +137,7 @@ p.log-title{
 }
 
 .breathe{
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 
 .log-item{
@@ -137,11 +151,11 @@ width: 30%;
 zoom: 1;
 margin-right: .7em;
 max-height: 320em;
-// background-color: rgba(46, 44, 44, 0.599);
+background-color: rgba(96, 101, 119, 0.824);
 // color: rgba(209, 208, 206, 0.753);
 // color: rgb(124, 81, 0);
 // background-color: rgb(44, 37, 37);
-background-color: rgba(104, 57, 15, 0.864);
+// background-color: rgba(104, 57, 15, 0.864);
 color: rgb(255, 255, 255);
 flex-direction: row;
 margin-bottom: 2em;
@@ -173,4 +187,75 @@ border-radius: 0.5em;
 }
 #delete:hover{
 background-color: red;
+}
+
+@-webkit-keyframes back{
+  from{top:-100px;opacity: 0;}
+  to{top:0px;opacity: 1;
+  }
+}
+
+@keyframes back{
+  from{top:-100px;opacity: 0;}
+  to{top:0px;opacity: 1;
+  }
+}
+
+.comments-back{
+  display: none;
+  box-sizing:content-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  // height:100em;
+height: 200vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+#day:target {
+  display: block;
+  position: absolute;
+}
+
+.comments-box {
+  margin: auto;
+  height:320px;
+  background-color: #000000;
+  position: relative;
+  padding: 0;
+  outline: 0;
+  border: 1px #777 solid;
+  text-align: justify;
+  width: 80%;
+ 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  
+  -webkit-animation-name: back;
+  -webkit-animation-duration: 0.5s; 
+  animation-name: back;
+  animation-duration: 0.5s;
+ 
+}
+
+
+.closebtn {
+  text-decoration: none;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.closebtn:hover,.closebtn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.comment-list{
+  color: white;
 }
