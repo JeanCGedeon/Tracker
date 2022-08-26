@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import HabitsTestForm from "./HabitsTestForm";
 import CommentHabitForm from "./CommentHabitForm";
 import moment from "moment"
+import LogFormHabit from "./LogFormHabit";
+
 const HabitsTileTest = ({
   id,
   title,
@@ -85,7 +87,7 @@ const HabitsTileTest = ({
        <a href="" className="closebtn">
         ×
       </a>
-    <CommentHabitForm
+    <LogFormHabit
     key={id}
     id={id}
     userId={userId}
@@ -98,22 +100,7 @@ const HabitsTileTest = ({
   }
   return (
     <div className="ree">
-      {/* <div className="comment-card">
-      <a href="#day">View Comments</a>
-    <div id="day" className="comments-back">
-      <div className="comments-box">
-       <a href="" className="closebtn">
-        ×
-      </a>
-    <CommentHabitForm
-   id={id}
-    getComments={getComments}
-    userId={userId}
-    />
-    </div>
-
-  </div>
-      </div> */}
+     
       {buttons}
     </div>
   );

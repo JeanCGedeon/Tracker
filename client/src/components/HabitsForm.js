@@ -117,33 +117,7 @@ const HabitsForm = (props) => {
       return false;
     }
   };
-  // const postComment = async (newHabitsData) => {
-  //   try {
-  //     const userId = props.match.params.id;
-  //     const response = await fetch(`/api/v1/habits/${userId}/tables/postComment`, {
-  //       method: "POST",
-  //       headers: new Headers({ "Content-Type": "application/json" }),
-  //       body: JSON.stringify(newHabitsData),
-  //     });
-  //     if (!response.ok) {
-  //       if (response.status === 422) {
-  //         const body = await response.json();
-  //         const newErrors = translateServerErrors(body.errors.data);
-  //         return setErrors(newErrors);
-  //       }
-  //       throw new Error(`${response.status} (${response.statusText})`);
-  //     } else {
-  //       const body = await response.json();
-  //       const updatedComments = comments.concat(body.commentPost);
-  //       setComments({ ...comments, comments: updatedComments });
-  //       setErrors([]);
-  //     }
-  //   } catch (error) {
-  //     console.error(`Error in fetch: ${error.message}`);
-  //   }
-  // };
-      
-  
+ 
   const userId = props.match.params.id
   let tablesListItem = tables.habits.map((tableObject) => {
     const getComments = async () => {
@@ -262,32 +236,7 @@ const HabitsForm = (props) => {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
-  // const postComment = async (newHabitsData) => {
-  //   try {
-  //     const userId = props.match.params.id;
-  //     const response = await fetch(`/api/v1/habits/${userId}/tables/postComment`, {
-  //       method: "POST",
-  //       headers: new Headers({ "Content-Type": "application/json" }),
-  //       body: JSON.stringify(newHabitsData),
-  //     });
-  //     if (!response.ok) {
-  //       if (response.status === 422) {
-  //         const body = await response.json();
-  //         const newErrors = translateServerErrors(body.errors.data);
-  //         return setErrors(newErrors);
-  //       }
-  //       throw new Error(`${response.status} (${response.statusText})`);
-  //     } else {
-  //       const body = await response.json();
-  //       const updatedComments = comments.concat(body.commentPost);
-  //       setComments({ ...comments, comments: updatedComments });
-  //       setErrors([]);
-  //     }
-  //   } catch (error) {
-  //     console.error(`Error in fetch: ${error.message}`);
-  //   }
-  // };
-
+ 
   const handleInputChange = (event) => {
     setNewHabit({
       ...newHabit,

@@ -108,30 +108,7 @@ const commentListItem = comments.comments.map((commentObject)=>{
           console.error(`Error in fetch: ${error.message}`);
         }
       };
-// const postComment = async (newHabitsData) => {
-//     try {
-//       const userId = props.id;
-//       const response = await fetch(`/api/v1/habits/${userId}/tables/postComment`, {
-//         method: "POST",
-//         headers: new Headers({ "Content-Type": "application/json" }),
-//         body: JSON.stringify(newHabitsData),
-//       });
-//       if (!response.ok) {
-//         if (response.status === 422) {
-//           const body = await response.json();
-//           const newErrors = translateServerErrors(body.errors.data);
-//           return setErrors(newErrors);
-//         }
-//         throw new Error(`${response.status} (${response.statusText})`);
-//       } else {
-//         const body = await response.json();
-//         setComments({ ...comments, comments: body });
-//         setErrors([]);
-//       }
-//     } catch (error) {
-//       console.error(`Error in fetch: ${error.message}`);
-//     }
-//   };
+
 
       const handleInputChange = (event) => {
         setNewComment({
