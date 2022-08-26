@@ -11,6 +11,7 @@ const HabitsTileTest = ({
   date,
   deleteHabit,
   userId,
+  getComments,
   creatorId,
   curUserId,
   patchHabit,
@@ -38,7 +39,18 @@ const HabitsTileTest = ({
         onClick={() => {
        deleteHabit(id);
         }}
-      />
+        />
+        <div></div>
+        <a href="#day">
+        <input
+        className="button"
+        type="button"
+        id="view"
+        value="View Comment"
+        onClick={() => {
+        toggleBack(id);
+        }}/>
+        </a>
     </div>
   const toggleEdit = () => {
     setIsBeingEdited(!isBeingEdited);
@@ -64,29 +76,29 @@ const HabitsTileTest = ({
     setIsBeingCommented(!isBeingCommented)
   }
   
-  // if(isBeingCommented){
-  // return(
-  //   <div>
-  //   <a href="#day">View Comments</a>
-  //   <div id="day" className="comments-back">
-  //     <div className="comments-box">
-  //      <a href="" className="closebtn">
-  //       ×
-  //     </a>
-  //   <CommentHabitForm
-  //   key={tableObject.id}
-  //   id={tableObject.id}
-  //   userId={userId}
-  //   />
-  //   </div>
+  if(isBeingCommented){
+  return(
+    <div>
+    <a href="#day">View Comments</a>
+    <div id="day" className="comments-back">
+      <div className="comments-box">
+       <a href="" className="closebtn">
+        ×
+      </a>
+    <CommentHabitForm
+    key={id}
+    id={id}
+    userId={userId}
+    />
+    </div>
 
-  // </div>
-  // </div>
-  //   )
-  // }
+  </div>
+  </div>
+    )
+  }
   return (
     <div className="ree">
-      <div className="comment-card">
+      {/* <div className="comment-card">
       <a href="#day">View Comments</a>
     <div id="day" className="comments-back">
       <div className="comments-box">
@@ -95,13 +107,13 @@ const HabitsTileTest = ({
       </a>
     <CommentHabitForm
    id={id}
-
+    getComments={getComments}
     userId={userId}
     />
     </div>
 
   </div>
-      </div>
+      </div> */}
       {buttons}
     </div>
   );

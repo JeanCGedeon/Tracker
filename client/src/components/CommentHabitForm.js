@@ -11,22 +11,22 @@ const CommentHabitForm = (props) =>{
   });
   const [errors, setErrors] = useState([]);
     
-  const getComments = async (habitId) => {
-    //   userId = props.userId
-       habitId = props.id
-      try {
-          const response = await fetch(`/api/v1/habits/${habitId}/tables/allComments`);
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`;
-        const error = new Error(errorMessage);
-        throw error;
-      }
-      const parsedResponse = await response.json();
-      setComments(parsedResponse.habit);
-    } catch (error) {
-      console.error(`Error in fetch: ${error.message}`);
-    }
-  };
+//   const getComments = async () => {
+//     //   userId = props.userId
+//     try {
+//        const   habitId = props.id
+//           const response = await fetch(`/api/v1/habits/${habitId}/tables/allComments`);
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} (${response.statusText})`;
+//         const error = new Error(errorMessage);
+//         throw error;
+//       }
+//       const parsedResponse = await response.json();
+//       setComments(parsedResponse.habit);
+//     } catch (error) {
+//       console.error(`Error in fetch: ${error.message}`);
+//     }
+//   };
 
   console.log(props)
 // const getComments = async () => {
@@ -46,8 +46,24 @@ const CommentHabitForm = (props) =>{
 // };
 
   useEffect(() => {
-    getComments();
-  }, []);
+ const getComments = async () => {
+    const id = props.id;
+  try {
+    const response = await fetch(`/api/v1/habits/${id}/tables/allComments`);
+    if (!response.ok) {
+      const errorMessage = `${response.status} (${response.statusText})`;
+      const error = new Error(errorMessage);
+      throw error;
+    }
+    const parsedResponse = await response.json();
+    setComments(parsedResponse.habit);
+  } catch (error) {
+    console.error(`Error in fetch: ${error.message}`);
+  }
+  }
+ getComments()
+}, []);
+console.log(comments)
 
 const commentListItem = comments.comments.map((commentObject)=>{
   return(
@@ -71,7 +87,7 @@ const commentListItem = comments.comments.map((commentObject)=>{
      userId = props.userId
         try {
           const response = await fetch(`/api/v1/habits/${userId}/tables/postComment/${habitId}`, {
-            method: "PUT",
+            method: "POST",
             headers: new Headers({ "Content-Type": "application/json" }),
             body: JSON.stringify(newHabitsData),
           });
@@ -123,9 +139,9 @@ const commentListItem = comments.comments.map((commentObject)=>{
           [event.currentTarget.name]: event.currentTarget.value,
         });
       };
-      const handleSubmit = (event) => {
+      const handleSubmit = async (event) => {
         event.preventDefault();
-      postComment(newComment);
+    await postComment(newComment);
         clearForm();
       };
    

@@ -3,6 +3,7 @@ import { ValidationError } from 'objection'
 import cleanUserInput from '../../../services/cleanUserInput.js'
 import { Habit, User,Log,Comment } from '../../../models/index.js'
 
+
 const tablesHabitsRouter = new express.Router({mergeParams: true })
 
 tablesHabitsRouter.get("/myBad", async (req, res) => {
@@ -72,7 +73,7 @@ tablesHabitsRouter.get("/", async (req, res) => {
   })
 
 
-  tablesHabitsRouter.put("/postComment/:id", async (req, res) => {
+  tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
     const {body} = req
     const formInput = cleanUserInput(body)
     const { comment } = formInput
@@ -100,10 +101,12 @@ tablesHabitsRouter.get("/", async (req, res) => {
     const {userId} = req.params
     try {
        const habit = await Habit.query().findById(userId)
-       habit.comments = await habit.$relatedQuery('comments').where({habitId:userId})
+       habit.comments = await habit.$relatedQuery('comments')
       //  const users = await Habit.query().findById(userId)
       //   users.usersComments = await users.$relatedQuery("usersComments")
+      if(habit.id === userId){
        return res.status(200).json({ habit});
+      }
      } catch (error) {
        return res.status(500).json(error);
      }
@@ -112,8 +115,8 @@ tablesHabitsRouter.get("/", async (req, res) => {
     const {userId} = req.params
     const habitId = req.params.id
     try{
-      const commentHabit = await User.query().findById(userId)
-      commentHabit.habit = await commentHabit.$relatedQuery("habitComments")
+      const commentHabit = await Comment.query().findById(userId)
+      commentHabit.habit = await commentHabit.$relatedQuery("habit")
       return res.status(200).json({commentHabit})
     }catch(error){
       return res.status(500).json(error)

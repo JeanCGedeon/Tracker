@@ -49,11 +49,11 @@ class Habit extends Model {
       //   },
       // },
       comments:{
-        relation:Model.HasManyRelation,
+        relation: Model.HasManyRelation,
         modelClass: Comment,
         join:{
-          from:"comments.habitId",
-          to:"habits.id"
+          from:"habits.id",
+          to:"comments.habitId"
         }
       },
       usersComments: {
