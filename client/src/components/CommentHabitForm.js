@@ -3,14 +3,30 @@ import React, { useState, useEffect } from "react";
 const CommentHabitForm = (props) =>{
     // const [comments, setComments] = useState({ comment:"",habitId:0,users:{} });
     const [comments, setComments] = useState({  comments:[]})
-  const [newComment, setNewComment] = useState({
-   comment:"",
-   user:"",
-   habitId:0,
-   userId:0
-  });
+    const [userEmail, setUserEmail] = useState({})
+  
   const [errors, setErrors] = useState([]);
-    
+
+  const getUserEmail = async () => {
+    try {
+  const id = props.userId
+      const response = await fetch(`/api/v1/habits/email/:id`);
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
+      }
+      const parsedResponse = await response.json();
+      setUserEmail(parsedResponse.email);
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
+
+  useEffect(() => {
+    getUserEmail();
+  }, []);
+
 //   const getComments = async () => {
 //     //   userId = props.userId
 //     try {
@@ -28,56 +44,56 @@ const CommentHabitForm = (props) =>{
 //     }
 //   };
 
-  console.log(props)
 // const getComments = async () => {
-//     const id = props.id;
-//   try {
-//     const response = await fetch(`/api/v1/habits/${id}/tables/habitComment`);
-//     if (!response.ok) {
-//       const errorMessage = `${response.status} (${response.statusText})`;
-//       const error = new Error(errorMessage);
-//       throw error;
-//     }
-//     const parsedResponse = await response.json();
-//     setComments(parsedResponse.comment);
-//   } catch (error) {
-//     console.error(`Error in fetch: ${error.message}`);
-//   }
-// };
-
-  useEffect(() => {
- const getComments = async () => {
-    const id = props.id;
-  try {
-    const response = await fetch(`/api/v1/habits/${id}/tables/allComments`);
-    if (!response.ok) {
-      const errorMessage = `${response.status} (${response.statusText})`;
-      const error = new Error(errorMessage);
-      throw error;
-    }
-    const parsedResponse = await response.json();
-    setComments(parsedResponse.habit);
-  } catch (error) {
-    console.error(`Error in fetch: ${error.message}`);
-  }
-  }
- getComments()
-}, []);
-console.log(comments)
-
-const commentListItem = comments.comments.map((commentObject)=>{
-  return(
-      <h1 key={commentObject.id}>
-      <div className="comment-list">
-        <p>{commentObject.comment}</p>
-      <div>
-      </div>
-      <div>
-          <p>{commentObject.user}</p>
+    //     const id = props.id;
+    //   try {
+        //     const response = await fetch(`/api/v1/habits/${id}/tables/habitComment`);
+        //     if (!response.ok) {
+            //       const errorMessage = `${response.status} (${response.statusText})`;
+            //       const error = new Error(errorMessage);
+            //       throw error;
+            //     }
+            //     const parsedResponse = await response.json();
+            //     setComments(parsedResponse.comment);
+            //   } catch (error) {
+                //     console.error(`Error in fetch: ${error.message}`);
+                //   }
+                // };
+                const getComments = async () => {
+                    const id = props.id;
+                    try {
+                        const response = await fetch(`/api/v1/habits/${id}/tables/allComments`);
+                        if (!response.ok) {
+                            const errorMessage = `${response.status} (${response.statusText})`;
+                            const error = new Error(errorMessage);
+                            throw error;
+                        }
+                        const parsedResponse = await response.json();
+                        setComments(parsedResponse.habit);
+                    } catch (error) {
+                        console.error(`Error in fetch: ${error.message}`);
+                    }
+                }
+                
+                useEffect(() => {
+                    getComments()
+                }, []);
+                // console.log(props)
+          let length =     userEmail.email 
+            
+                console.log(length)
+                const commentListItem = comments.comments.map((commentObject)=>{
+                    console.log(comments.comments)
+                    return(
+                        <h1 key={commentObject.id}>
+      {/* <div className="comment-list"> */}
+        <p className="comments-p">{commentObject.comment} <span>  <p className="comments-p">userId:{commentObject.userId}</p></span></p>
+      {/* <div>
+      </div> */}
+      {/* <div>
           <p>{commentObject.userId}</p>
-          <p>{commentObject.habitId}</p>
-      </div>
-      </div>
+          </div> */}
+      {/* </div> */}
       </h1>
   )
 })
@@ -130,12 +146,17 @@ const commentListItem = comments.comments.map((commentObject)=>{
           userId:0,
         });
       };
-
+      const [newComment, setNewComment] = useState({
+        comment:"",
+        user:`${userEmail}`,
+        habitId:0,
+        userId:0
+       });
     return(
         <div className="asda">
             <form onSubmit={handleSubmit}>
             <label htmlFor="comment" id="label-center" >
-                comments
+                comment
                 <textarea
                 className="comment-description"
                 type="text"
@@ -146,17 +167,17 @@ const commentListItem = comments.comments.map((commentObject)=>{
                 />
             </label>
             
-            <label>
-                habitId
+          {/* <label>
+             user
                 <input
                 className="comment-description"
                 type="text"
-                name="habitId"
+                name="user"
                 id="comment-description"
                 onChange={handleInputChange}
-                value={newComment.habitId}/>
-            </label>
-            <label>
+                value={newComment.user}/>
+            </label> */}
+            {/* <label>
                 userId
                 <input
                 className="comment-description"
@@ -165,9 +186,9 @@ const commentListItem = comments.comments.map((commentObject)=>{
                 id="comment-description"
                 onChange={handleInputChange}
                 value={newComment.userId}/>
-            </label>
+            </label> */}
             {/* <p>{newComment.user}</p> */}
-      <input className="button-form" type="submit" value="Submit" id="input" />
+      <input className="button-form" type="submit" value="Submit" id="input-comment" />
       </form>
           {commentListItem}
         {/* <p>{comments.comment}</p>

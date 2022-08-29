@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HabitsTestForm from "./HabitsTestForm";
 import CommentHabitForm from "./CommentHabitForm";
-import moment from "moment"
+import moment from "moment";
 import LogFormHabit from "./LogFormHabit";
 
 const HabitsTileTest = ({
@@ -22,8 +22,9 @@ const HabitsTileTest = ({
   creator,
 }) => {
   const [isBeingEdited, setIsBeingEdited] = useState(false);
-  const [isBeingCommented,setIsBeingCommented] = useState(false)
-  const buttons =
+  const [isBeingLogged, setIsBeingLogged] = useState(false);
+  const [isBeingCommented, setIsBeingCommented] = useState(false);
+  const buttons = (
     <div>
       <input
         className="button"
@@ -39,21 +40,35 @@ const HabitsTileTest = ({
         id="delete"
         value="Delete Habit"
         onClick={() => {
-       deleteHabit(id);
+          deleteHabit(id);
         }}
-        />
-        <div></div>
-        <a href="#day">
+      />
+      <div></div>
+      <a href="#logs">
         <input
-        className="button"
-        type="button"
-        id="view"
-        value="View Comment"
-        onClick={() => {
-        toggleBack(id);
-        }}/>
-        </a>
+          className="button"
+          type="button"
+          id="view"
+          value="View Logs"
+          onClick={() => {
+            toggleBack(id);
+          }}
+        />
+      </a>
+      <div></div>
+      {/* <a href="#comments"> */}
+        <input
+          className="button"
+          type="button"
+          id="view"
+          value="View Comments"
+          onClick={() => {
+            toggleFlip(id);
+          }}
+        />
+      {/* </a> */}
     </div>
+  );
   const toggleEdit = () => {
     setIsBeingEdited(!isBeingEdited);
   };
@@ -71,38 +86,60 @@ const HabitsTileTest = ({
         toggleEdit={toggleEdit}
         errors={errors}
       />
-    )
+    );
   }
-  
-  const toggleBack = () =>{
-    setIsBeingCommented(!isBeingCommented)
-  }
-  
-  if(isBeingCommented){
-  return(
-    <div>
-    <a href="#day">View Comments</a>
-    <div id="day" className="comments-back">
-      <div className="comments-box">
-       <a href="" className="closebtn">
-        ×
-      </a>
-    <LogFormHabit
-    key={id}
-    id={id}
-    userId={userId}
-    />
-    </div>
 
-  </div>
-  </div>
-    )
+  const toggleFlip = () => {
+    setIsBeingCommented(!isBeingCommented);
+  };
+  // const toggleUnFlip = () => {
+  //   setIsBeingCommented(!isBeingCommented);
+  // };
+  if (isBeingCommented) {
+    return (
+      <div>
+        {/* <a href="comments">View Comments</a> */}
+        <div id="comments" className="comments-back">
+          <div className="comments-box">
+          <input
+          className="button"
+          type="button"
+          id="exit"
+          value="Exit Comments"
+          onClick={() => {
+            toggleFlip(id);
+          }}
+          />
+          {/* <a href="" className="closebtn">
+              ×
+            </a> */}
+            <CommentHabitForm key={id} id={id} userId={userId} />
+          </div>
+        </div>
+      </div>
+    );
   }
-  return (
-    <div className="ree">
-     
-      {buttons}
-    </div>
-  );
+
+  const toggleBack = () => {
+    setIsBeingLogged(!isBeingLogged);
+  };
+
+  if (isBeingLogged) {
+    return (
+      <div>
+        <a href="#logs">View Logs</a>
+        <div id="logs" className="logs-back">
+          <div className="logs-box">
+            <a href="" className="closebtn">
+              ×
+            </a>
+            <LogFormHabit key={id} id={id} userId={userId} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return <div className="ree">{buttons}</div>;
 };
 export default HabitsTileTest;

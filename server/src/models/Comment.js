@@ -11,60 +11,44 @@ class Comment extends Model {
       required: [],
       properties: {
         comment: { type: "string" },
-        user:{type:"string"},
-        userId:{type:[ "string", "integer"]},
-        habitId:{type:["string","integer"]},
-        logId:{type:["string","integer"]}
+        user: { type: "string" },
+        userId: { type: ["string", "integer"] },
+        habitId: { type: ["string", "integer"] },
+        logId: { type: ["string", "integer"] },
       },
     };
   }
 
-static get relationMappings(){
-    const {User,Habit,Log} = require('./index.js')
-    
+  static get relationMappings() {
+    const { User, Habit, Log } = require("./index.js");
+
     return {
       user: {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
         join: {
-            from:"comments.userId",
-            to:"users.id"
+          from: "comments.userId",
+          to: "users.id",
         },
       },
-      habit:{
-          relation: Model.BelongsToOneRelation,
-          modelClass: Habit,
-          join:{
-              from:"comments.habitId",
-              to:"habits.id"
-          }
+      habit: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Habit,
+        join: {
+          from: "comments.habitId",
+          to: "habits.id",
+        },
       },
-    //   log:{
-    //         relation:Model.BelongsToOneRelation,
-    //         modelClass: Log,
-    //         join:{
-    //             from:"comments.LogId",
-    //             to:"logs.id"
-    //         }
-    //   }
+      //   log:{
+      //         relation:Model.BelongsToOneRelation,
+      //         modelClass: Log,
+      //         join:{
+      //             from:"comments.LogId",
+      //             to:"logs.id"
+      //         }
+      //   }
     };
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 module.exports = Comment;

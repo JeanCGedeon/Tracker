@@ -18,6 +18,30 @@ habitsRouter.get("/", async (req, res) => {
   }
 });
 
+habitsRouter.get("/email/:id", async (req, res) => {
+  const id = req.params.id
+  try {
+      if(req.user){
+    const email = await User.query().findById(req.user.id)
+    return res.status(200).json({email });
+  }
+} catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
+habitsRouter.get("/emailData/:id", async (req, res) => {
+  const id = req.params.id
+  try {
+      if(req.user){
+    const email = await User.query().findById(req.user.id)
+    return res.status(200).json({email });
+  }
+} catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
 habitsRouter.get("/bad", async(req,res) =>{
     try{
         const badHabits = await Habit.query().where({good:false})

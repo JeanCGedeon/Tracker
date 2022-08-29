@@ -117,25 +117,34 @@ const HabitsForm = (props) => {
       return false;
     }
   };
- 
-  const userId = props.match.params.id
+
+
+// const [userId, setUserId] = useState([{}])
+//   const getUserId = async () => {
+//     try {
+  
+//       const response = await fetch(`/api/v1/habits/email`);
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} (${response.statusText})`;
+//         const error = new Error(errorMessage);
+//         throw error;
+//       }
+//       const parsedResponse = await response.json();
+//       setUserId(parsedResponse.email);
+//     } catch (error) {
+//       console.error(`Error in fetch: ${error.message}`);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getUserId();
+//   }, []);
+
+
+
+  
   let tablesListItem = tables.habits.map((tableObject) => {
-    const getComments = async () => {
-      //   userId = props.userId
-      try {
-         const   habitId = tableObject.id
-            const response = await fetch(`/api/v1/habits/${habitId}/tables/allComments`);
-        if (!response.ok) {
-          const errorMessage = `${response.status} (${response.statusText})`;
-          const error = new Error(errorMessage);
-          throw error;
-        }
-        const parsedResponse = await response.json();
-        setComments(parsedResponse.habit);
-      } catch (error) {
-        console.error(`Error in fetch: ${error.message}`);
-      }
-    };
+  
     return (
       <h3 key={tableObject.id}>
         <div className="item">
@@ -172,11 +181,11 @@ const HabitsForm = (props) => {
             <HabitsTileTest
              
               id={tableObject.id}
-              userId={userId}
+              // userId={userId.id}
               // creatorId={habitObject.userId}
               creator={tableObject.user}
               deleteHabit={deleteHabit}
-              getComments={getComments}
+        
               // curUserId={curUserId}
               patchHabit={patchHabit}
 
