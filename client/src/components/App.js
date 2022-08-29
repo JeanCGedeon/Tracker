@@ -13,6 +13,7 @@ import HabitsForm from "./HabitsForm";
 import UsersData from "./UsersData";
 import BadHabitsList from "./BadHabitsList";
 import LogForm from "./LogForm";
+import CommentHabitForm from "./CommentHabitForm";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -51,7 +52,7 @@ const App = (props) => {
           <HabitsForm user={[currentUser,currentUserId]}/>
         </Route>
         {/* <Route exact path={`/habits/:id&myLogs`} component={LogData}/> */}
-        <Route exact path={`/logs/:id&logPost`} component={LogForm}/>
+        {/* <Route exact path={`/logs/:id&logPost`} component={LogForm}/> */}
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>

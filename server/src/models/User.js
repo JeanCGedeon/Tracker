@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const Bcrypt = require("bcrypt");
 const unique = require("objection-unique");
+const { HasManyRelation } = require("./Model");
 const Model = require("./Model");
 
 const saltRounds = 10;
@@ -37,7 +38,7 @@ class User extends uniqueFunc(Model) {
   }
 
   static get relationMappings() {
-    const { Habit } = require("./index.js");
+    const { Habit,Comment,Log } = require("./index.js");
     return {
       habits: {
         relation: Model.HasManyRelation,
@@ -47,8 +48,54 @@ class User extends uniqueFunc(Model) {
           to: "habits.userId",
         },
       },
+
+      // test:{
+      //   relation: Model.BelongsToOneRelation,
+      //   modelClass: Habit,
+      //   join:{
+      //     from:"habits.userId",
+      //     to:"users.email"
+      //   }
+      // },
+      habitComments: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Habit,
+        join: {
+          from: "users.id",
+          through: {
+            from:"comments.userId",
+            to:"comments.habitId",
+          },
+          to:"habits.id"
+        },
+      },
+      logComments: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Log,
+        join: {
+          from: "logs.id",
+          through: {
+            from:"comments.logId",
+            to:"comments.userId"
+          },
+          to:"users.id"
+        },
+      },
+      comments:{
+        relation:Model.HasManyRelation,
+        modelClass: Comment,
+        join:{
+          from:"user.id",
+          to:"comments.userId"
+        }
+      }
     };
   }
+
+
+
+
+
 
   $formatJson(json) {
     const serializedJson = super.$formatJson(json);

@@ -2,7 +2,7 @@ const Model = require("./Model");
 
 class Habit extends Model {
   static get tableName() {
-    return "habits"
+    return "habits";
   }
 
   static get jsonSchema() {
@@ -14,13 +14,13 @@ class Habit extends Model {
         description: { type: "string" },
         good: { type: ["boolean", "string"] },
         bad: { type: ["boolean", "string"] },
-        date: { type: ["string", "integer"]},
+        date: { type: ["string", "integer"] },
         userId: { type: ["string", "integer"] },
       },
     };
   }
   static get relationMappings() {
-    const { User, Log } = require("./index.js");
+    const { User, Log, Comment } = require("./index.js");
 
     return {
       user: {
@@ -31,14 +31,43 @@ class Habit extends Model {
           to: "users.id",
         },
       },
-      logs:{
+      logs: {
         relation: Model.HasManyRelation,
         modelClass: Log,
+        join: {
+          from: "habits.id",
+          to: "logs.habitId",
+        },
+      },
+
+      // testy: {
+      //   relation: Model.HasManyRelation,
+      //   modelClass: User,
+      //   join: {
+      //     from: "habits.id",
+      //     to:"habits.userId"
+      //   },
+      // },
+      comments:{
+        relation: Model.HasManyRelation,
+        modelClass: Comment,
         join:{
-            from:'habits.id',
-            to:'logs.habitId'
+          from:"habits.id",
+          to:"comments.habitId"
         }
-      }
+      },
+      usersComments: {
+        relation: Model.ManyToManyRelation,
+        modelClass: User,
+        join: {
+          from: "habits.id",
+          through: {
+            from:"comments.habitId",
+            to:"comments.userId"
+          },
+          to:"users.id"
+        },
+      },
     };
   }
 }

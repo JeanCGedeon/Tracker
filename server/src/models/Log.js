@@ -18,7 +18,7 @@ class Log extends Model {
   }
 
   static get relationMappings() {
-    const { Habit } = require("./index.js");
+    const { Habit,User,Comment } = require("./index.js");
 
     return {
       habits: {
@@ -29,7 +29,27 @@ class Log extends Model {
           to: "habit.id",
         },
       },
-    };
+      usersComments: {
+        relation: Model.ManyToManyRelation,
+        modelClass: User,
+        join: {
+          from: "users.id",
+          through: {
+            from: "comments.userId",
+            to: "comments.habitId",
+          },
+          to: "logs.id",
+        },
+      },
+      // comments:{
+      //   relation:Model.HasManyRelation,
+      //   modelClass: Comment,
+      //   join:{
+      //     from:"logs.id",
+      //     to:"comments.logId"
+      //   }
+    // }
+  }
   }
 }
 

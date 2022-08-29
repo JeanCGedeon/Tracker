@@ -2,4 +2,5 @@
 const User = require("./User.js")
 const Habit = require('./Habit.js')
 const Log = require('./Log.js')
-module.exports = {User,Habit,Log};
+const Comment = require('./Comment')
+module.exports = {User,Habit,Log,Comment};

@@ -1,7 +1,8 @@
 import express from 'express'
 import { ValidationError } from 'objection'
 import cleanUserInput from '../../../services/cleanUserInput.js'
-import { Habit, User,Log } from '../../../models/index.js'
+import { Habit, User,Log,Comment } from '../../../models/index.js'
+
 
 const tablesHabitsRouter = new express.Router({mergeParams: true })
 
@@ -53,7 +54,7 @@ tablesHabitsRouter.get("/", async (req, res) => {
     const formInput = cleanUserInput(body)
     const {title, description, good,bad,date } = formInput
     const { userId } = req.params
-    {
+    
     try {
       const habitDelete = await User.query().findById(userId)
       if(req.user && habitDelete.id === req.user.id){
@@ -68,9 +69,62 @@ tablesHabitsRouter.get("/", async (req, res) => {
         return res.status(500).json({ errors: error });
       }
     }
-  }
+  
   })
 
+
+  tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
+    const {body} = req
+    const formInput = cleanUserInput(body)
+    const { comment,user } = formInput
+    const  habitId  = req.params.id
+    const userId = req.user.id
+    // const user = req.user.email
+    try {
+      // const habitDelete = await User.query().findById(habitId)
+     
+        
+      const newComment = await Comment.query().insert({comment,habitId,userId,user})
+     
+      return res.status(200).json({ commentPost: newComment });
+   }
+    catch (error) {
+      if(error instanceof ValidationError) {
+        return res.status(422).json({ errors: error });
+      } else {
+        return res.status(500).json({ errors: error });
+      }
+    
+  }
+  })
+  tablesHabitsRouter.get("/allComments", async (req, res) => {
+    const {userId} = req.params
+    try {
+       const habit = await Habit.query().findById(userId)
+       habit.comments = await habit.$relatedQuery('comments')
+      //  const users = await Habit.query().findById(userId)
+      //   users.usersComments = await users.$relatedQuery("usersComments")
+      if(habit.id === userId){
+       return res.status(200).json({ habit});
+      }
+     } catch (error) {
+       return res.status(500).json(error);
+     }
+   });
+  tablesHabitsRouter.get("/habitComment", async (req,res)=>{
+    const {userId} = req.params
+    const habitId = req.params.id
+    try{
+      const commentHabit = await Comment.query().findById(userId)
+      commentHabit.habit = await commentHabit.$relatedQuery("habit")
+      return res.status(200).json({commentHabit})
+    }catch(error){
+      return res.status(500).json(error)
+    }
+  })
+
+
+  
   tablesHabitsRouter.delete("/:id", async(req,res)=>{
     const {userId} = req.params
     const id = req.params.id
@@ -141,22 +195,6 @@ tablesHabitsRouter.patch("/", async(req,res) =>{
    }
  }
  })
-
-
-tablesHabitsRouter.get("/:id", async (req, res) => {
-  const {userId} = req.params
-  const id = req.params.id
-   try {
-    //  const user = await User.query().findById(userId)
-    //  user.habits = await user.$relatedQuery('habits')
-     const habit = await Habit.query().findById(id)
-   
-     return res.status(200).json({habit });
-   } catch (error) {
-     return res.status(500).json(error);
-   }
- });
- 
 
 
   tablesHabitsRouter.post('/logPost', async(req,res) => {

@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import HabitsTileTest from "./HabitsTileTest";
 import ErrorList from "./layout/ErrorList";
+import CommentHabitForm from "./CommentHabitForm";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
 import moment from "moment";
+import LogForm from "./LogForm";
 const HabitsForm = (props) => {
   const [tables, setTables] = useState({ habits: [] });
+  const [isBeingCommented, setIsBeingCommented] = useState(false);
+  const [comments, setComments] = useState([]);
   const [newHabit, setNewHabit] = useState({
     title: "",
     description: "",
@@ -96,11 +100,11 @@ const HabitsForm = (props) => {
         const body = await response.json();
         const updatedHabits = tables.habits.map((habit) => {
           if (habit.id === habitId) {
-          habit.title = body.habit.title;
-          habit.description = body.habit.description;
-          habit.good = body.habit.good;
-          habit.bad = body.habit.bad;
-          habit.date = body.habit.date;
+            habit.title = body.habit.title;
+            habit.description = body.habit.description;
+            habit.good = body.habit.good;
+            habit.bad = body.habit.bad;
+            habit.date = body.habit.date;
           }
           return habit;
         });
@@ -115,13 +119,38 @@ const HabitsForm = (props) => {
   };
 
 
+// const [userId, setUserId] = useState([{}])
+//   const getUserId = async () => {
+//     try {
+  
+//       const response = await fetch(`/api/v1/habits/email`);
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} (${response.statusText})`;
+//         const error = new Error(errorMessage);
+//         throw error;
+//       }
+//       const parsedResponse = await response.json();
+//       setUserId(parsedResponse.email);
+//     } catch (error) {
+//       console.error(`Error in fetch: ${error.message}`);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getUserId();
+//   }, []);
+
+
 
   
   let tablesListItem = tables.habits.map((tableObject) => {
+  
     return (
       <h3 key={tableObject.id}>
         <div className="item">
-        <Link to={`/logs/${tableObject.id}&logPost`}><p className="habit-title">{tableObject.title}</p></Link>
+          <Link to={`/logs/${tableObject.id}&logPost`}>
+            <p className="habit-title">{tableObject.title}</p>
+          </Link>
 
           <div className="test">
             <p className="habit-description">{tableObject.description}</p>
@@ -130,89 +159,66 @@ const HabitsForm = (props) => {
           <div className="testing">
             <p className="habit-description">{moment(tableObject.date).format("MM/DD/yyyy")}</p>
           </div>
-          <div className="Bottom-habit">
+          {/* <input
+              className="button-comment"
+              type="button"
+              value="View Comments"
+              onClick={()=>{
+                toggleBack()
+              }}
+              /> */}
+          {/* <div className="trek">
+                <input
+                  className="button-comment"
+                  type="button"
+                  value="View Comments"
+                  onClick={() => {
+                    toggleBack();
+                  }}
+                />
+              </div> */}
           <div className="something-else">
             <HabitsTileTest
-              key={tableObject.id}
+             
               id={tableObject.id}
+              // userId={userId.id}
               // creatorId={habitObject.userId}
               creator={tableObject.user}
               deleteHabit={deleteHabit}
+        
               // curUserId={curUserId}
               patchHabit={patchHabit}
 
               // userLoggedIn={userLoggedIn}
             />
-            </div>
           </div>
+          {/* <a href="#day">View Comments</a>
+            <div id="day" className="comments-back">
+              <div className="comments-box">
+               <a href="" className="closebtn">
+                ×
+              </a>
+            <CommentHabitForm
+            key={tableObject.id}
+            id={tableObject.id}
+            userId={userId}
+            />
+            </div>
+      
+          </div> */}
+          {/* <div className="flip-card-back">
+          </div> */}
         </div>
       </h3>
     );
   });
+  const toggleBack = () => {
+    setIsBeingCommented(!isBeingCommented);
+  };
 
-  
-  // let divChange = document.getElementsByClassName("testt")
-  // let doubleTest ;
-
-  // if(isBeingEdited){
-
-  // }
-  
-  
-  // const deleteHabit = async (habitId) => {
-  //   try {
-  //     const id = props.match.params.id;
-  //     const response = await fetch(`/api/v1/habits/${id}/tables/${habitId}`, {
-  //       method: "DELETE",
-  //       headers: { "Content-Type": "application/json" },
-  //     });
-  //     if (!response.ok) {
-  //       if (response.status === 401) {
-  //         const body = await response.json();
-  //         return setErrors;
-  //       } else {
-  //         throw new Error(`${response.status} (${response.statusText})`);
-  //       }
-  //     } else {
-  //       const body = await response.json();
-  //       const filteredHabits = tables.habits.filter((habit) => {
-  //         return habit.id !== habitId;
-  //       });
-  //       setErrors({});
-  //       setTables({ ...tables, habits: filteredHabits });
-  //     }
-  //   } catch (error) {
-  //     console.error(`Error in fetch ${error.message}`);
-  //   }
-  // };
-
-  // const [isBeingEdited, setIsBeingEdited] = useState(false);
-  // // const button =
-
-  // //     <div className="habit-edit">
-  // //       <input
-  // //         className="button"
-  // //         type="button"
-  // //         value="Edit Habit"
-  // //         onClick={() => {
-  // //           toggleEdit(id);
-  // //         }}
-  // //       />
-  // //     </div>
-
-  // // let creatorId = tables.habits.userId;
-  // // let curUserId = false;
-  // // let userLoggedIn = false;
-  // // if (props.user) {
-  // //   curUserId = props.user.id;
-  // //   userLoggedIn = true;
-  // // }
-  // const toggleEdit = () => {
-  //   setIsBeingEdited(!isBeingEdited);
-  // };
-  // // const habitsTile = tables.habits.map((habitsObject) => {
-
-              
+  if (isBeingCommented) {
+    return <CommentHabitForm />;
+  }
 
   const postHabit = async (newHabitsData) => {
     try {
@@ -239,7 +245,7 @@ const HabitsForm = (props) => {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
-
+ 
   const handleInputChange = (event) => {
     setNewHabit({
       ...newHabit,
@@ -269,8 +275,8 @@ const HabitsForm = (props) => {
       date: "",
     });
   };
-console.log(props.userId)
-  
+ 
+
   return (
     <div className="show-page-container list">
       <h2 className="intro-first-form"></h2>
@@ -279,7 +285,7 @@ console.log(props.userId)
         <label htmlFor="name" className="title" id="label-center">
           title
           <input
-          className="input"
+            className="input"
             type="text"
             id="title"
             name="title"
@@ -291,7 +297,7 @@ console.log(props.userId)
         <label htmlFor="description" className="title" id="label-center">
           description
           <textarea
-          className="input"
+            className="input"
             type="text"
             id="description"
             name="description"
@@ -309,10 +315,8 @@ console.log(props.userId)
             // className="input"
             onClick={handleRadioSelect}
             value={newHabit.good}
-          
           />
           Bad
-      
           <input
             type="radio"
             id="bad"
@@ -321,12 +325,12 @@ console.log(props.userId)
             onClick={handleBadRadioSelect}
             value={newHabit.bad}
           />
-    </label>
+        </label>
 
         <label htmlFor="date" className="title" id="label-center">
           date:
           <input
-          className="input"
+            className="input"
             type="date"
             id="date"
             name="date"
@@ -335,7 +339,7 @@ console.log(props.userId)
           />
         </label>
 
-        <input className="button-form" type="submit" value="Submit" id="input"/>
+        <input className="button-form" type="submit" value="Submit" id="input" />
       </form>
       <div className="habits-list">
         <h1 className="center"></h1>
@@ -344,7 +348,5 @@ console.log(props.userId)
       </div>
     </div>
   );
-    
-  
 };
 export default HabitsForm;
