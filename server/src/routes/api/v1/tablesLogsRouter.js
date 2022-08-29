@@ -24,8 +24,11 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
     const {notes, date} = formInput
     const {habitId} = req.params
     try{
+      const habitDelete = await User.query().findById(req.user.id)
+      if(req.user && habitDelete.id === req.user.id ){
       const newLog = await Log.query().insert({ notes, habitId, date})
       return res.status(200).json({test: newLog})
+      }
     }catch(error){
       if(error instanceof ValidationError){
         return res.status(422).json({error: error})
@@ -41,12 +44,14 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
         const {habitId} = req.params
         const id = req.params.id
         try{
+          const habitDelete = await User.query().findById(req.user.id)
+          if(req.user && habitDelete.id === req.user.id ){
             const habitDelete = await Habit.query().findById(habitId)
             habitDelete.logs = await habitDelete.$relatedQuery('logs')
-            if(req.user === req.user.id ){
+           
                 await habitDelete.$relatedQuery('logs').deleteById(id)
               return  res.status(200).json({message: 'This habit has been deleted'})
-            }
+          }
         }catch(error){
            return res.status(500).json(error)
         }

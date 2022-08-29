@@ -55,9 +55,26 @@ width: 30%;
 .title-logs{
 color: white;
 text-align: center;
+margin-right: 40px;
 }
 label{
   text-align: center;
+}
+
+#notes-logs,#date-logs{
+  margin: 0px 400px;
+ 
+ }
+ 
+#center-logs{
+  margin-left: 480px;
+  margin-top: 25px;
+}
+
+#log-submit{
+  margin-right: 77px;
+  margin-top: 30px;
+  width: 10%;
 }
 .title{
   color:white
@@ -95,8 +112,12 @@ label{
 p.habit-title{
  font-weight: 700;
  font-size: 1.6rem;
- margin-top: 1em;
+//  margin-top: .1em;
+height: 4.5em;
  padding: 1em;
+ border-radius: 0.5em 0.5em 1px 1px;
+//  border-bottom: 1px solid blue;
+ background-color: #000;
 }
 
 p.habit-description{
@@ -112,7 +133,7 @@ p.comment-hi{
   float: left;
   width: 30%;
   margin-right: .7em;
-  max-height: 320em;
+  margin-left: 20px;
   background-color: white;
   flex-direction: row;
   margin-bottom: 2em;
@@ -121,6 +142,10 @@ p.comment-hi{
   -webkit-box: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
   -moz-box: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
   box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
+}
+
+.input{
+  background-color: #777;
 }
 .comments-list p{
   color: #000;
@@ -171,26 +196,32 @@ color: #fff;
 //   box-sizing: border-box;
 // position: relative;
 float: left;
-width: 30%;
+width: 38%;
 // top:40px;
 
 zoom: 1;
 margin-right: .7em;
 max-height: 320em;
-background-color: rgba(96, 101, 119, 0.824);
+// background-color: rgba(96, 101, 119, 0.824);
 // color: rgba(209, 208, 206, 0.753);
 // color: rgb(124, 81, 0);
 // background-color: rgb(44, 37, 37);
-// background-color: rgba(104, 57, 15, 0.864);
-color: rgb(255, 255, 255);
+// background-color: rgba(188, 191, 3, 0.885);
+background-color: #000;
+// color: rgb(0, 0, 0);
+color: yellow;
 flex-direction: row;
 margin-bottom: 2em;
+margin-left: 20px;
 align-items: center;
 border-radius: 0.5em;
+border: 1px solid gray;
 -webkit-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
 -moz-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
 // box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
 }
+
+
 .log-form-test{
   text-align: center;
 }
@@ -237,7 +268,7 @@ background-color: red;
   // height:100em;
 height: 200vh;
 
-  overflow: auto;
+  overflow: scroll;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
@@ -299,5 +330,6 @@ height: 200vh;
   height: 200px;
   border: 1px solid black;
   overflow: scroll;
+  border-radius: 0px 0px 0.5em 0.5em;
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
 import moment from "moment"
-import LogHabitsTile from "./LogHabitTile";
+import LogHabitTile from "./LogHabitTile";
 import HabitsForm from "./HabitsForm";
 
 const LogFormHabit = (props) => {
@@ -124,12 +124,13 @@ const LogFormHabit = (props) => {
     
         </div>
         <div className="log-tiles">
-          <LogHabitsTile
+          <LogHabitTile
           key={tableObject.id}
           id={tableObject.id}
           creator={tableObject.user}
           deleteLog={deleteLog}
           patchLog={patchLog}
+          userId={props.userId}
           />
         </div>
       </div>
@@ -197,7 +198,7 @@ console.log(logs.logs)
             Notes
             <textarea
               type="text"
-              id="notes"
+              id="notes-logs"
               name="notes"
               className="input"
               onChange={handleInputChange}
@@ -222,7 +223,7 @@ console.log(logs.logs)
         Date
         <input
           type="date"
-          id="date"
+          id="date-logs"
           name="date"
           className="input"
           onChange={handleInputChange}
@@ -234,7 +235,7 @@ console.log(logs.logs)
         </form>
         </div>
     <div className="logList">
-      <h1 className="title" id="center">Logs</h1>
+      <h1 className="title" id="center-logs">Logs</h1>
       {logListItems}
     </div>
     </div>
