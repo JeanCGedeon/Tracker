@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import LogHabitsForm from "./LogHabitsForm";
+import CommentHabitForm from "./CommentHabitForm";
 const logHabitsTile = ({
   id,
   notes,
   level,
   date,
   deleteLog,
+  userId,
   creatorId,
   curUserId,
   patchLog,
@@ -14,6 +16,7 @@ const logHabitsTile = ({
   creator,
 },props) => {
   const [isBeingEdited, setIsBeingEdited] = useState(false);
+  const [isBeingCommented, setIsBeingCommented] = useState(false);
 
   const buttons =
     <div className="jar">
@@ -34,6 +37,19 @@ const logHabitsTile = ({
          deleteLog(id);
         }}
       />
+       <div></div>
+      {/* <a href="#comments"> */}
+        <input
+          className="button"
+          type="button"
+          id="view"
+          value="View Comments"
+          onClick={() => {
+            toggleFlip(id);
+          }}
+        />
+      {/* </a> */}
+ 
     </div>
   const toggleLogEdit = () => {
     setIsBeingEdited(!isBeingEdited);
@@ -50,6 +66,36 @@ const logHabitsTile = ({
         errors={errors}
       />
     )
+  }
+
+
+  const toggleFlip = () => {
+    setIsBeingCommented(!isBeingCommented);
+  };
+ 
+  if (isBeingCommented) {
+    return (
+      <div>
+        {/* <a href="comments">View Comments</a> */}
+        <div id="comments" className="comments-back">
+          <div className="comments-box">
+          <input
+          className="button"
+          type="button"
+          id="exit"
+          value="Exit Comments"
+          onClick={() => {
+            toggleFlip(id);
+          }}
+          />
+          {/* <a href="" className="closebtn">
+              ×
+            </a> */}
+            <CommentHabitForm key={id} id={id} userId={userId} />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (

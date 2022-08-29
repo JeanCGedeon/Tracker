@@ -92,9 +92,7 @@ const HabitsTileTest = ({
   const toggleFlip = () => {
     setIsBeingCommented(!isBeingCommented);
   };
-  // const toggleUnFlip = () => {
-  //   setIsBeingCommented(!isBeingCommented);
-  // };
+ 
   if (isBeingCommented) {
     return (
       <div>
