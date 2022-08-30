@@ -104,9 +104,8 @@ tablesHabitsRouter.get("/", async (req, res) => {
        habit.comments = await habit.$relatedQuery('comments')
       //  const users = await Habit.query().findById(userId)
       //   users.usersComments = await users.$relatedQuery("usersComments")
-      if(habit.id === userId){
+    
        return res.status(200).json({ habit});
-      }
      } catch (error) {
        return res.status(500).json(error);
      }
