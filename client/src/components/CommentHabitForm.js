@@ -59,23 +59,23 @@ const CommentHabitForm = (props) =>{
                 //     console.error(`Error in fetch: ${error.message}`);
                 //   }
                 // };
-                const getComments = async () => {
-                    const id = props.id;
-                    try {
-                        const response = await fetch(`/api/v1/habits/${id}/tables/allComments`);
-                        if (!response.ok) {
-                            const errorMessage = `${response.status} (${response.statusText})`;
-                            const error = new Error(errorMessage);
-                            throw error;
-                        }
-                        const parsedResponse = await response.json();
-                        setComments(parsedResponse.habit);
-                    } catch (error) {
-                        console.error(`Error in fetch: ${error.message}`);
-                    }
-                }
                 
                 useEffect(() => {
+                    const getComments = async () => {
+                        const id = props.id;
+                        try {
+                            const response = await fetch(`/api/v1/habits/${id}/tables/allComments`);
+                            if (!response.ok) {
+                                const errorMessage = `${response.status} (${response.statusText})`;
+                                const error = new Error(errorMessage);
+                                throw error;
+                            }
+                            const parsedResponse = await response.json();
+                            setComments(parsedResponse.habit);
+                        } catch (error) {
+                            console.error(`Error in fetch: ${error.message}`);
+                        }
+                    }
                     getComments()
                 }, []);
                 // console.log(props)
