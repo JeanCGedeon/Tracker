@@ -33,7 +33,7 @@ const CommentHabitForm = (props) =>{
                     const getComments = async () => {
                         try {
                             const id = props.id;
-                            const response = await fetch(`/api/v1/habits/${id}/tables/allcomments`);
+                            const response = await fetch(`/api/v1/habits/${id}/tables`);
                             if (!response.ok) {
                                 const errorMessage = `${response.status} (${response.statusText})`;
                                 const error = new Error(errorMessage);
@@ -51,23 +51,18 @@ const CommentHabitForm = (props) =>{
                 const commentListItem = comments.comments.map((commentObject)=>{
                     return(
                         <h1 key={commentObject.id}>
-      {/* <div className="comment-list"> */}
+      <div className="comment-list">
         <p className="comments-p">{commentObject.comment}
         <br/>userId:{commentObject.userId}
         </p>
-      {/* <div>
-      </div> */}
-      {/* <div>
-          <p>{commentObject.userId}</p>
-          </div> */}
-      {/* </div> */}
+        </div>
       </h1>
   )
 })
 
-  const postComment = async (newHabitsData,userId,habitId) => {
-  habitId= props.id
-     userId = props.userId
+  const postComment = async (newHabitsData) => {
+  const habitId= props.id
+    const userId = props.userId
         try {
           const response = await fetch(`/api/v1/habits/${userId}/tables/postComment/${habitId}`, {
             method: "POST",

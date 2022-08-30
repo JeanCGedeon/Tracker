@@ -38,15 +38,15 @@ tablesHabitsRouter.get("/myLogs", async (req, res) => {
   }
 });
 
-tablesHabitsRouter.get("/", async (req, res) => {
-  const { userId } = req.params;
-  try {
-    const myGoodHabits = await Habit.query();
-    return res.status(200).json({ myGoodHabits });
-  } catch (error) {
-    return res.status(500).json(error);
-  }
-});
+// tablesHabitsRouter.get("/", async (req, res) => {
+//   const { userId } = req.params;
+//   try {
+//     const myGoodHabits = await Habit.query();
+//     return res.status(200).json({ myGoodHabits });
+//   } catch (error) {
+//     return res.status(500).json(error);
+//   }
+// });
 
 tablesHabitsRouter.post("/post", async (req, res) => {
   const { body } = req;
@@ -91,9 +91,9 @@ tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
   }
 });
 
-tablesHabitsRouter.get("/allcomments", async (req, res) => {
+tablesHabitsRouter.get("/", async (req, res) => {
+  const { userId } = req.params;
   try {
-    const { userId } = req.params;
     const habit = await Habit.query().findById(userId);
     habit.comments = await habit.$relatedQuery("comments");
     //  const users = await Habit.query().findById(userId)
