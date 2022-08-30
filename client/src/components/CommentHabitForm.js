@@ -87,7 +87,9 @@ const CommentHabitForm = (props) =>{
                     return(
                         <h1 key={commentObject.id}>
       {/* <div className="comment-list"> */}
-        <p className="comments-p">{commentObject.comment} <span>  <p className="comments-p">userId:{commentObject.userId}</p></span></p>
+        <p className="comments-p">{commentObject.comment}
+        <br/>userId:{commentObject.userId}
+        </p>
       {/* <div>
       </div> */}
       {/* <div>
