@@ -79,11 +79,7 @@ const CommentHabitForm = (props) =>{
                     getComments()
                 }, []);
                 // console.log(props)
-          let length =     userEmail.email 
-            
-                console.log(length)
                 const commentListItem = comments.comments.map((commentObject)=>{
-                    console.log(comments.comments)
                     return(
                         <h1 key={commentObject.id}>
       {/* <div className="comment-list"> */}
