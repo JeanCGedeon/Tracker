@@ -27,44 +27,13 @@ const CommentHabitForm = (props) =>{
     getUserEmail();
   }, []);
 
-//   const getComments = async () => {
-//     //   userId = props.userId
-//     try {
-//        const   habitId = props.id
-//           const response = await fetch(`/api/v1/habits/${habitId}/tables/allComments`);
-//       if (!response.ok) {
-//         const errorMessage = `${response.status} (${response.statusText})`;
-//         const error = new Error(errorMessage);
-//         throw error;
-//       }
-//       const parsedResponse = await response.json();
-//       setComments(parsedResponse.habit);
-//     } catch (error) {
-//       console.error(`Error in fetch: ${error.message}`);
-//     }
-//   };
 
-// const getComments = async () => {
-    //     const id = props.id;
-    //   try {
-        //     const response = await fetch(`/api/v1/habits/${id}/tables/habitComment`);
-        //     if (!response.ok) {
-            //       const errorMessage = `${response.status} (${response.statusText})`;
-            //       const error = new Error(errorMessage);
-            //       throw error;
-            //     }
-            //     const parsedResponse = await response.json();
-            //     setComments(parsedResponse.comment);
-            //   } catch (error) {
-                //     console.error(`Error in fetch: ${error.message}`);
-                //   }
-                // };
                 
                 useEffect(() => {
                     const getComments = async () => {
-                        const id = props.id;
                         try {
-                            const response = await fetch(`/api/v1/habits/${id}/tables/allComments`);
+                            const id = props.id;
+                            const response = await fetch(`/api/v1/habits/${id}/tables/allcomments`);
                             if (!response.ok) {
                                 const errorMessage = `${response.status} (${response.statusText})`;
                                 const error = new Error(errorMessage);
