@@ -148,7 +148,7 @@ const HabitsForm = (props) => {
     return (
       <h3 key={tableObject.id}>
         <div className="item">
-          <Link to={`/logs/${tableObject.id}&logPost`}>
+          <Link to={`/logs/${tableObject.id}&logPost`} className="link-to-logs">
             <p className="habit-title">{tableObject.title}</p>
           </Link>
 
@@ -278,7 +278,7 @@ const HabitsForm = (props) => {
  
 
   return (
-    <div className="show-page-container list">
+    <div className="show-page-container-list">
       <h2 className="intro-first-form"></h2>
       <h2 className="center"> Create Habit(s) </h2>
       <form onSubmit={handleSubmit} className="breathe">
