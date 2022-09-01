@@ -103,14 +103,14 @@ const CommentHabitForm = (props) =>{
       const clearForm = () => {
         setNewComment({
           comment:"",
-          user:"",
+        //   user:"",
           habitId:0,
           userId:0,
         });
       };
       const [newComment, setNewComment] = useState({
         comment:"",
-        user:`${userEmail}`,
+        // user:`${userEmail}`,
         habitId:0,
         userId:0
        });

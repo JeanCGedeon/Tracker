@@ -11,7 +11,7 @@ class Comment extends Model {
       required: [],
       properties: {
         comment: { type: "string" },
-        user: { type: "string" },
+        // user: { type: "string" },
         userId: { type: ["string", "integer"] },
         habitId: { type: ["string", "integer"] },
         logId: { type: ["string", "integer"] },
