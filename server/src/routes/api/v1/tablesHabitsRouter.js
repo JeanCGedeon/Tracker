@@ -72,14 +72,13 @@ tablesHabitsRouter.post("/post", async (req, res) => {
 tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
   const { body } = req;
   const formInput = cleanUserInput(body);
-  const { comment, user } = formInput;
+  const { comment} = formInput;
   const habitId = req.params.id;
   const userId = req.user.id;
-  // const user = req.user.email
   try {
-    // const habitDelete = await User.query().findById(habitId)
 
-    const newComment = await Comment.query().insert({ comment, habitId, userId, user });
+
+    const newComment = await Comment.query().insert({ comment, habitId, userId });
 
     return res.status(200).json({ commentPost: newComment });
   } catch (error) {
@@ -91,27 +90,12 @@ tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
   }
 });
 
-tablesHabitsRouter.get("/", async (req, res) => {
+tablesHabitsRouter.get("/comments", async (req, res) => {
   const { userId } = req.params;
   try {
     const habit = await Habit.query().findById(userId);
     habit.comments = await habit.$relatedQuery("comments");
-    //  const users = await Habit.query().findById(userId)
-    //   users.usersComments = await users.$relatedQuery("usersComments")
     return res.status(200).json({ habit:habit });
-  } catch (error) {
-    return res.status(500).json(error);
-  }
-});
-
-
-tablesHabitsRouter.get("/habitComment", async (req, res) => {
-  const { userId } = req.params;
-  const habitId = req.params.id;
-  try {
-    const commentHabit = await Comment.query().findById(userId);
-    commentHabit.habit = await commentHabit.$relatedQuery("habit");
-    return res.status(200).json({ commentHabit });
   } catch (error) {
     return res.status(500).json(error);
   }
