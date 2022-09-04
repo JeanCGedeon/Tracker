@@ -10,13 +10,18 @@
 
 
 body{
-  
+position: absolute;
 box-sizing: border-box;
 background-color: gray;
 // background-image: url(https://img.freepik.com/free-photo/coffee-cup-blank-spiral-notepad-white-background_23-2147898235.jpg?w=2000);
 background-size: cover;
 // background-image: url(https://images.alphacoders.com/108/1084039.jpg);
 background-image: url(https://wallpaperaccess.com/full/1642346.jpg);
+top: 0;
+bottom: 0;
+height: 100%;
+width: 100%;
+
 //?  background-image: url(https://img.freepik.com/premium-vector/abstract-dark-3d-hexagon-pattern-background_6735-1543.jpg?w=2000);
 // background-image: url(https://wallpaper.dog/large/5545504.jpg);
 // background-image: url(https://media.timeout.com/images/105513032/750/422/image.jpg);
@@ -135,6 +140,7 @@ p.comment-hi{
   // position: absolute;
 
   width: 30%;
+ //change back size by deleting
   margin-right: .7em;
   margin-left: 20px;
   background-color: white;
@@ -269,7 +275,7 @@ background-color: red;
   top: 0;
   width: 100%;
   // height:100em;
-height: 200vh;
+height: 300vh;
 
   overflow: scroll;
   background-color: rgb(0, 0, 0);
@@ -348,3 +354,13 @@ background-color: white;
 .link-to-logs{
 color: rgb(33, 114, 180)
 }
+
+// input[type=radio]:checked {
+//   display: none;
+// }
+
+// input[type=radio][id=good-c]{
+//   display: none;
+  
+// }
+

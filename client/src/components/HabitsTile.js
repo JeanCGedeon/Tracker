@@ -36,6 +36,10 @@ const handleInputChange = (event) => {
     setEditHabit({ ...editHabit, [event.currentTarget.name]: !editHabit[event.currentTarget.name] });
   };
 
+  const handleBadRadioSelect = (event) => {
+    setEditHabit({ ...editHabit, [event.currentTarget.name]: editHabit[event.currentTarget.name] });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (await props.patchHabit(editHabit)) {
@@ -84,7 +88,7 @@ const handleInputChange = (event) => {
         <label htmlFor="good">
           Good:
           <input
-            type="radio"
+            type="checkbox"
             id="good"
             name="good"
             onClick={handleRadioSelect}
@@ -92,15 +96,22 @@ const handleInputChange = (event) => {
           />
           Bad:
           <input
-            type="radio"
+            type="checkbox"
             id="bad"
             name="good"
-            onClick={handleRadioSelect}
-            value={editHabit.bad}
+            onClick={handleBadRadioSelect}
+            value={editHabit.good}
           />
+          {/* <input
+            type="checkbox"
+            id="bad"
+            name="good"
+            onClick={handleBadRadioSelect}
+            value={editHabit.bad}
+          /> */}
         </label>
     
-        <input  className="button" type="submit" value="Update Review"/>
+        <input  className="button" type="submit" value="Update Habit"/>
       </form>
     </div>
       )

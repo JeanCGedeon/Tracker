@@ -8,7 +8,9 @@ const HabitsTestForm = (props) =>{
           description:props.description,
           good:props.good,
           bad:props.bad,
-          date:props.date
+          date:props.date,
+          good: false,
+          bad:false,
          })
 
          const handleInputChange = (event) => {
@@ -66,7 +68,7 @@ const HabitsTestForm = (props) =>{
                     name="good"
                     className="haha"
                     onClick={handleBadRadioSelect}
-                    value={editHabit.bad}
+                    value={editHabit.good}
                   />
                 </label>
                 <label  htmlFor="date">

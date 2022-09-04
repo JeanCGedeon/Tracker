@@ -19,5 +19,8 @@
   "engines": {
     "node": "^14.19",
     "yarn": "1.22.19"
+  },
+  "dependencies": {
+    "react-google-charts": "^4.0.0"
   }
 }
