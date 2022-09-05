@@ -7,25 +7,25 @@ const CommentHabitForm = (props) =>{
   
   const [errors, setErrors] = useState([]);
 
-  const getUserEmail = async () => {
-    try {
-  const id = props.userId
-      const response = await fetch(`/api/v1/habits/email/:id`);
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`;
-        const error = new Error(errorMessage);
-        throw error;
-      }
-      const parsedResponse = await response.json();
-      setUserEmail(parsedResponse.email);
-    } catch (error) {
-      console.error(`Error in fetch: ${error.message}`);
-    }
-  };
+//   const getUserEmail = async () => {
+//     try {
+//   const id = props.userId
+//       const response = await fetch(`/api/v1/habits/email/:id`);
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} (${response.statusText})`;
+//         const error = new Error(errorMessage);
+//         throw error;
+//       }
+//       const parsedResponse = await response.json();
+//       setUserEmail(parsedResponse.email);
+//     } catch (error) {
+//       console.error(`Error in fetch: ${error.message}`);
+//     }
+//   };
 
-  useEffect(() => {
-    getUserEmail();
-  }, []);
+//   useEffect(() => {
+//     getUserEmail();
+//   }, []);
 
 
   const getComments = async () => {
@@ -48,7 +48,7 @@ const CommentHabitForm = (props) =>{
                     getComments()
                 }, []);
 
-                
+
                 // console.log(props)
                 const commentListItem = comments.comments.map((commentObject)=>{
                     return(
