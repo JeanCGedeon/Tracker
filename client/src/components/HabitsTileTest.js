@@ -57,7 +57,7 @@ const HabitsTileTest = ({
       </a>
       <div></div>
       {/* <a href="#comments"> */}
-        <input
+        {/* <input
           className="button"
           type="button"
           id="view"
@@ -65,7 +65,7 @@ const HabitsTileTest = ({
           onClick={() => {
             toggleFlip(id);
           }}
-        />
+        /> */}
       {/* </a> */}
     </div>
   );
@@ -93,30 +93,30 @@ const HabitsTileTest = ({
     setIsBeingCommented(!isBeingCommented);
   };
  
-  if (isBeingCommented) {
-    return (
-      <div>
-        {/* <a href="comments">View Comments</a> */}
-        <div id="comments" className="comments-back">
-          <div className="comments-box">
-          <input
-          className="button"
-          type="button"
-          id="exit"
-          value="Exit Comments"
-          onClick={() => {
-            toggleFlip(id);
-          }}
-          />
-          {/* <a href="" className="closebtn">
-              ×
-            </a> */}
-            <CommentHabitForm key={id} id={id} userId={userId} />
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (isBeingCommented) {
+  //   return (
+  //     <div>
+  //       {/* <a href="comments">View Comments</a> */}
+  //       <div id="comments" className="comments-back">
+  //         <div className="comments-box">
+  //         <input
+  //         className="button"
+  //         type="button"
+  //         id="exit"
+  //         value="Exit Comments"
+  //         onClick={() => {
+  //           toggleFlip(id);
+  //         }}
+  //         />
+  //         {/* <a href="" className="closebtn">
+  //             ×
+  //           </a> */}
+  //           <CommentHabitForm key={id} id={id} userId={userId} />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   const toggleBack = () => {
     setIsBeingLogged(!isBeingLogged);

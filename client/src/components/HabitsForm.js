@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import HabitsTileTest from "./HabitsTileTest";
 import ErrorList from "./layout/ErrorList";
-import GraphHabits from "./GraphHabits";
+import CommentHabitForm from "./CommentHabitForm";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
 import moment from "moment";
 
@@ -368,26 +368,26 @@ const HabitsForm = (props) => {
   };
 
 
-// const [userId, setUserId] = useState([{}])
-//   const getUserId = async () => {
-//     try {
+const [userId, setUserId] = useState([{}])
+  const getUserId = async () => {
+    try {
   
-//       const response = await fetch(`/api/v1/habits/email`);
-//       if (!response.ok) {
-//         const errorMessage = `${response.status} (${response.statusText})`;
-//         const error = new Error(errorMessage);
-//         throw error;
-//       }
-//       const parsedResponse = await response.json();
-//       setUserId(parsedResponse.email);
-//     } catch (error) {
-//       console.error(`Error in fetch: ${error.message}`);
-//     }
-//   };
+      const response = await fetch(`/api/v1/habits/email/:id`);
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
+      }
+      const parsedResponse = await response.json();
+      setUserId(parsedResponse.email);
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
 
-//   useEffect(() => {
-//     getUserId();
-//   }, []);
+  useEffect(() => {
+    getUserId();
+  }, []);
 
 
 
@@ -441,22 +441,23 @@ const HabitsForm = (props) => {
               // userLoggedIn={userLoggedIn}
             />
           </div>
-          {/* <a href="#day">View Comments</a>
-            <div id="day" className="comments-back">
-              <div className="comments-box">
-               <a href="" className="closebtn">
-                ×
-              </a>
-            <CommentHabitForm
-            key={tableObject.id}
-            id={tableObject.id}
-            userId={userId}
-            />
-            </div>
-      
-          </div> */}
-          {/* <div className="flip-card-back">
-          </div> */}
+          <div>
+           {/* <label htmlFor="comment-new" > View Comments</label> */}
+           <div>
+           <p className="move-check">View Comments</p>
+           </div>
+             <input type="checkbox" id="comment-new" className="view-comment"/>
+             <input type="checkbox" id="comment-new" className="view-comment"/>
+             <input type="checkbox" id="comment-new" className="view-comment"/>
+           <div className="see-comment">
+              <CommentHabitForm
+              key={tableObject.id}
+              id={tableObject.id}
+              userId={userId.id}
+              />
+              </div>
+          </div>
+          
         </div>
       </h3>
     );
