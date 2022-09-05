@@ -364,3 +364,35 @@ color: rgb(33, 114, 180)
   
 // }
 
+// .comment-hide div{
+//   display: none;
+// }
+// .comment-hide div:target{
+// display: block;
+// }
+
+.see-comment{
+  display: none;
+}
+// .see-comment::after{
+// display: block;
+// }
+
+#comment-new:checked~.see-comment{
+  display: block;
+}
+
+p.move-check{
+  position: absolute;
+  margin-left: 130px;
+  background-color: #777;
+  color: #fff;
+  border: 4px solid #777;
+  font-size: 23px;
+  // margin-top: 5px;
+}
+#comment-new{
+width: 70px;
+  transform: scale(8);
+  opacity: 0;
+}
