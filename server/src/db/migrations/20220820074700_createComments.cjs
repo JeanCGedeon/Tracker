@@ -10,7 +10,7 @@ exports.up = async (knex) => {
         table.bigIncrements("id")
         table.text("comment")
         // table.string("user")
-        table.bigInteger("userId").index().unsigned().references("users.id")
+        table.bigInteger("userId").notNullable().index().unsigned().references("users.id")
         table.bigInteger("habitId").notNullable().index().unsigned().references("habits.id")
         // table.bigInteger("logId").index().unsigned().references("logs.id")
         table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now())
