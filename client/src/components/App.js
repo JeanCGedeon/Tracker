@@ -50,9 +50,9 @@ const App = (props) => {
         <Route exact path={`/habits/:id&myGood`} component={GoodHabitsList}/>
         <Route exact path={`/habits/:id&myBad`} component={BadHabitsList}/>
         <Route exact path={`/habits/:id&post`} component={HabitsForm}/>
-        <Route exact path={`/habits/:id`} component={HabitsForm}>
-          <HabitsForm user={[currentUser,currentUserId]}/>
-        </Route>
+        <Route exact path={`/habits/:id`} component={HabitsForm}/>
+          {/* <HabitsForm user={[currentUser,currentUserId]}/> */}
+
         {/* <Route exact path={`/habits/:id&myLogs`} component={LogData}/> */}
         <Route exact path={`/logs/:id&logPost`} component={LogForm}/>
         <Route exact path="/users/new" component={RegistrationForm} />
