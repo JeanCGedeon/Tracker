@@ -61,19 +61,47 @@ habitsRouter.get("/:id", async (req, res) => {
     return res.status(500).json(error);
   }
 });
+habitsRouter.get("/:id/comments", async (req, res) => {
+  const  userId  = req.params.id
+  try {
+    const habit = await Habit.query().findById(userId);
+    habit.comments = await habit.$relatedQuery("comments");
+    return res.status(200).json({ habit });
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
 
-habitsRouter.get("/comments/:id", async (req, res) => {
-    const userId = req.params.id
-     try {
-       const habit = await Habit.query().findById(userId)
-       habit.comments = await habit.$relatedQuery('comments')
-       const users = await Habit.query().findById(userId)
-        users.usersComments = await users.$relatedQuery("usersComments")
-        return res.status(200).json({ test: [habit,users] });
-     } catch (error) {
-       return res.status(500).json(error);
-     }
-   });
+habitsRouter.post("/postComment/:id", async (req, res) => {
+  const { body } = req;
+  const formInput = cleanUserInput(body);
+  const { comment } = formInput;
+  const habitId = req.params.id;
+  const userId = req.user.id;
+  try {
+    const newComment = await Comment.query().insert({ comment, habitId, userId });
+   return res.status(200).json({ commentPost: newComment });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error });
+    } else {
+      return res.status(500).json({ errors: error });
+    }
+  }
+});
+
+// habitsRouter.get("/comments/:id", async (req, res) => {
+//     const userId = req.params.id
+//      try {
+//        const habit = await Habit.query().findById(userId)
+//        habit.comments = await habit.$relatedQuery('comments')
+//        const users = await Habit.query().findById(userId)
+//         users.usersComments = await users.$relatedQuery("usersComments")
+//         return res.status(200).json({ test: [habit,users] });
+//      } catch (error) {
+//        return res.status(500).json(error);
+//      }
+//    });
    
 // habitsRouter.get("/habitComment", async (req,res)=>{
 //   const id = req.params.id
