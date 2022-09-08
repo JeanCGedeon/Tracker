@@ -3,16 +3,37 @@ import { Habit, User,Log, Comment} from "../../../models/index.js";
 
 const graphsRouter = new express.Router()
 
-graphsRouter.get("/:id", async (req, res) => {
-    const userId = req.user.id
+// graphsRouter.get("/:id", async (req, res) => {
+//     const userId = req.user.id
+//      try {
+//        const user = await User.query().findById(userId)
+//        return res.status(200).json({ user });
+//      } catch (error) {
+//        return res.status(500).json(error);
+//      }
+//    });
+  graphsRouter.get("/logs", async (req, res) => {
      try {
-       const user = await User.query().findById(userId)
-       user.habits = await user.$relatedQuery('habits')
-       return res.status(200).json({ user });
+       const logs = await Log.query()
+       return res.status(200).json({ logs });
      } catch (error) {
        return res.status(500).json(error);
      }
    });
+ 
+
+  
+graphsRouter.get("/:id/habits", async (req, res) => {
+ const userId = req.user.id
+  try {
+    const user = await User.query().findById(userId)
+    user.habits = await user.$relatedQuery('habits')
+    return res.status(200).json({ user });
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
 
 graphsRouter.get("/:id/goodHabits", async (req,res)=>{
 const userId = req.user.id

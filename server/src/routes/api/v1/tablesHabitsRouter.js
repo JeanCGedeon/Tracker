@@ -92,7 +92,7 @@ tablesHabitsRouter.get("/comments", async (req, res) => {
   try {
     const habit = await Habit.query().findById(userId);
     habit.comments = await habit.$relatedQuery("comments");
-    return res.status(200).json({ habit: habit });
+    return res.status(200).json({ habit });
   } catch (error) {
     return res.status(500).json(error);
   }

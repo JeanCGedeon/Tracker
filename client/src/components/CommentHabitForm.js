@@ -7,46 +7,48 @@ const CommentHabitForm = (props) =>{
   
   const [errors, setErrors] = useState([]);
 
-  const getUserEmail = async () => {
-    try {
-  const id = props.userId
-      const response = await fetch(`/api/v1/habits/email/:id`);
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`;
-        const error = new Error(errorMessage);
-        throw error;
+//   const getUserEmail = async () => {
+//     try {
+//   const id = props.userId
+//       const response = await fetch(`/api/v1/habits/email/:id`);
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} (${response.statusText})`;
+//         const error = new Error(errorMessage);
+//         throw error;
+//       }
+//       const parsedResponse = await response.json();
+//       setUserEmail(parsedResponse.email);
+//     } catch (error) {
+//       console.error(`Error in fetch: ${error.message}`);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getUserEmail();
+//   }, []);
+
+
+  const getComments = async () => {
+      const id = props.id;
+      try {
+          const response = await fetch(`/api/v1/habits/${id}/tables/comments`);
+          if (!response.ok) {
+              const errorMessage = `${response.status} (${response.statusText})`;
+              const error = new Error(errorMessage);
+              throw error;
+          }
+          const parsedResponse = await response.json();
+          setComments(parsedResponse.habit);
+      } catch (error) {
+          console.error(`Error in fetch: ${error.message}`);
       }
-      const parsedResponse = await response.json();
-      setUserEmail(parsedResponse.email);
-    } catch (error) {
-      console.error(`Error in fetch: ${error.message}`);
-    }
-  };
-
-  useEffect(() => {
-    getUserEmail();
-  }, []);
-
-
+  }
                 
                 useEffect(() => {
-                    const getComments = async () => {
-                        try {
-                            const id = props.id;
-                            const response = await fetch(`/api/v1/habits/${id}/tables/comments`);
-                            if (!response.ok) {
-                                const errorMessage = `${response.status} (${response.statusText})`;
-                                const error = new Error(errorMessage);
-                                throw error;
-                            }
-                            const parsedResponse = await response.json();
-                            setComments(parsedResponse.habit);
-                        } catch (error) {
-                            console.error(`Error in fetch: ${error.message}`);
-                        }
-                    }
                     getComments()
                 }, []);
+
+
                 // console.log(props)
                 const commentListItem = comments.comments.map((commentObject)=>{
                     return(
