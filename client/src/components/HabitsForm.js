@@ -440,7 +440,6 @@ const [userId, setUserId] = useState([{}])
               // curUserId={curUserId}
               patchHabit={patchHabit}
 
-              // userLoggedIn={userLoggedIn}
             />
           </div>
           <div>

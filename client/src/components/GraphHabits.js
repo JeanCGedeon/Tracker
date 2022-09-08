@@ -421,11 +421,13 @@ useEffect(()=>{
 
   let optionsPie = {
     //   title:"Good VS Bad habits Count",
-     
+    colors: ["004BED", "FFA500"],
       titleColor:"white",
       backgroundColor: {
         fill: "transparent",
+        stroke:"black"
       },
+      pieSliceBorderColor:"black",
       titleTextStyle: {
         fontName: "Times New Roman",
         fontSize: 25,
@@ -487,7 +489,7 @@ let optionsBar = {
         fontSize: 40,
         bold: true,
     },
-    legend:{textStyle: {color: 'white', fontSize: 16, height:"500px"}},
+    legend:{textStyle: {color: 'white', fontSize: 14, height:"500px"}},
     hAxis: {
         textStyle: { color: "#FFF",fontSize:20 },
         baseLineColor: "FFF",
@@ -528,7 +530,7 @@ let optionsBar = {
         <Chart
         chartType="BarChart"
         height={"300px"}
-        width={"800px"}
+        width={"850px"}
         data={dataBar}
         options={optionsBar}/>
    </div>
