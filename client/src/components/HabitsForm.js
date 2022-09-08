@@ -7,6 +7,7 @@ import ErrorList from "./layout/ErrorList";
 import CommentHabitForm from "./CommentHabitForm";
 import translateServerErrors from "../../../server/src/services/translateServerErrors";
 import moment from "moment";
+import GraphHabits from "./GraphHabits";
 
 const HabitsForm = (props) => {
   const [tables, setTables] = useState({ habits: [] });
@@ -79,6 +80,7 @@ const HabitsForm = (props) => {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
+ 
   
   // const getGoodHabits = async () => {
   //   try {

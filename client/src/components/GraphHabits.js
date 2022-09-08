@@ -4,6 +4,7 @@ import { Chart } from "react-google-charts";
 
 const GraphHabits = (props) => {
   const [tables, setTables] = useState({ habits: [] });
+  const [logs, setLogs] = useState([])
   const [goodHabits, setGoodHabits] = useState({ good: [] });
   const [badHabits, setBadHabits] = useState({ good: [] });
   const [goodMonthsHabits, setGoodMonthsHabits] = useState({
@@ -58,6 +59,7 @@ const GraphHabits = (props) => {
   useEffect(() => {
     getUserEmail();
   }, []);
+  
 
   //Good Months
   let [habitsTotalCount, setHabitsTotalCount] = useState(0);
@@ -107,7 +109,7 @@ const GraphHabits = (props) => {
     try {
       const userId = userEmail.id;
 
-      const response = await fetch(`/api/v1/graphs/:id`);
+      const response = await fetch(`/api/v1/graphs/:id/habits`);
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;
         const error = new Error(errorMessage);
@@ -119,6 +121,38 @@ const GraphHabits = (props) => {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
+
+
+  const getLogs = async () => {
+      
+    try {
+      const response = await fetch(`/api/v1/graphs/logs`);
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
+      }
+      const parsedResponse = await response.json();
+      setLogs(parsedResponse.logs);
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
+
+//   const getHabits = async () => {
+//     try {
+//       const response = await fetch(`/api/v1/graphs/logs`);
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} (${response.statusText})`;
+//         const error = new Error(errorMessage);
+//         throw error;
+//       }
+//       const parsedResponse = await response.json();
+//       setLogs(parsedResponse.habit);
+//     } catch (error) {
+//       console.error(`Error in fetch: ${error.message}`);
+//     }
+//   };
 
   const getGoodHabits = async () => {
     try {
@@ -189,10 +223,13 @@ const GraphHabits = (props) => {
   };
 
   //get Use Effects
+  
   useEffect(() => {
     getTables();
   }, []);
-
+useEffect(()=>{
+    getLogs()
+},[])
   useEffect(() => {
     getGoodHabits();
   }, []);
@@ -324,33 +361,6 @@ const GraphHabits = (props) => {
     setBadDecHabitsCount(numberBadMonthsDec);
   });
   //=============================================================================
-  let allHabits = habitsTotalCount;
-
-  let janGoodCount = goodJanHabitsCount;
-  let febGoodCount = goodFebHabitsCount;
-  let marGoodCount = goodMarHabitsCount;
-  let aprGoodCount = goodAprHabitsCount;
-  let mayGoodCount = goodMayHabitsCount;
-  let juneGoodCount = goodJuneHabitsCount;
-  let julyGoodCount = goodJulyHabitsCount;
-  let augGoodCount = goodAugHabitsCount;
-  let septGoodCount = goodSeptHabitsCount;
-  let octGoodCount = goodOctHabitsCount;
-  let novGoodCount = goodNovHabitsCount;
-  let decGoodCount = goodDecHabitsCount;
-
-  let janBadCount = badJanHabitsCount;
-  let febBadCount = badFebHabitsCount;
-  let marBadCount = badMarHabitsCount;
-  let aprBadCount = badAprHabitsCount;
-  let mayBadCount = badMayHabitsCount;
-  let juneBadCount = badJuneHabitsCount;
-  let julyBadCount = badJulyHabitsCount;
-  let augBadCount = badAugHabitsCount;
-  let septBadCount = badSeptHabitsCount;
-  let octBadCount = badOctHabitsCount;
-  let novBadCount = badNovHabitsCount;
-  let decBadCount = badDecHabitsCount;
 
   let data = [
     ["Months", "Total Habits", "Bad Habits", "Good habits"],
@@ -374,9 +384,13 @@ const GraphHabits = (props) => {
   ];
 
   let options = {
-    chart: {
-      title: "Your 2022 Habits Count",
-      subtitle: "All Habits, Good Habits, Bad Habits: 2022",
+  
+    //   title: "Your 2022 Habits Count",
+      titleColor:"white",
+      titleTextStyle: {
+        fontName: "Times New Roman",
+        fontSize: 30,
+        bold: true
     },
     backgroundColor: {
       fill: "transparent",
@@ -396,8 +410,102 @@ const GraphHabits = (props) => {
       gridlines: { color: "transparent" },
     },
   };
+
+
+
+  let dataPie = [
+        ["Habits","Number of habits logged"],
+        ["Good",goodHabitsCount],
+        ["Bad", badHabitsCount]
+  ]
+
+  let optionsPie = {
+    //   title:"Good VS Bad habits Count",
+     
+      titleColor:"white",
+      backgroundColor: {
+        fill: "transparent",
+      },
+      titleTextStyle: {
+        fontName: "Times New Roman",
+        fontSize: 25,
+        bold: true,
+    },
+    legend:{textStyle: {color: 'white', fontSize: 16, height:"500px"}},
+  }
+
+let dataBar = [
+    ["Habit Title","Number of Logs"],
+    ["Test", 5],
+]
+
+let arrFirst = []// the length will give me the log count 
+let arrFirstFindDuplicates = []
+let arrFirstRemoveDuplicate = []
+let getTitles = []
+let getLogNumber = []
+let arrSecond = [] // this gives the number but in different forms
+for (let i = 0; i < tables.habits.length; i++) {
+    for (let j = 0; j < logs.length; j++) {
+    if(tables.habits[i].id === logs[j].habitId){
+   getTitles.push(tables.habits[i].title)
+   arrSecond.push(logs[j])
+   break
+    }
+}
+}
+
+
+for (let i = 0; i < tables.habits.length; i++) {
+    for (let j = 0; j < logs.length; j++) {
+        if(tables.habits[i].id === logs[j].habitId){
+            arrFirst.push(tables.habits[i].title)
+            arrSecond.push(logs[j])
+        }
+    }
+}
+let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+let uniqueCount = arrFirst
+var duplicateCount = {};
+uniqueCount.forEach(e => duplicateCount[e] = duplicateCount[e] ? duplicateCount[e] + 1 : 1);
+getLogNumber = Object.values(duplicateCount)
+
+
+for (let i = 0; i < getTitles.length; i++) {
+dataBar.push([getTitles[i],getLogNumber[i]])
+}
+
+let optionsBar = {
+    //   title:"Good VS Bad habits Count",
+     
+      titleColor:"white",
+      backgroundColor: {
+        fill: "transparent",
+      },
+      titleTextStyle: {
+        fontName: "Times New Roman",
+        fontSize: 40,
+        bold: true,
+    },
+    legend:{textStyle: {color: 'white', fontSize: 16, height:"500px"}},
+    hAxis: {
+        textStyle: { color: "#FFF",fontSize:20 },
+        baseLineColor: "FFF",
+        gridlines: { color: "transparent" },
+      },
+
+    vAxis: {
+        colors: ["transparent"],
+        textStyle: { color: "#FFF",fontSize:25, bold: true },
+        
+      },
+  }
+
+
   return (
+      <div className="ChartsFirstDiv">
     <div className="column-chart">
+        <h2 className="center-title-column-chart"> Your 2022 Habits Count</h2>
       <Chart
         chartType="ColumnChart"
         // width={"1460px"}
@@ -405,6 +513,26 @@ const GraphHabits = (props) => {
         data={data}
         options={options}
       />
+    </div>
+   
+    <div className="pie-chart">
+       
+    <h4 className="center-title-pie-chart">Good VS Bad Habits Count</h4>
+        <Chart
+        chartType="PieChart"
+        height={"450px"}
+        width={"600px"}
+        data={dataPie}
+        options={optionsPie}/>
+        <div className="bar-chart-whole">
+        <Chart
+        chartType="BarChart"
+        height={"300px"}
+        width={"800px"}
+        data={dataBar}
+        options={optionsBar}/>
+   </div>
+        </div>
     </div>
   );
 };

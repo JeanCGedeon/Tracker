@@ -29,8 +29,8 @@ const CommentHabitForm = (props) =>{
 
 
   const getComments = async () => {
+      const id = props.id;
       try {
-          const id = props.id;
           const response = await fetch(`/api/v1/habits/${id}/tables/comments`);
           if (!response.ok) {
               const errorMessage = `${response.status} (${response.statusText})`;

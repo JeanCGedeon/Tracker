@@ -351,9 +351,9 @@ a:hover{
 border: 1px solid white;
 background-color: white;
 }
-.link-to-logs{
-color: rgb(33, 114, 180)
-}
+// .link-to-logs{
+// color: rgb(33, 114, 180)
+// }
 
 // input[type=radio]:checked {
 //   display: none;
@@ -395,4 +395,23 @@ p.move-check{
 width: 70px;
   transform: scale(8);
   opacity: 0;
+}
+
+.center-title-column-chart{
+  text-align: center;
+  color: #fff;
+}
+
+.center-title-pie-chart{
+  color: #fff;
+  position: absolute;
+  margin-left: 85px;
+  margin-top: 36px;
+}
+
+.bar-chart-whole{
+  position: absolute;
+  margin-top: 550px;
+  top: 5px;
+  margin-left: 560px;
 }
