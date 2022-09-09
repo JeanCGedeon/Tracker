@@ -2337,6 +2337,11 @@
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.3.1"
 
+"babel-plugin-transform-remove-strict-mode@^0.0.2":
+  "integrity" "sha512-iYRG9kH+jXfLaE5wUe/RP5uFd1MTkgTWFuhxJyaQLA6+sMwj31GNTAZCZowLOXGX2KkgH/ej1+3x0D2lKXadKQ=="
+  "resolved" "https://registry.npmjs.org/babel-plugin-transform-remove-strict-mode/-/babel-plugin-transform-remove-strict-mode-0.0.2.tgz"
+  "version" "0.0.2"
+
 "babel-preset-current-node-syntax@^1.0.0":
   "integrity" "sha512-M7LQ0bxarkxQoN+vz5aJPsLBn77n8QgTFmo8WK0/44auK2xlCXrYcUxHFxgU7qW5Yzw/CjmLRK2uJzaCd7LvqQ=="
   "resolved" "https://registry.npmjs.org/babel-preset-current-node-syntax/-/babel-preset-current-node-syntax-1.0.1.tgz"
@@ -5503,7 +5508,7 @@
     "import-local" "^3.0.2"
     "jest-cli" "^28.1.0"
 
-"js-base64@^2.4.3":
+"js-base64@^2.4.9":
   "integrity" "sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ=="
   "resolved" "https://registry.npmjs.org/js-base64/-/js-base64-2.6.4.tgz"
   "version" "2.6.4"
@@ -6314,9 +6319,9 @@
   "version" "2.0.4"
 
 "node-sass@^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0", "node-sass@^7.0.1":
-  "integrity" "sha512-uMy+Xt29NlqKCFdFRZyXKOTqGt+QaKHexv9STj2WeLottnlqZEEWx6Bj0MXNthmFRRdM/YwyNo/8Tr46TOM0jQ=="
-  "resolved" "https://registry.npmjs.org/node-sass/-/node-sass-7.0.1.tgz"
-  "version" "7.0.1"
+  "integrity" "sha512-8MIlsY/4dXUkJDYht9pIWBhMil3uHmE8b/AdJPjmFn1nBx9X9BASzfzmsCy0uCCb8eqI3SYYzVPDswWqSx7gjw=="
+  "resolved" "https://registry.npmjs.org/node-sass/-/node-sass-7.0.3.tgz"
+  "version" "7.0.3"
   dependencies:
     "async-foreach" "^0.1.3"
     "chalk" "^4.1.2"
@@ -6330,7 +6335,7 @@
     "node-gyp" "^8.4.1"
     "npmlog" "^5.0.0"
     "request" "^2.88.0"
-    "sass-graph" "4.0.0"
+    "sass-graph" "^4.0.1"
     "stdout-stream" "^1.4.0"
     "true-case-path" "^1.0.2"
 
@@ -6808,14 +6813,14 @@
     "foundation-sites" "^6.7.4"
     "html-webpack-plugin" "^5.2.0"
     "mini-css-extract-plugin" "^0.9.0"
-    "node-sass" "^4.14.1"
+    "node-sass" "^7.0.1"
     "prop-types" "~15.7"
     "react" "~16.13"
     "react-dom" "~16.13"
     "react-hot-loader" "^4.12.21"
     "react-router-dom" "5.2"
     "redbox-react" "~1.6"
-    "sass-loader" "^8.0.2"
+    "sass-loader" "^13.0.2"
     "style-loader" "^1.2.1"
     "webpack" "^5.3.2"
     "webpack-cli" "^4.1.0"
@@ -6839,7 +6844,7 @@
     "morgan" "^1.10.0"
     "objection" "^3.0.1"
     "objection-unique" "^1.2.2"
-    "passport" "^0.5.3"
+    "passport" "^0.6.0"
     "passport-local" "^1.0.0"
     "pg" "^8.7.3"
 
@@ -7636,14 +7641,14 @@
   "resolved" "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   "version" "2.1.2"
 
-"sass-graph@4.0.0":
-  "integrity" "sha512-WSO/MfXqKH7/TS8RdkCX3lVkPFQzCgbqdGsmSKq6tlPU+GpGEsa/5aW18JqItnqh+lPtcjifqdZ/VmiILkKckQ=="
-  "resolved" "https://registry.npmjs.org/sass-graph/-/sass-graph-4.0.0.tgz"
-  "version" "4.0.0"
+"sass-graph@^4.0.1":
+  "integrity" "sha512-5YCfmGBmxoIRYHnKK2AKzrAkCoQ8ozO+iumT8K4tXJXRVCPf+7s1/9KxTSW3Rbvf+7Y7b4FR3mWyLnQr3PHocA=="
+  "resolved" "https://registry.npmjs.org/sass-graph/-/sass-graph-4.0.1.tgz"
+  "version" "4.0.1"
   dependencies:
     "glob" "^7.0.0"
     "lodash" "^4.17.11"
-    "scss-tokenizer" "^0.3.0"
+    "scss-tokenizer" "^0.4.3"
     "yargs" "^17.2.1"
 
 "sass-loader@^13.0.2":
@@ -7708,13 +7713,13 @@
     "ajv-formats" "^2.1.1"
     "ajv-keywords" "^5.0.0"
 
-"scss-tokenizer@^0.3.0":
-  "integrity" "sha512-14Zl9GcbBvOT9057ZKjpz5yPOyUWG2ojd9D5io28wHRYsOrs7U95Q+KNL87+32p8rc+LvDpbu/i9ZYjM9Q+FsQ=="
-  "resolved" "https://registry.npmjs.org/scss-tokenizer/-/scss-tokenizer-0.3.0.tgz"
-  "version" "0.3.0"
+"scss-tokenizer@^0.4.3":
+  "integrity" "sha512-raKLgf1LI5QMQnG+RxHz6oK0sL3x3I4FN2UDLqgLOGO8hodECNnNh5BXn7fAyBxrA8zVzdQizQ6XjNJQ+uBwMw=="
+  "resolved" "https://registry.npmjs.org/scss-tokenizer/-/scss-tokenizer-0.4.3.tgz"
+  "version" "0.4.3"
   dependencies:
-    "js-base64" "^2.4.3"
-    "source-map" "^0.7.1"
+    "js-base64" "^2.4.9"
+    "source-map" "^0.7.3"
 
 "select-hose@^2.0.0":
   "integrity" "sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo="
@@ -7974,11 +7979,6 @@
   "integrity" "sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g=="
   "resolved" "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
   "version" "0.6.1"
-
-"source-map@^0.7.1":
-  "integrity" "sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA=="
-  "resolved" "https://registry.npmjs.org/source-map/-/source-map-0.7.4.tgz"
-  "version" "0.7.4"
 
 "source-map@^0.7.3":
   "integrity" "sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ=="
