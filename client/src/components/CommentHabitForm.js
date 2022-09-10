@@ -31,7 +31,7 @@ const CommentHabitForm = (props) =>{
       const id = props.id;
     //using habitsRouter API change instead of tableHabitsRouter
       try {
-          const response = await fetch(`/api/v1/habits/${id}/comments`);
+          const response = await fetch(`/api/v1/logs/${id}/tables/comments`);
           if (!response.ok) {
               const errorMessage = `${response.status} (${response.statusText})`;
               const error = new Error(errorMessage);
@@ -67,7 +67,8 @@ const CommentHabitForm = (props) =>{
     const userId = props.userId
         try {
             // const response = await fetch(`/api/v1/habits/${userId}/tables/postComment/${habitId}` first comment API
-          const response = await fetch(`/api/v1/habits/postComment/${habitId}`, {
+          //const response = await fetch(`/api/v1/logs/${habitId}/tables/postComment`, {
+            const response = await fetch(`/api/v1/habits/postComment/${habitId}`,{
             method: "POST",
             headers: new Headers({ "Content-Type": "application/json" }),
             body: JSON.stringify(newHabitsData),

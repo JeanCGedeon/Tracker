@@ -61,16 +61,16 @@ habitsRouter.get("/:id", async (req, res) => {
     return res.status(500).json(error);
   }
 });
-habitsRouter.get("/:id/comments", async (req, res) => {
-  const  habitId  = req.params.id
-  try {
-    const habit = await Habit.query().findById(habitId);
-    habit.comments = await habit.$relatedQuery("comments");
-    return res.status(200).json({ habit });
-  } catch (error) {
-    return res.status(500).json(error);
-  }
-});
+// habitsRouter.get("/:id/comments", async (req, res) => {
+//   const  habitId  = req.params.id
+//   try {
+//     const habit = await Habit.query().findById(habitId);
+//     habit.comments = await habit.$relatedQuery("comments");
+//     return res.status(200).json({ habit });
+//   } catch (error) {
+//     return res.status(500).json(error);
+//   }
+// });
 
 habitsRouter.post("/postComment/:id", async (req, res) => {
   const { body } = req;

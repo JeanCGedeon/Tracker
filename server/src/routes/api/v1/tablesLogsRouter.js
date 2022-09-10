@@ -84,4 +84,34 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
       })
  
 
+      tablesLogsRouter.get("/comments", async (req, res) => {
+        const  {habitId}  = req.params
+        try {
+          const habit = await Habit.query().findById(habitId);
+          habit.comments = await habit.$relatedQuery("comments");
+          return res.status(200).json({ habit });
+        } catch (error) {
+          return res.status(500).json(error);
+        }
+      });
+      
+      tablesLogsRouter.post("/postComment", async (req, res) => {
+        const { body } = req;
+        const formInput = cleanUserInput(body);
+        const { comment } = formInput;
+        const {habitId} = req.params
+        const userId = req.user.id;
+        try {
+          const newComment = await Comment.query().insert({ comment, habitId, userId });
+         return res.status(200).json({ commentPost: newComment });
+        } catch (error) {
+          if (error instanceof ValidationError) {
+            return res.status(422).json({ errors: error });
+          } else {
+            return res.status(500).json({ errors: error });
+          }
+        }
+      });
+      
+
 export default tablesLogsRouter
