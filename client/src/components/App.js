@@ -55,6 +55,7 @@ const App = (props) => {
 
         {/* <Route exact path={`/habits/:id&myLogs`} component={LogData}/> */}
         <Route exact path={`/logs/:id&logPost`} component={LogForm}/>
+        <Route exact path={`/logs/:id&comments`} component={CommentHabitForm}/>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>
