@@ -27,7 +27,6 @@ const CommentHabitForm = (props) =>{
 //     getUserEmail();
 //   }, []);
 
-
   const getComments = async () => {
       const id = props.id;
     //using habitsRouter API change instead of tableHabitsRouter
@@ -40,7 +39,7 @@ const CommentHabitForm = (props) =>{
           }
           const parsedResponse = await response.json();
           setComments(parsedResponse.habit);
-      } catch (error) {
+        } catch (error) {
           console.error(`Error in fetch: ${error.message}`);
       }
   }

@@ -62,9 +62,9 @@ habitsRouter.get("/:id", async (req, res) => {
   }
 });
 habitsRouter.get("/:id/comments", async (req, res) => {
-  const  userId  = req.params.id
+  const  habitId  = req.params.id
   try {
-    const habit = await Habit.query().findById(userId);
+    const habit = await Habit.query().findById(habitId);
     habit.comments = await habit.$relatedQuery("comments");
     return res.status(200).json({ habit });
   } catch (error) {
