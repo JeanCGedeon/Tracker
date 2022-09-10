@@ -4,7 +4,7 @@ const router = new express.Router();
 
 const clientRoutes = ["/", "/user-sessions/new", "/users/new","/habits",'/habits/:id',"/habits/:id&myLogs",
 "/habits/:id&logPost","/logs/:id&myLogs","/logs/:id","/logs/:id&logPost","/graphs","/graphs/:id",
-"/users"];
+"/allusers"];
 
 const authedClientRoutes = ["/profile"];
 
