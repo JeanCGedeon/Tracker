@@ -28,10 +28,10 @@ const CommentHabitForm = (props) =>{
 //   }, []);
 
   const getComments = async () => {
-      const id = props.id;
+      const habitId = props.id;
     //using habitsRouter API change instead of tableHabitsRouter
       try {
-          const response = await fetch(`/api/v1/logs/${id}/tables/comments`);
+          const response = await fetch(`/api/v1/logs/${habitId}/tables/comments`);
           if (!response.ok) {
               const errorMessage = `${response.status} (${response.statusText})`;
               const error = new Error(errorMessage);
