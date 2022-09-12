@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const CommentHabitForm = (props) =>{
+const CommentLogForm = (props) =>{
     // const [comments, setComments] = useState({ comment:"",habitId:0,users:{} });
     const [comments, setComments] = useState({  comments:[]})
     const [userEmail, setUserEmail] = useState({})
@@ -28,17 +28,17 @@ const CommentHabitForm = (props) =>{
 //   }, []);
 
   const getComments = async () => {
-      const habitId = props.id;
+      const logId = props.id;
     //using habitsRouter API change instead of tableHabitsRouter
       try {
-          const response = await fetch(`/api/v1/logs/${habitId}/tables/comments`);
+          const response = await fetch(`/api/v1/logs/${logId}/tables/commentsLogs`);
           if (!response.ok) {
               const errorMessage = `${response.status} (${response.statusText})`;
               const error = new Error(errorMessage);
               throw error;
           }
           const parsedResponse = await response.json();
-          setComments(parsedResponse.habit);
+          setComments(parsedResponse.logs);
         } catch (error) {
           console.error(`Error in fetch: ${error.message}`);
       }
@@ -63,12 +63,12 @@ const CommentHabitForm = (props) =>{
 })
 
   const postComment = async (newHabitsData) => {
-  const habitId= props.id
+  const logId= props.id
     const userId = props.userId
         try {
             // const response = await fetch(`/api/v1/habits/${userId}/tables/postComment/${habitId}` first comment API
           //const response = await fetch(`/api/v1/logs/${habitId}/tables/postComment`, {
-            const response = await fetch(`/api/v1/habits/postComment/${habitId}`,{
+            const response = await fetch(`/api/v1/habits/postCommentLogs/${logId}`,{
             method: "POST",
             headers: new Headers({ "Content-Type": "application/json" }),
             body: JSON.stringify(newHabitsData),
@@ -108,14 +108,14 @@ const CommentHabitForm = (props) =>{
         setNewComment({
           comment:"",
         //   user:"",
-          habitId:0,
+          logId:0,
           userId:0,
         });
       };
       const [newComment, setNewComment] = useState({
         comment:"",
         // user:`${userEmail}`,
-        habitId:0,
+        logId:0,
         userId:0
        });
     return(
@@ -164,4 +164,4 @@ const CommentHabitForm = (props) =>{
     )
 }
 
-export default CommentHabitForm
+export default CommentLogForm

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LogHabitsForm from "./LogHabitsForm";
-import CommentHabitForm from "./CommentHabitForm";
+import CommentLogForm from "./CommentLogForm";
 const logHabitsTile = ({
   id,
   notes,
@@ -38,11 +38,11 @@ const logHabitsTile = ({
         }}
       />
        <div></div>
-      {/* <a href="#comments"> */}
+      {/* <a href="#comments-log"> */}
         <input
           className="button"
           type="button"
-          id="view"
+          id="view-log"
           value="View Comments"
           onClick={() => {
             toggleFlip(id);
@@ -66,6 +66,34 @@ const logHabitsTile = ({
         errors={errors}
       />
     )
+  }
+  const toggleFlip = () => {
+    setIsBeingCommented(!isBeingCommented);
+  };
+ 
+  if (isBeingCommented) {
+    return (
+      <div>
+        {/* <a href="comments">View Comments</a> */}
+        <div id="comments-log" className="comments-back">
+          <div className="comments-box">
+          <input
+          className="button"
+          type="button"
+          id="exit"
+          value="Exit Comments"
+          onClick={() => {
+            toggleFlip(id);
+          }}
+          />
+          {/* <a href="" className="closebtn">
+              ×
+            </a> */}
+            <CommentLogForm key={id} id={id} userId={userId} />
+          </div>
+        </div>
+      </div>
+    );
   }
 
 

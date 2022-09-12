@@ -444,7 +444,7 @@ const [userId, setUserId] = useState([{}])
           </div>
           <div>
            {/* <label htmlFor="comment-new" > View Comments</label> */}
-           <div>
+           {/* <div>
            <p className="move-check">View Comments</p>
            </div>
              <input type="checkbox" id="comment-new" className="view-comment"/>
@@ -456,7 +456,7 @@ const [userId, setUserId] = useState([{}])
               id={tableObject.id}
               userId={userId.id}
               />
-              </div>
+              </div> */}
           </div>
           
         </div>

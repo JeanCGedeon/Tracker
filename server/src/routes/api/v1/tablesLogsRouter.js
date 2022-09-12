@@ -1,7 +1,7 @@
 import express from 'express'
 import { ValidationError } from 'objection'
 import cleanUserInput from '../../../services/cleanUserInput.js'
-import { Habit, User,Log } from '../../../models/index.js'
+import { Habit, User,Log,Comment } from '../../../models/index.js'
 
 const tablesLogsRouter = new express.Router({mergeParams: true })
 
@@ -90,11 +90,23 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
           const habit = await Habit.query().findById(habitId);
           habit.comments = await habit.$relatedQuery("comments");
           return res.status(200).json({ habit });
-        } catch (error) {
+        } catch(error) {
           return res.status(500).json(error);
         }
       });
-      
+  
+      tablesLogsRouter.get("/commentsLogs", async (req, res) => {
+        const  {habitId}  = req.params
+        try {
+          const logs = await Log.query().findById(habitId);
+          logs.comments = await logs.$relatedQuery("comments");
+          return res.status(200).json({ logs });
+        } catch(error) {
+          return res.status(500).json(error);
+        }
+      });
+  
+   
       // tablesLogsRouter.post("/postComment", async (req, res) => {
       //   const { body } = req;
       //   const formInput = cleanUserInput(body);

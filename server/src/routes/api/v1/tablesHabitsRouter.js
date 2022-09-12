@@ -60,7 +60,7 @@ tablesHabitsRouter.post("/post", async (req, res) => {
       const newHabit = await Habit.query().insert({ title, description, good, bad, date, userId });
       return res.status(200).json({ table: newHabit });
     }
-  } catch (error) {
+  } catch(error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error });
     } else {
@@ -86,6 +86,13 @@ tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
     }
   }
 });
+
+
+
+
+
+
+
 
 tablesHabitsRouter.get("/comments", async (req, res) => {
   const { userId } = req.params;

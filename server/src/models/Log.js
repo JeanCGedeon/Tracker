@@ -41,14 +41,14 @@ class Log extends Model {
           to: "logs.id",
         },
       },
-      // comments:{
-      //   relation:Model.HasManyRelation,
-      //   modelClass: Comment,
-      //   join:{
-      //     from:"logs.id",
-      //     to:"comments.logId"
-      //   }
-    // }
+      comments:{
+        relation:Model.HasManyRelation,
+        modelClass: Comment,
+        join:{
+          from:"logs.id",
+          to:"comments.logId"
+        }
+    }
   }
   }
 }

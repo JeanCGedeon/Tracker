@@ -14,7 +14,7 @@ class Comment extends Model {
         // user: { type: "string" },
         userId: { type: ["string", "integer"] },
         habitId: { type: ["string", "integer"] },
-        // logId: { type: ["string", "integer"] },
+        logId: { type: ["string", "integer"] },
       },
       
     };
@@ -40,14 +40,14 @@ class Comment extends Model {
           to: "habits.id",
         },
       },
-      //   log:{
-      //         relation:Model.BelongsToOneRelation,
-      //         modelClass: Log,
-      //         join:{
-      //             from:"comments.LogId",
-      //             to:"logs.id"
-      //         }
-      //   }
+        log:{
+              relation:Model.BelongsToOneRelation,
+              modelClass: Log,
+              join:{
+                  from:"comments.LogId",
+                  to:"logs.id"
+              }
+        }
     };
   }
 }

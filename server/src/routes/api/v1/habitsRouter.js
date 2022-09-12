@@ -90,6 +90,25 @@ habitsRouter.post("/postComment/:id", async (req, res) => {
   }
 });
 
+habitsRouter.post("/postCommentLogs/:id", async (req, res) => {
+  const { body } = req;
+  const formInput = cleanUserInput(body);
+  const { comment } = formInput;
+  const logId = req.params.id;
+  const userId = req.user.id;
+  try {
+    const newComment = await Comment.query().insert({ comment, logId, userId });
+   return res.status(200).json({ commentPost: newComment });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error });
+    } else {
+      return res.status(500).json({ errors: error });
+    }
+  }
+});
+
+
 // habitsRouter.get("/comments/:id", async (req, res) => {
 //     const userId = req.params.id
 //      try {
