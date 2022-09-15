@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CommentHabitTile from "./CommentHabitTile";
-
+import moment from "moment"
 const CommentHabitForm = (props) => {
   // const [comments, setComments] = useState({ comment:"",habitId:0,users:{} });
   const [comments, setComments] = useState({ comments: [] });
@@ -8,25 +8,25 @@ const CommentHabitForm = (props) => {
 
   const [errors, setErrors] = useState([]);
 
-  //   const getUserEmail = async () => {
-  //     try {
-  //   const id = props.userId
-  //       const response = await fetch(`/api/v1/habits/email/:id`);
-  //       if (!response.ok) {
-  //         const errorMessage = `${response.status} (${response.statusText})`;
-  //         const error = new Error(errorMessage);
-  //         throw error;
-  //       }
-  //       const parsedResponse = await response.json();
-  //       setUserEmail(parsedResponse.email);
-  //     } catch (error) {
-  //       console.error(`Error in fetch: ${error.message}`);
-  //     }
-  //   };
+    const getUserEmail = async () => {
+      try {
+    const id = props.userId
+        const response = await fetch(`/api/v1/habits/email/:id`);
+        if (!response.ok) {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          const error = new Error(errorMessage);
+          throw error;
+        }
+        const parsedResponse = await response.json();
+        setUserEmail(parsedResponse.email);
+      } catch (error) {
+        console.error(`Error in fetch: ${error.message}`);
+      }
+    };
 
-  //   useEffect(() => {
-  //     getUserEmail();
-  //   }, []);
+    useEffect(() => {
+      getUserEmail();
+    }, []);
 
   const getComments = async () => {
     const habitId = props.id;
@@ -84,7 +84,7 @@ console.log(comments.comments)
           <p className="comments-p">
             {commentObject.comment}
             <br />
-            userId:{commentObject.userId}
+           {userEmail.userName} commented on {moment(commentObject.date).format("MM/DD/yyyy")}
           </p>
           {/* <div className="comment-tile">
               <CommentHabitTile
@@ -144,6 +144,7 @@ console.log(comments.comments)
       //   user:"",
       habitId: 0,
       userId: 0,
+      date:""
     });
   };
   const [newComment, setNewComment] = useState({
@@ -151,6 +152,7 @@ console.log(comments.comments)
     // user:`${userEmail}`,
     habitId: 0,
     userId: 0,
+    date:""
   });
 
   // const buttons = (

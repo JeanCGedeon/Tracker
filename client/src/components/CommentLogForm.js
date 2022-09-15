@@ -7,25 +7,25 @@ const CommentLogForm = (props) =>{
   
   const [errors, setErrors] = useState([]);
 
-//   const getUserEmail = async () => {
-//     try {
-//   const id = props.userId
-//       const response = await fetch(`/api/v1/habits/email/:id`);
-//       if (!response.ok) {
-//         const errorMessage = `${response.status} (${response.statusText})`;
-//         const error = new Error(errorMessage);
-//         throw error;
-//       }
-//       const parsedResponse = await response.json();
-//       setUserEmail(parsedResponse.email);
-//     } catch (error) {
-//       console.error(`Error in fetch: ${error.message}`);
-//     }
-//   };
+  const getUserEmail = async () => {
+    try {
+  const id = props.userId
+      const response = await fetch(`/api/v1/habits/email/:id`);
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
+      }
+      const parsedResponse = await response.json();
+      setUserEmail(parsedResponse.email);
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
 
-//   useEffect(() => {
-//     getUserEmail();
-//   }, []);
+  useEffect(() => {
+    getUserEmail();
+  }, []);
 
   const getComments = async () => {
       const logId = props.id;
@@ -55,7 +55,7 @@ const CommentLogForm = (props) =>{
                         <h1 key={commentObject.id}>
       <div className="comment-list">
         <p className="comments-p">{commentObject.comment}
-        <br/>userId:{commentObject.userId}
+        {userEmail.userName} commented on {moment(commentObject.date).format("MM/DD/yyyy")}
         </p>
         </div>
       </h1>

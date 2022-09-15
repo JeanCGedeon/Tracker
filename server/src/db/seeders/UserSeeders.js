@@ -8,12 +8,13 @@ class UserSeeder{
           email: 'jean@hotmail.com',
           // userName:"First",
           cryptedPassword: 'test',
-         
+          userName:"Jean Gedeon Test Seeder"
         },
         {
           email: 'gedeon@gmail.com',
           // userName:"Second",
           cryptedPassword: 'second',
+          userName:"YaBoyJeanTestSeeder"
         }
       ];
   

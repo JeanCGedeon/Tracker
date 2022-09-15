@@ -15,6 +15,7 @@ class Comment extends Model {
         userId: { type: ["string", "integer"] },
         habitId: { type: ["string", "integer"] },
         logId: { type: ["string", "integer"] },
+        date: { type: ["string", "integer"] },
       },
       
     };
