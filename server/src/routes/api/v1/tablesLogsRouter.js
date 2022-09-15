@@ -83,7 +83,7 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
       }
       })
  
-
+//for habits
       tablesLogsRouter.get("/comments", async (req, res) => {
         const  {habitId}  = req.params
         try {
@@ -95,6 +95,8 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
         }
       });
   
+
+      //for logs
       tablesLogsRouter.get("/commentsLogs", async (req, res) => {
         const  {habitId}  = req.params
         try {
@@ -106,7 +108,27 @@ tablesLogsRouter.post('/logPost', async(req,res) => {
         }
       });
   
-   
+   //delete for habits copied from table habits router
+tablesLogsRouter.delete("/:id", async (req, res) => {
+  const { habitId } = req.params;
+  const userId = req.params.id;
+  try {
+    const habitDelete = await User.query().findById(req.user.id)
+    if(req.user && habitDelete.id === req.user.id ){ 
+      const habitDelete = await Habit.query().findById(habitId);
+      habitDelete.comments = await habitDelete.$relatedQuery("comments");
+      await habitDelete.$relatedQuery("comments").deleteById(habitId);
+      return res.status(200).json({ message: "This habit has been deleted" });
+    } else {
+      return res
+        .status(401)
+        .json({ "AuthorizationError:": "User not authorized to delete review" });
+    }
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
       // tablesLogsRouter.post("/postComment", async (req, res) => {
       //   const { body } = req;
       //   const formInput = cleanUserInput(body);

@@ -138,6 +138,6 @@ const HabitsTileTest = ({
     );
   }
 
-  return <div className="ree">{buttons}</div>;
+  return( <div className="ree">{buttons}</div>);
 };
 export default HabitsTileTest;

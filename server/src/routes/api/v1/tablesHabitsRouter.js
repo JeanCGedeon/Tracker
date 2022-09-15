@@ -69,23 +69,23 @@ tablesHabitsRouter.post("/post", async (req, res) => {
   }
 });
 
-tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
-  const { body } = req;
-  const formInput = cleanUserInput(body);
-  const { comment } = formInput;
-  const habitId = req.params.id;
-  const userId = req.user.id;
-  try {
-    const newComment = await Comment.query().insert({ comment, habitId, userId });
-   return res.status(200).json({ commentPost: newComment });
-  } catch (error) {
-    if (error instanceof ValidationError) {
-      return res.status(422).json({ errors: error });
-    } else {
-      return res.status(500).json({ errors: error });
-    }
-  }
-});
+// tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
+//   const { body } = req;
+//   const formInput = cleanUserInput(body);
+//   const { comment } = formInput;
+//   const habitId = req.params.id;
+//   const userId = req.user.id;
+//   try {
+//     const newComment = await Comment.query().insert({ comment, habitId, userId });
+//    return res.status(200).json({ commentPost: newComment });
+//   } catch (error) {
+//     if (error instanceof ValidationError) {
+//       return res.status(422).json({ errors: error });
+//     } else {
+//       return res.status(500).json({ errors: error });
+//     }
+//   }
+// });
 
 
 
@@ -94,16 +94,16 @@ tablesHabitsRouter.post("/postComment/:id", async (req, res) => {
 
 
 
-tablesHabitsRouter.get("/comments", async (req, res) => {
-  const { userId } = req.params;
-  try {
-    const habit = await Habit.query().findById(userId);
-    habit.comments = await habit.$relatedQuery("comments");
-    return res.status(200).json({ habit });
-  } catch (error) {
-    return res.status(500).json(error);
-  }
-});
+// tablesHabitsRouter.get("/comments", async (req, res) => {
+//   const { userId } = req.params;
+//   try {
+//     const habit = await Habit.query().findById(userId);
+//     habit.comments = await habit.$relatedQuery("comments");
+//     return res.status(200).json({ habit });
+//   } catch (error) {
+//     return res.status(500).json(error);
+//   }
+// });
 
 tablesHabitsRouter.delete("/:id", async (req, res) => {
   const { userId } = req.params;

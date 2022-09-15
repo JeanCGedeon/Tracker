@@ -52,35 +52,38 @@ width: 30%;
   // background-color: rgba(67, 37, 10, 0.912);
     background-color: transparent;
 }
-// #log-submit{
-//   box-sizing: border-box;
-//   position: relative;
-//   // margin-left:8em;
-// }
+#log-submit{
+  box-sizing: border-box;
+  position: relative;
+  margin-left: .2rem;
+  margin-right: 5rem;
+  margin-top: 2rem;
+  width: 13%;
+}
 .title-logs{
 color: white;
 text-align: center;
-margin-right: 40px;
+margin-right: 5rem;
 }
 label{
   text-align: center;
 }
 
 #notes-logs,#date-logs{
-  margin: 0px 400px;
+  margin: 0rem 25rem;
  
  }
  
 #center-logs{
-  margin-left: 480px;
-  margin-top: 25px;
+  margin-left: 30rem;
+  margin-top: 2.5rem;
 }
 
-#log-submit{
-  margin-right: 77px;
-  margin-top: 30px;
-  width: 10%;
-}
+// #log-submit{
+//   margin-right: 5rem;
+//   margin-top: 2rem;
+//   width: 10%;
+// }
 .title{
   color:white
 }
@@ -109,10 +112,10 @@ label{
 .button-form{
  position:relative;
  width: 6%;
- height: 40px;
+ height: 3rem;
   background-color: rgba(4, 126, 214, 0.646);
   color: rgb(255, 255, 255);
-  size: 100px;
+  // size: 100rem;
 }
 
 p.habit-title{
@@ -121,7 +124,7 @@ p.habit-title{
 //  margin-top: .1em;
 height: 4.5em;
  padding: 1em;
- border-radius: 0.5em 0.5em 1px 1px;
+ border-radius: .8rem .8rem .1rem .1rem;
 //  border-bottom: 1px solid blue;
  background-color: #000;
 }
@@ -142,15 +145,15 @@ p.comment-hi{
   width: 30%;
  //change back size by deleting
   margin-right: .7em;
-  margin-left: 20px;
+  margin-left: 1.5rem;
   background-color: white;
   flex-direction: row;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
   align-items: center;
-  border-radius: 0.5em;
-  -webkit-box: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
-  -moz-box: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
-  box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
+  border-radius: 1rem;
+  -webkit-box: 4rem 29rem 38rem -15rem rgba(251, 251, 251, 0.824);
+  -moz-box: 4rem 2rem 3rem -1rem rgb(255, 255, 255);
+  box-shadow: 4rem 2rem 3rem -15rem rgba(255, 255, 255, 0.951);
 }
 
 .input{
@@ -171,23 +174,23 @@ p.comment-hi{
   width: 30%;
   height: 1em;
   zoom: .8;
-  padding-bottom: 45px;
-  margin-bottom: 20px;
+  padding-bottom: 3rem;
+  margin-bottom: 2rem;
   background-color: #777;
 }
 p.log-title{
   font-weight: 700;
   font-size: 1.6rem;
-  margin-top: 1em;
-  padding: 1em;
+  margin-top: 1.2rem;
+  padding: 1.2rem;
  }
 p.comments-p,h1.comments-p{
  text-align: left;
-line-height: 35px;
+line-height: 3rem;
 // padding-top: 30px;
-padding-bottom: 10px;
-font-size: 30px;
-border-bottom: 2px solid black;
+padding-bottom: .4rem;
+font-size: 2rem;
+border-bottom: .2rem solid black;
 color: #fff;
 }
  p.log-description{
@@ -197,7 +200,7 @@ color: #fff;
 }
 
 .breathe{
-  margin-bottom: 100px;
+  margin-bottom: 5em;
 }
 
 .log-item{
@@ -210,7 +213,7 @@ width: 38%;
 
 zoom: 1;
 margin-right: .7em;
-max-height: 320em;
+max-height: 320rem;
 // background-color: rgba(96, 101, 119, 0.824);
 // color: rgba(209, 208, 206, 0.753);
 // color: rgb(124, 81, 0);
@@ -221,12 +224,12 @@ background-color: #000;
 color: yellow;
 flex-direction: row;
 margin-bottom: 2em;
-margin-left: 20px;
+margin-left: 1.7rem;
 align-items: center;
-border-radius: 0.5em;
-border: 1px solid gray;
--webkit-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
--moz-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
+border-radius: 1.3rem;
+border: .1rem solid gray;
+// -webkit-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
+// -moz-box: 40px 29px 38px 15px rgba(0.43,0,0,0.43);
 // box-shadow: 40px 29px 38px -15px rgba(0.43,0,0,0.43);
 }
 
@@ -236,34 +239,34 @@ border: 1px solid gray;
 }
 
 #log-date-parent{
-  font-size: 20px;
+  font-size: 1.7rem;
   position: relative;
   // left: 110px;
-  top: 30px;
+  top: 1.8rem;
 }
 .add-habits{
-  height: 50px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  height: 4.7rem;
+  margin-top: 4.7rem;
+  margin-bottom: 4.7rem;
 }
 .good-bad-list-intro{
-  height: 50px;
-  margin-top: 50px;
-  margin-bottom: 85px;
+  height: 4.5rem;
+  margin-top: 4.5rem;
+  margin-bottom: -6rem;
 }
 #delete:hover{
 background-color: red;
 }
 
 @-webkit-keyframes back{
-  from{top:-100px;opacity: 0;}
-  to{top:0px;opacity: 1;
+  from{top:-10rem;opacity: 0;}
+  to{top:0rem;opacity: 1;
   }
 }
 
 @keyframes back{
-  from{top:-100px;opacity: 0;}
-  to{top:0px;opacity: 1;
+  from{top:-100rem;opacity: 0;}
+  to{top:0rem;opacity: 1;
   }
 }
 
@@ -280,7 +283,7 @@ height: 300vh;
   overflow: scroll;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(.27rem);
 }
 #logs:target {
   display: block;
@@ -294,11 +297,11 @@ height: 300vh;
   position: relative;
   padding: 0;
   outline: 0;
-  border: 1px #777 solid;
+  border: .1rem #777 solid;
   text-align: justify;
   width: 80%;
  
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 .3rem 7rem 0 rgba(0, 0, 0, 0.2), 0 .6rem 2rem 0 rgba(0, 0, 0, 0.19);
 
   
   -webkit-animation-name: back;
@@ -312,9 +315,10 @@ height: 300vh;
 .closebtn {
   text-decoration: none;
   float: right;
-  font-size: 35px;
+  font-size: 2.8rem;
   font-weight: bold;
   color: #fff;
+  margin-right: 1.7rem;
 }
 
 .closebtn:hover,.closebtn:focus {
@@ -335,11 +339,11 @@ height: 300vh;
   color: white;
   // background-color: coral;
   background-color: rgb(101, 7, 7);
-  width: 434px;
-  height: 200px;
-  border: 1px solid black;
+  width: 27.1rem;
+  height: 20rem;
+  border: .05rem solid black;
   overflow: scroll;
-  border-radius: 0px 0px 0.5em 0.5em;
+  border-radius: 0rem 0rem 0.8rem 0.8rem;
 }
 
 
@@ -348,7 +352,7 @@ a{
 }
 
 a:hover{
-border: 1px solid white;
+border: .1rem solid white;
 background-color: white;
 }
 // .link-to-logs{
@@ -384,15 +388,15 @@ background-color: white;
 
 p.move-check{
   position: absolute;
-  margin-left: 130px;
+  margin-left: 10rem;
   background-color: #777;
   color: #fff;
-  border: 4px solid #777;
-  font-size: 23px;
+  border: .34rem solid #777;
+  font-size: 2rem;
   // margin-top: 5px;
 }
 #comment-new{
-width: 70px;
+width: 7rem;
   transform: scale(8);
   opacity: 0;
 }
@@ -405,13 +409,14 @@ width: 70px;
 .center-title-pie-chart{
   color: #fff;
   position: absolute;
-  margin-left: 85px;
-  margin-top: 36px;
+  margin-left: 4.7rem;
+  margin-top: 1.7rem;
 }
 
 .bar-chart-whole{
   position: absolute;
-  margin-top: 550px;
-  top: 5px;
-  margin-left: 560px;
+  margin-top: 35rem;
+  top: -1rem;
+  margin-left: 35rem;
 }
+

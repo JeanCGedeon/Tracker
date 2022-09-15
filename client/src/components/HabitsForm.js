@@ -318,10 +318,10 @@ const HabitsForm = (props) => {
     }
   };
 
+
+
  
  
-  
-  
   
   const patchHabit = async (habitBody, habitId) => {
     try {
