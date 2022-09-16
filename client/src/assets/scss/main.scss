@@ -63,27 +63,29 @@ width: 30%;
 .title-logs{
 color: white;
 text-align: center;
-margin-right: 5rem;
+margin-right: 3rem;
+margin-left: .4rem;
 }
 label{
   text-align: center;
 }
 
 #notes-logs,#date-logs{
-  margin: 0rem 25rem;
+  margin: 0rem 27rem;
  
  }
  
 #center-logs{
-  margin-left: 30rem;
+  margin-left: 32.5rem;
   margin-top: 2.5rem;
 }
 
-// #log-submit{
-//   margin-right: 5rem;
-//   margin-top: 2rem;
-//   width: 10%;
-// }
+#log-submit{
+  margin-right: 5rem;
+  margin-top: 2rem;
+  margin-left: 4.5rem;
+  // width: 10%;
+}
 .title{
   color:white
 }
@@ -224,7 +226,7 @@ background-color: #000;
 color: yellow;
 flex-direction: row;
 margin-bottom: 2em;
-margin-left: 1.7rem;
+margin-left: 5rem;
 align-items: center;
 border-radius: 1.3rem;
 border: .1rem solid gray;
