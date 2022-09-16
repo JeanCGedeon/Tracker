@@ -364,23 +364,23 @@ useEffect(()=>{
 
   let data = [
     ["Months", "Total Habits", "Bad Habits", "Good habits"],
-    ["January", goodJanHabitsCount + badJanHabitsCount, goodJanHabitsCount, badJanHabitsCount],
-    ["February", goodFebHabitsCount + badFebHabitsCount, goodFebHabitsCount, badFebHabitsCount],
-    ["March", goodMarHabitsCount + badMarHabitsCount, goodMarHabitsCount, badMarHabitsCount],
-    ["April", goodAprHabitsCount + badAprHabitsCount, goodAprHabitsCount, badAprHabitsCount],
-    ["May", goodMayHabitsCount + badMayHabitsCount, goodMayHabitsCount, badMayHabitsCount],
-    ["June", goodJuneHabitsCount + badJuneHabitsCount, goodJuneHabitsCount, badJuneHabitsCount],
-    ["July", goodJulyHabitsCount + badJulyHabitsCount, goodJulyHabitsCount, badJulyHabitsCount],
-    ["August", goodAugHabitsCount + badAugHabitsCount, goodAugHabitsCount, badAugHabitsCount],
+    ["January", goodJanHabitsCount + badJanHabitsCount, badJanHabitsCount,goodJanHabitsCount],
+    ["February", goodFebHabitsCount + badFebHabitsCount, badFebHabitsCount, goodFebHabitsCount],
+    ["March", goodMarHabitsCount + badMarHabitsCount, badMarHabitsCount, goodMarHabitsCount],
+    ["April", goodAprHabitsCount + badAprHabitsCount, badAprHabitsCount, goodAprHabitsCount],
+    ["May", goodMayHabitsCount + badMayHabitsCount, badMayHabitsCount, goodMayHabitsCount],
+    ["June", goodJuneHabitsCount + badJuneHabitsCount, badJuneHabitsCount, goodJuneHabitsCount],
+    ["July", goodJulyHabitsCount + badJulyHabitsCount, badJulyHabitsCount, goodJulyHabitsCount],
+    ["August", goodAugHabitsCount + badAugHabitsCount, badAugHabitsCount, goodAugHabitsCount],
     [
       "September",
       goodSeptHabitsCount + badSeptHabitsCount,
+     badSeptHabitsCount,
       goodSeptHabitsCount,
-      badSeptHabitsCount,
     ],
-    ["October", goodOctHabitsCount + badOctHabitsCount, goodOctHabitsCount, badOctHabitsCount],
-    ["November", goodNovHabitsCount + badNovHabitsCount, goodNovHabitsCount, badNovHabitsCount],
-    ["December", goodDecHabitsCount + badDecHabitsCount, goodDecHabitsCount, badNovHabitsCount],
+    ["October", goodOctHabitsCount + badOctHabitsCount, badOctHabitsCount, goodOctHabitsCount],
+    ["November", goodNovHabitsCount + badNovHabitsCount, badNovHabitsCount, goodNovHabitsCount],
+    ["December", goodDecHabitsCount + badDecHabitsCount, badDecHabitsCount, goodDecHabitsCount],
   ];
 
   let options = {
@@ -396,7 +396,7 @@ useEffect(()=>{
       fill: "transparent",
     },
 
-    colors: ["#322E2E", "FFA500", "004BED"],
+    colors: ["#322E2E","FFA500","004BED"],
     hAxis: {
       textStyle: { color: "#FFF" },
       baseLineColor: "FFF",
