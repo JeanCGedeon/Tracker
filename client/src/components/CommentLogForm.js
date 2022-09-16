@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import moment from "moment"
 const CommentLogForm = (props) =>{
     // const [comments, setComments] = useState({ comment:"",habitId:0,users:{} });
     const [comments, setComments] = useState({  comments:[]})
@@ -110,13 +110,15 @@ const CommentLogForm = (props) =>{
         //   user:"",
           logId:0,
           userId:0,
+          date:""
         });
       };
       const [newComment, setNewComment] = useState({
         comment:"",
         // user:`${userEmail}`,
         logId:0,
-        userId:0
+        userId:0,
+        date:""
        });
     return(
         <div className="asda">
@@ -132,7 +134,17 @@ const CommentLogForm = (props) =>{
                 value={newComment.comment}
                 />
             </label>
-            
+            <label htmlFor="date" id="label-center">
+      date
+          <input
+             className="comment-description"
+            type="date"
+            id="comment-description"
+            name="date"
+            onChange={handleInputChange}
+            value={newComment.date}
+          />
+        </label>
           {/* <label>
              user
                 <input

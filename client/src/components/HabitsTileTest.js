@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import HabitsTestForm from "./HabitsTestForm";
 import CommentHabitForm from "./CommentHabitForm";
 import moment from "moment";
@@ -13,7 +13,6 @@ const HabitsTileTest = ({
   date,
   deleteHabit,
   userId,
-  getComments,
   creatorId,
   curUserId,
   patchHabit,
@@ -24,6 +23,31 @@ const HabitsTileTest = ({
   const [isBeingEdited, setIsBeingEdited] = useState(false);
   const [isBeingLogged, setIsBeingLogged] = useState(false);
   const [isBeingCommented, setIsBeingCommented] = useState(false);
+ 
+ 
+  const [comments, setComments] = useState({ comments: [] });
+
+  const getComments = async () => {
+    const habitId = id;
+    //using habitsRouter API change instead of tableHabitsRouter
+    try {
+      const response = await fetch(`/api/v1/logs/${habitId}/tables/comments`);
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
+      }
+      const parsedResponse = await response.json();
+      setComments(parsedResponse.habit);
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
+
+  useEffect(() => {
+    getComments();
+  }, []);
+let commentLength = comments.comments.length
   const buttons = (
     <div>
       <input
@@ -66,6 +90,7 @@ const HabitsTileTest = ({
             toggleFlip(id);
           }}
         />
+        <p className="comments-length">{commentLength} comments</p>
       {/* </a> */}
     </div>
   );

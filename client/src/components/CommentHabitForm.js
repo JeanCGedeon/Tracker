@@ -49,7 +49,8 @@ const CommentHabitForm = (props) => {
     getComments();
   }, []);
 
-  const deleteComment = async (habitId) => {
+
+const deleteComment = async (habitId) => {
     try {
       const id = props.id;
       const response = await fetch(`/api/v1/logs/${habitId}/tables/${id}`, {
@@ -76,7 +77,6 @@ const CommentHabitForm = (props) => {
     }
   };
   
-console.log(comments.comments)
   const commentListItem = comments.comments.map((commentObject) => {
     return (
       <h1 key={commentObject.id}>
@@ -183,7 +183,17 @@ console.log(comments.comments)
             value={newComment.comment}
           />
         </label>
-
+        <label htmlFor="date" id="label-center">
+      date
+          <input
+             className="comment-description"
+            type="date"
+            id="comment-description"
+            name="date"
+            onChange={handleInputChange}
+            value={newComment.date}
+          />
+        </label>
         {/* <label>
              user
                 <input
@@ -208,6 +218,7 @@ console.log(comments.comments)
         <input className="button-form" type="submit" value="Submit" id="input-comment" />
       </form>
       {commentListItem}
+ 
       {/* <p>{comments.comment}</p>
         <p>{comments.habitId}</p>
         <p>{comments.users.email}</p> */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import LogHabitsForm from "./LogHabitsForm";
 import CommentLogForm from "./CommentLogForm";
 const logHabitsTile = ({
@@ -17,7 +17,29 @@ const logHabitsTile = ({
 },props) => {
   const [isBeingEdited, setIsBeingEdited] = useState(false);
   const [isBeingCommented, setIsBeingCommented] = useState(false);
+  const [comments, setComments] = useState({ comments: [] });
 
+  const getComments = async () => {
+    const habitId = id;
+    //using habitsRouter API change instead of tableHabitsRouter
+    try {
+      const response = await fetch(`/api/v1/logs/${habitId}/tables/comments`);
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
+      }
+      const parsedResponse = await response.json();
+      setComments(parsedResponse.habit);
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
+
+  useEffect(() => {
+    getComments();
+  }, []);
+let commentLength = comments.comments.length
   const buttons =
     <div className="jar">
       <input
@@ -48,6 +70,7 @@ const logHabitsTile = ({
             toggleFlip(id);
           }}
         />
+         <p className="comments-length-log">{commentLength} comments</p>
       {/* </a> */}
  
     </div>

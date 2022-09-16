@@ -82,6 +82,7 @@ const HabitsForm = (props) => {
   };
  
   
+  
   // const getGoodHabits = async () => {
   //   try {
   //     const userId = props.match.params.id;
@@ -322,6 +323,7 @@ const HabitsForm = (props) => {
 
  
  
+
   
   const patchHabit = async (habitBody, habitId) => {
     try {
