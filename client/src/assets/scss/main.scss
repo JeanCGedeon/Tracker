@@ -401,6 +401,36 @@ width: 7rem;
   opacity: 0;
 }
 
+
+.see-body{
+  display: none;
+}
+// .see-comment::after{
+// display: block;
+// }
+
+#item-body:checked~.see-body{
+  display: block;
+}
+
+p.move-check-x{
+  position: absolute;
+  margin-left: 9.5rem;
+ bottom: 40;
+  background-color: #777;
+  background-color: rgb(151, 7, 7);
+  color: #fff;
+  // border: .34rem solid #777;
+  border: .34rem solid rgb(151, 7, 7);
+  font-size: 1.4rem;
+  // margin-top: 5px;
+}
+#item-body{
+width: 7rem;
+  transform: scale(3);
+  opacity: 0;
+}
+
 .center-title-column-chart{
   text-align: center;
   color: #fff;

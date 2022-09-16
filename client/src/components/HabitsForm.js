@@ -404,7 +404,15 @@ const [userId, setUserId] = useState([{}])
           <Link to={`/logs/${tableObject.id}&logPost`} className="link-to-logs">
             <p className="habit-title">{tableObject.title}</p>
           </Link>
-
+          <div>
+           <label htmlFor="item-body" > </label>
+           <div>
+           <p className="move-check-x"> View Card </p>
+           </div>
+             <input type="checkbox" id="item-body" className="view-body"/>
+             {/* <input type="checkbox" id="item-body" className="view-body"/>
+             <input type="checkbox" id="item-body" className="view-body"/> */}
+            <div className="see-body">
           <div className="test">
             <p className="habit-description">{tableObject.description}</p>
           </div>
@@ -444,9 +452,9 @@ const [userId, setUserId] = useState([{}])
 
             />
           </div>
-          <div>
-           {/* <label htmlFor="comment-new" > View Comments</label> */}
-           {/* <div>
+          {/* <div>
+           <label htmlFor="comment-new" > View Comments</label>
+           <div>
            <p className="move-check">View Comments</p>
            </div>
              <input type="checkbox" id="comment-new" className="view-comment"/>
@@ -458,9 +466,10 @@ const [userId, setUserId] = useState([{}])
               id={tableObject.id}
               userId={userId.id}
               />
-              </div> */}
+              </div>
+          </div> */}
           </div>
-          
+          </div>
         </div>
       </h3>
     );
