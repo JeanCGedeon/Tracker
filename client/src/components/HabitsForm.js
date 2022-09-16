@@ -405,17 +405,16 @@ const [userId, setUserId] = useState([{}])
             <p className="habit-title">{tableObject.title}</p>
           </Link>
           <div>
-           <label htmlFor="item-body" > </label>
+           {/* <label htmlFor="item-body" > </label>
            <div>
            <p className="move-check-x"> View Card </p>
            </div>
              <input type="checkbox" id="item-body" className="view-body"/>
-             {/* <input type="checkbox" id="item-body" className="view-body"/>
-             <input type="checkbox" id="item-body" className="view-body"/> */}
+           
             <div className="see-body">
           <div className="test">
             <p className="habit-description">{tableObject.description}</p>
-          </div>
+          </div> */}
           <p>{tableObject.good}</p>
           <div className="testing">
             <p className="habit-description">{moment(tableObject.date).format("MM/DD/yyyy")}</p>
@@ -470,7 +469,6 @@ const [userId, setUserId] = useState([{}])
           </div> */}
           </div>
           </div>
-        </div>
       </h3>
     );
   });
