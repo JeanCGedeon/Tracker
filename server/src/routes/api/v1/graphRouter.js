@@ -12,6 +12,7 @@ const graphsRouter = new express.Router()
 //        return res.status(500).json(error);
 //      }
 //    });
+
   graphsRouter.get("/logs", async (req, res) => {
      try {
        const logs = await Log.query()

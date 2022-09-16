@@ -438,7 +438,7 @@ useEffect(()=>{
 
 let dataBar = [
     ["Habit Title","Number of Logs"],
-    ["Test", 1], //have to come back to edit this
+    ["", 0], //have to come back to edit this
 ]
 
 let arrFirst = []// the length will give me the log count 
